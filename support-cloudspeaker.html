@@ -106,18 +106,37 @@
       padding: 40px 20px;
       background: var(--white);
     }
-    .product-image-placeholder {
-      width: 100%;
-      max-width: 500px;
-      height: 300px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
-      border-radius: var(--radius);
+    .product-gallery {
       display: flex;
-      align-items: center;
       justify-content: center;
-      color: var(--text-light);
-      font-size: 14px;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .product-gallery img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: var(--radius);
+      transition: transform 0.3s ease;
+    }
+    .product-gallery img:hover {
+      transform: scale(1.03);
+    }
+    .product-lifestyle {
+      width: 100%;
+      max-width: 600px;
+      margin: 24px auto 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+    .product-lifestyle img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     .color-options {
       display: flex;
@@ -408,6 +427,29 @@
     }
     .faq-item.active .faq-toggle { transform: rotate(45deg); }
 
+    /* === 部品構成 === */
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .part-item {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-cream);
+      font-size: 13px;
+    }
+    .part-item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+    .part-item span {
+      color: var(--text-light);
+      font-size: 12px;
+    }
+
     /* === フッター === */
     .footer {
       text-align: center;
@@ -444,6 +486,8 @@
     /* === レスポンシブ === */
     @media (max-width: 600px) {
       .hero { padding: 40px 16px 36px; }
+      .product-gallery { gap: 16px; }
+      .product-gallery img { max-width: 45%; }
       .toc { padding: 20px; margin: 24px 16px; }
       .toc-grid { grid-template-columns: 1fr; }
       .section { margin: 24px 16px; }
@@ -451,6 +495,7 @@
       .led-colors { grid-template-columns: repeat(2, 1fr); }
       .spec-table th { width: 45%; }
       .step { gap: 14px; }
+      .parts-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -464,15 +509,15 @@
         cloud speaker
         <span>MNC-CL01 使い方ガイド</span>
       </h1>
-      <div class="hero-badge">USB デスクトップスピーカー</div>
+      <div class="hero-badge">USB 雲型デスクトップスピーカー</div>
     </div>
   </header>
 
   <!-- 製品ショーケース -->
   <section class="product-showcase">
-    <div class="product-image-placeholder">
-      <!-- ここに製品画像を配置: <img src="製品画像のURL" alt="minotel cloud speaker"> -->
-      製品画像をここに配置
+    <div class="product-gallery">
+      <img src="images/white.png" alt="minotel cloud speaker ピュアホワイト">
+      <img src="images/blue.png" alt="minotel cloud speaker パステルブルー">
     </div>
     <div class="color-options">
       <div class="color-chip">
@@ -483,6 +528,9 @@
         <div class="color-dot" style="background: var(--pastel-blue);"></div>
         パステルブルー
       </div>
+    </div>
+    <div class="product-lifestyle">
+      <img src="images/desk.png" alt="デスクに置かれた minotel cloud speaker の使用イメージ">
     </div>
   </section>
 
@@ -506,12 +554,16 @@
         <div class="toc-icon" style="background: var(--pastel-green);">4</div>
         製品仕様
       </a>
+      <a href="#structure" class="toc-item">
+        <div class="toc-icon" style="background: var(--pastel-yellow);">5</div>
+        構造・素材
+      </a>
       <a href="#care" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-orange);">5</div>
+        <div class="toc-icon" style="background: var(--pastel-orange);">6</div>
         取り扱い上の注意
       </a>
       <a href="#faq" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-yellow);">6</div>
+        <div class="toc-icon" style="background: var(--pastel-pink);">7</div>
         よくある質問
       </a>
     </div>
@@ -532,10 +584,10 @@
             <strong>スピーカー本体</strong> ... 2台（左・右）
           </li>
           <li style="padding: 8px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>USB ケーブル</strong> ... 1本（電源＆音声入力用）
+            <strong>USB ケーブル</strong> ... 1本（電源＆音声入力用、PVC ホワイト）
           </li>
           <li style="padding: 8px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>スピーカー接続ケーブル</strong> ... 1本（左右のスピーカーをつなぐ用）
+            <strong>スピーカー接続ケーブル</strong> ... 1本（左右のスピーカーをつなぐ用、3.5mm 4極）
           </li>
           <li style="padding: 8px 0;">
             <strong>保証書・かんたんガイド</strong> ... 1枚
@@ -560,13 +612,13 @@
           <div class="step">
             <div class="step-content">
               <h4>左右のスピーカーをつなぐ</h4>
-              <p>付属のスピーカー接続ケーブルで、2台のスピーカーを接続します。ケーブルの端子は同じ形なので、どちらに挿してもOKです。</p>
+              <p>付属のスピーカー接続ケーブル（3.5mm端子）で、2台のスピーカーを接続します。ケーブルの端子は同じ形なので、どちらに挿してもOKです。</p>
             </div>
           </div>
           <div class="step">
             <div class="step-content">
               <h4>USBケーブルをパソコンに接続</h4>
-              <p>付属のUSBケーブルを、メイン側のスピーカー（ボタンがある方）とパソコンのUSBポートに接続します。電源も音声信号もこの1本でOK。</p>
+              <p>付属のUSBケーブルを、メイン側のスピーカー（ボタンがある方）とパソコンのUSBポートに接続します。電源も音声もこの1本でOK。ドライバーのインストールは不要です。</p>
             </div>
           </div>
           <div class="step">
@@ -578,7 +630,7 @@
         </div>
         <div class="notice notice-tip">
           <div class="notice-title">おすすめ</div>
-          USB 3.0以上のポートに接続すると、安定した電力供給で最高の音質をお楽しみいただけます。
+          USB 3.2 以上のポート、または独立給電のUSBハブに接続すると、安定した電力供給で最高の音質をお楽しみいただけます。動作電圧は 4.75 ~ 5.25V です。
         </div>
       </div>
     </section>
@@ -600,7 +652,7 @@
           </div>
           <div class="led-color">
             <div class="led-swatch" style="background: #71FFA2; box-shadow: 0 0 12px #71FFA2;"></div>
-            ライトグリーン
+            グリーン
           </div>
           <div class="led-color">
             <div class="led-swatch" style="background: #FF6BAE; box-shadow: 0 0 12px #FF6BAE;"></div>
@@ -638,7 +690,8 @@
         <table class="spec-table">
           <tr><th>製品名</th><td>minotel cloud speaker</td></tr>
           <tr><th>型番</th><td>MNC-CL01</td></tr>
-          <tr><th>音声入力</th><td>USB デジタルオーディオ</td></tr>
+          <tr><th>製品タイプ</th><td>雲型デスクトップスピーカーセット</td></tr>
+          <tr><th>音声入力</th><td>USB デジタル音声入力</td></tr>
           <tr><th>動作電圧</th><td>4.75 ~ 5.25V（USB給電）</td></tr>
           <tr><th>最大消費電力</th><td>7W</td></tr>
           <tr><th>カラー</th><td>ピュアホワイト / パステルブルー</td></tr>
@@ -647,21 +700,82 @@
       <div class="card">
         <h3>スピーカー仕様</h3>
         <table class="spec-table">
-          <tr><th>スピーカー口径</th><td>52mm</td></tr>
-          <tr><th>駆動方式</th><td>ダイナミック型</td></tr>
-          <tr><th>インピーダンス</th><td>4.0 &Omega;</td></tr>
-          <tr><th>音圧感度</th><td>85 dB</td></tr>
+          <tr><th>スピーカー口径</th><td>52mm（ダイナミック型）</td></tr>
+          <tr><th>インピーダンス</th><td>4.0 &Omega; &plusmn;20%</td></tr>
+          <tr><th>音圧感度</th><td>85 &plusmn;3 dB（0.5m / 1W）</td></tr>
           <tr><th>定格電力</th><td>3W</td></tr>
           <tr><th>最大電力</th><td>5W</td></tr>
           <tr><th>周波数帯域</th><td>140Hz ~ 20kHz</td></tr>
+          <tr><th>最低共振周波数</th><td>140 &plusmn;20 Hz</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>ケーブル仕様</h3>
+        <table class="spec-table">
+          <tr><th>端子</th><td>3.5mm / 4極</td></tr>
+          <tr><th>色</th><td>ホワイト</td></tr>
+          <tr><th>材質</th><td>PVC</td></tr>
+          <tr><th>引張強度</th><td>3kg 以上</td></tr>
         </table>
       </div>
     </section>
 
-    <!-- 5. 取り扱い上の注意 -->
+    <!-- 5. 構造・素材 -->
+    <section id="structure" class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--pastel-yellow);">5</div>
+        <h2>構造・素材</h2>
+      </div>
+      <div class="card">
+        <p>cloud speaker は、手触りのいいラバー塗装仕上げのABS樹脂で作られています。底面にはシリコンパッドが4つ付いているので、デスクの上で滑りにくく安定します。</p>
+        <h3 style="margin-top: 20px;">主な部品と素材</h3>
+        <div class="parts-grid">
+          <div class="part-item">
+            <strong>前面カバー</strong>
+            <span>ABS樹脂 / ラバー塗装</span>
+          </div>
+          <div class="part-item">
+            <strong>前面シェル</strong>
+            <span>ABS樹脂 / ラバー塗装</span>
+          </div>
+          <div class="part-item">
+            <strong>背面シェル</strong>
+            <span>ABS樹脂 / ラバー塗装</span>
+          </div>
+          <div class="part-item">
+            <strong>操作ボタン</strong>
+            <span>ABS樹脂 / ラバー塗装</span>
+          </div>
+          <div class="part-item">
+            <strong>LEDカバー</strong>
+            <span>PP素材（半透明）</span>
+          </div>
+          <div class="part-item">
+            <strong>スピーカーグリル</strong>
+            <span>ABS素材</span>
+          </div>
+          <div class="part-item">
+            <strong>底面パッド</strong>
+            <span>シリコン x 4</span>
+          </div>
+          <div class="part-item">
+            <strong>スピーカー</strong>
+            <span>52mm ダイナミック型</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 24px;">本体カラーの仕上げ</h3>
+        <table class="spec-table" style="margin-top: 12px;">
+          <tr><th>ピュアホワイト</th><td>白色成形 + 透明マット塗装</td></tr>
+          <tr><th>パステルブルー</th><td>白色成形 + 指定色塗装 + 透明マット塗装</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. 取り扱い上の注意 -->
     <section id="care" class="section">
       <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-orange);">5</div>
+        <div class="section-icon" style="background: var(--pastel-orange);">6</div>
         <h2>取り扱い上の注意</h2>
       </div>
       <div class="card">
@@ -676,11 +790,15 @@
           </li>
           <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
             <strong>直射日光・高温を避ける</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">直射日光が当たる場所や、暖房器具のそばなど高温になる場所に置かないでください。（使用温度範囲: -20℃ ~ 50℃）</span>
+            <span style="color: var(--text-light); font-size: 13px;">直射日光が当たる場所や、暖房器具のそばなど高温になる場所に置かないでください。（使用温度範囲: -20&#8451; ~ 50&#8451;）</span>
           </li>
           <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
             <strong>ケーブルを無理に曲げない</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">ケーブルを鋭く折り曲げたり、強く引っ張ったりしないでください。断線の原因になります。</span>
+            <span style="color: var(--text-light); font-size: 13px;">ケーブルを鋭く折り曲げたり、強く引っ張ったりしないでください。引張強度は3kg以上ありますが、断線の原因になります。</span>
+          </li>
+          <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
+            <strong>落下にご注意</strong><br>
+            <span style="color: var(--text-light); font-size: 13px;">高い場所からの落下は故障の原因になります。安定した平面の上でお使いください。</span>
           </li>
           <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
             <strong>分解・改造しない</strong><br>
@@ -688,16 +806,20 @@
           </li>
           <li style="padding: 10px 0;">
             <strong>お手入れ方法</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">乾いた柔らかい布で拭いてください。アルコールやシンナーなどの溶剤は使用しないでください。</span>
+            <span style="color: var(--text-light); font-size: 13px;">乾いた柔らかい布で拭いてください。アルコールやシンナーなどの溶剤は使用しないでください。表面のラバー塗装が傷む場合があります。</span>
           </li>
         </ul>
       </div>
+      <div class="card">
+        <h3>環境への配慮</h3>
+        <p>本製品はRoHS（有害物質使用制限）基準に適合しています。廃棄の際はお住まいの自治体のルールに従ってください。</p>
+      </div>
     </section>
 
-    <!-- 6. よくある質問 -->
+    <!-- 7. よくある質問 -->
     <section id="faq" class="section">
       <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-yellow);">6</div>
+        <div class="section-icon" style="background: var(--pastel-pink);">7</div>
         <h2>よくある質問</h2>
       </div>
 
@@ -723,7 +845,7 @@
           <br>1. パソコンの音声出力先が「MNC-CL01」になっていますか？
           <br>2. 音量がミュート（消音）になっていませんか？
           <br>3. USBケーブルがしっかり接続されていますか？
-          <br>4. 別のUSBポートに挿し替えてみてください。
+          <br>4. 別のUSBポートに挿し替えてみてください。USB 3.2以上のポートがおすすめです。
           <br>それでも解決しない場合は、お問い合わせください。
         </div>
       </div>
@@ -735,7 +857,7 @@
           <span class="faq-toggle">+</span>
         </div>
         <div class="faq-answer">
-          パソコンのサウンド設定で、左右のバランスが均等になっているか確認してください。また、左右のスピーカー接続ケーブルがしっかり差し込まれているかもご確認ください。
+          パソコンのサウンド設定で、左右のバランスが均等になっているか確認してください。また、左右のスピーカー接続ケーブル（3.5mm端子）がしっかり差し込まれているかもご確認ください。
         </div>
       </div>
 
@@ -758,6 +880,28 @@
         </div>
         <div class="faq-answer">
           はい、できます。ボタンを長押しするとLEDのオン/オフを切り替えられます。LEDを消しても音声出力には影響ありません。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span class="q-mark">Q</span>
+          音割れ・雑音がします
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          音量を下げてみてください。最大音量での使用は定格電力（3W）を超える場合があります。また、USBポートの電力供給が不安定な場合にも発生することがあります。独立給電のUSBハブを試してみてください。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span class="q-mark">Q</span>
+          USBハブ経由でも使えますか？
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          はい、使えます。ただし、電力不足による音質低下を防ぐため、セルフパワー（電源アダプター付き）のUSBハブをおすすめします。最大消費電力は7Wです。
         </div>
       </div>
     </section>
