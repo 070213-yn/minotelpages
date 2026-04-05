@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サポート・取扱説明書 | minotel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* === リセット・ベース === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pastel-blue: #BFECFF;
+      --pastel-pink: #FFD6E8;
+      --pastel-purple: #E8DAFF;
+      --pastel-green: #D4F5D4;
+      --pastel-orange: #FFE8CC;
+      --pastel-yellow: #FFF9DB;
+      --text-main: #4A4A5A;
+      --text-light: #7A7A8A;
+      --white: #FFFFFF;
+      --bg-cream: #FDFBF7;
+      --border-soft: #E8E4E0;
+      --shadow-soft: 0 2px 16px rgba(0,0,0,0.06);
+      --shadow-hover: 0 4px 24px rgba(0,0,0,0.10);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
+      color: var(--text-main);
+      background: var(--bg-cream);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === ヒーローセクション === */
+    .hero {
+      background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-purple) 50%, var(--pastel-pink) 100%);
+      text-align: center;
+      padding: 60px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ヒーロー背景の浮遊アニメーション */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(255,255,255,0.2) 0%, transparent 40%);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-2%, 2%) rotate(1deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(24px, 5vw, 38px);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 3vw, 16px);
+      color: var(--text-light);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* === メインコンテンツ === */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    /* === セクションタイトル === */
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      font-size: 15px;
+      color: var(--text-light);
+    }
+
+    /* === 製品カードグリッド === */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    /* === 製品カード === */
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      border: 1.5px solid var(--border-soft);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* カード画像エリア */
+    .product-card-image {
+      background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-purple) 40%, var(--pastel-pink) 100%);
+      padding: 32px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+
+    .product-card-image img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-card-image img {
+      transform: scale(1.05);
+    }
+
+    /* カード情報エリア */
+    .product-card-body {
+      padding: 24px;
+    }
+
+    .product-card-model {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .product-card-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .product-card-description {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    /* カード内のリンクボタン風テキスト */
+    .product-card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6B7FD7;
+      transition: gap 0.2s ease;
+    }
+
+    .product-card:hover .product-card-action {
+      gap: 10px;
+    }
+
+    .product-card-action .arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover .product-card-action .arrow {
+      transform: translateX(3px);
+    }
+
+    /* === サポート案内セクション === */
+    .support-info {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .support-info-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border-soft);
+      padding: 28px 24px;
+      text-align: center;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s ease;
+    }
+
+    .support-info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .support-info-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 22px;
+    }
+
+    .support-info-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .support-info-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .support-info-card a {
+      color: #6B7FD7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .support-info-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* アイコン背景色の個別設定 */
+    .icon-blue { background: var(--pastel-blue); }
+    .icon-pink { background: var(--pastel-pink); }
+    .icon-purple { background: var(--pastel-purple); }
+
+    /* === フッター === */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--white);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .footer-logo {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      text-transform: lowercase;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .footer-links {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-light);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { text-decoration: underline; }
+
+    /* === レスポンシブ === */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 48px 16px 40px;
+      }
+
+      main {
+        padding: 28px 16px 48px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .product-card-image {
+        padding: 24px 20px;
+        min-height: 160px;
+      }
+
+      .product-card-body {
+        padding: 20px;
+      }
+
+      .support-info {
+        grid-template-columns: 1fr;
+        margin-top: 40px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヒーローセクション -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-logo">minotel</div>
+      <h1>サポート・取扱説明書</h1>
+      <p class="hero-subtitle">製品の使い方やトラブルシューティングをご案内します</p>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main>
+
+    <!-- 製品一覧セクション -->
+    <div class="section-header">
+      <h2>製品マニュアル一覧</h2>
+      <p>製品を選んで、使い方ガイドをご覧ください。</p>
+    </div>
+
+    <!-- 製品カードグリッド -->
+    <div class="product-grid">
+
+      <!-- minotel cloud speaker -->
+      <a href="support-cloudspeaker.html" class="product-card">
+        <div class="product-card-image">
+          <img src="images/both.png" alt="minotel cloud speaker MNC-CL01 製品画像" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-model">MNC-CL01</div>
+          <div class="product-card-name">minotel cloud speaker</div>
+          <p class="product-card-description">
+            USB接続のクラウド型スピーカー。PC・タブレットにつなぐだけで、BGMやアナウンスを自動再生。施設運営をもっと手軽に。
+          </p>
+          <span class="product-card-action">
+            使い方ガイドを見る
+            <span class="arrow">&rarr;</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- 将来の製品はここに追加 -->
+      <!--
+      <a href="support-newproduct.html" class="product-card">
+        <div class="product-card-image">
+          <img src="images/newproduct.png" alt="製品名" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-model">型番</div>
+          <div class="product-card-name">製品名</div>
+          <p class="product-card-description">製品説明文</p>
+          <span class="product-card-action">
+            使い方ガイドを見る
+            <span class="arrow">&rarr;</span>
+          </span>
+        </div>
+      </a>
+      -->
+
+    </div>
+
+    <!-- サポート案内 -->
+    <div class="support-info">
+
+      <!-- メールサポート -->
+      <div class="support-info-card">
+        <div class="support-info-icon icon-blue">
+          <!-- メールアイコン（SVG） -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A4A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="3"/>
+            <path d="M22 7l-10 6L2 7"/>
+          </svg>
+        </div>
+        <h3>メールサポート</h3>
+        <p>ご不明点やトラブルのご相談はメールで承ります。</p>
+        <p style="margin-top: 8px;"><a href="mailto:info@minotel.jp">info@minotel.jp</a></p>
+      </div>
+
+      <!-- お問い合わせフォーム -->
+      <div class="support-info-card">
+        <div class="support-info-icon icon-pink">
+          <!-- フォームアイコン（SVG） -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A4A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+            <path d="M14 2v6h6"/>
+            <line x1="9" y1="13" x2="15" y2="13"/>
+            <line x1="9" y1="17" x2="13" y2="17"/>
+          </svg>
+        </div>
+        <h3>お問い合わせフォーム</h3>
+        <p>Webフォームからもお気軽にどうぞ。</p>
+        <p style="margin-top: 8px;"><a href="https://minotel.jp/contact">フォームを開く</a></p>
+      </div>
+
+      <!-- 営業時間 -->
+      <div class="support-info-card">
+        <div class="support-info-icon icon-purple">
+          <!-- 時計アイコン（SVG） -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A4A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>対応時間</h3>
+        <p>平日 10:00 - 18:00<br>（土日祝・年末年始を除く）</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-logo">minotel</div>
+    <p>&copy; 2026 minotel Inc. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://minotel.jp">ホームページ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="accessibility.html">アクセシビリティ</a>
+      <a href="shipping.html">配送ポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="refund.html">返金ポリシー</a>
+      <a href="https://minotel.jp/contact">お問い合わせ</a>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配送ポリシー | 株式会社minotel</title>
+  <meta name="description" content="株式会社minotelの配送ポリシー。配送エリア、送料、お届け日数についてご案内します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* === 共通デザインシステム === */
+    :root {
+      --pastel-blue: #BFECFF;
+      --pastel-pink: #FFD6E8;
+      --pastel-purple: #E8DAFF;
+      --pastel-green: #D4F5D4;
+      --pastel-orange: #FFE8CC;
+      --text-main: #4A4A5A;
+      --text-light: #7A7A8A;
+      --bg-cream: #FDFBF7;
+      --border-soft: #E8E4E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-cream);
+      line-height: 1.8;
+    }
+
+    /* ナビゲーション */
+    .nav {
+      background: rgba(253, 251, 247, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--text-main);
+    }
+
+    /* ヒーローセクション */
+    .hero {
+      background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple), var(--pastel-pink));
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Quicksand', 'Zen Maru Gothic', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* メインコンテンツ */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* カードスタイル */
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 2px 16px rgba(74, 74, 90, 0.06);
+      border: 1px solid var(--border-soft);
+      padding: 32px;
+      margin-bottom: 24px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 24px rgba(74, 74, 90, 0.1);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--pastel-blue);
+      color: var(--text-main);
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.9;
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+    }
+
+    /* ハイライトボックス（送料無料の強調） */
+    .highlight-box {
+      background: linear-gradient(135deg, var(--pastel-green), var(--pastel-blue));
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .highlight-box .label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .highlight-box .value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* 配送フローカード */
+    .flow-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .flow-item {
+      background: var(--bg-cream);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .flow-item .step {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .flow-item .detail {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* 問い合わせ先カード */
+    .contact-card {
+      background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
+      text-align: center;
+    }
+
+    .contact-card h2 {
+      border-bottom-color: rgba(74, 74, 90, 0.15);
+    }
+
+    .contact-card a {
+      color: var(--text-main);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid var(--pastel-purple);
+      transition: border-color 0.2s;
+    }
+
+    .contact-card a:hover {
+      border-color: var(--text-main);
+    }
+
+    /* フッター */
+    .footer {
+      background: var(--text-main);
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .footer-logo {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .footer p {
+      font-size: 0.8rem;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 40px 16px;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .content {
+        padding: 24px 16px 60px;
+      }
+
+      .card {
+        padding: 24px 20px;
+        border-radius: 16px;
+      }
+
+      .flow-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="https://minotel.jp" class="nav-logo">minotel</a>
+      <a href="https://minotel.jp" class="nav-back">ホームに戻る</a>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <h1>配送ポリシー</h1>
+    <p>minotel cloud speakerのお届けについて</p>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="content">
+
+    <!-- 送料無料の強調 -->
+    <div class="highlight-box">
+      <div class="label">送料</div>
+      <div class="value">全国一律 無料</div>
+    </div>
+
+    <!-- 配送エリア -->
+    <div class="card">
+      <h2>配送エリア</h2>
+      <p>日本国内全域への配送に対応しております。</p>
+      <p style="margin-top: 8px; font-size: 0.88rem; color: var(--text-light);">
+        ※ 離島・一部地域はお届けまでに通常より日数がかかる場合があります。
+      </p>
+    </div>
+
+    <!-- 配送方法 -->
+    <div class="card">
+      <h2>配送方法</h2>
+      <p>
+        ヤマト運輸または佐川急便にて配送いたします。配送業者の指定はお受けしておりませんので、あらかじめご了承ください。
+      </p>
+    </div>
+
+    <!-- 発送日とお届け日数 -->
+    <div class="card">
+      <h2>お届けまでの流れ</h2>
+      <div class="flow-card">
+        <div class="flow-item">
+          <div class="step">発送</div>
+          <div class="detail">ご注文確認後<br><strong>2〜5営業日</strong>以内</div>
+        </div>
+        <div class="flow-item">
+          <div class="step">お届け</div>
+          <div class="detail">発送後<br><strong>1〜3日</strong>程度</div>
+        </div>
+      </div>
+      <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-light);">
+        ※ 離島・一部地域を除きます。年末年始・大型連休等は発送が遅れる場合があります。
+      </p>
+    </div>
+
+    <!-- 配送状況の確認 -->
+    <div class="card">
+      <h2>配送状況の確認</h2>
+      <p>
+        商品を発送いたしましたら、発送完了メールをお送りします。メールには配送業者の追跡番号を記載しておりますので、配送状況をご確認いただけます。
+      </p>
+    </div>
+
+    <!-- 不在時の対応 -->
+    <div class="card">
+      <h2>ご不在の場合</h2>
+      <p>
+        お届け時にご不在の場合、配送業者が不在票を投函いたします。不在票に記載の手順に従い、再配達をご依頼ください。
+      </p>
+      <p style="margin-top: 8px; font-size: 0.88rem; color: var(--text-light);">
+        ※ 保管期限を過ぎた場合、商品が当社に返送されることがあります。その際は再配送の手配をいたしますので、お問い合わせください。
+      </p>
+    </div>
+
+    <!-- 問い合わせ先 -->
+    <div class="card contact-card">
+      <h2>配送に関するお問い合わせ</h2>
+      <p>
+        配送について不明な点がございましたら、お気軽にご連絡ください。
+      </p>
+      <p style="margin-top: 16px; font-size: 1.1rem;">
+        <a href="mailto:info@minotel.jp">info@minotel.jp</a>
+      </p>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-logo">minotel</div>
+    <p>&copy; 2026 minotel Inc. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://minotel.jp">ホームページ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="accessibility.html">アクセシビリティ</a>
+      <a href="shipping.html">配送ポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="refund.html">返金ポリシー</a>
+      <a href="https://minotel.jp/contact">お問い合わせ</a>
+    </div>
+  </footer>
+
+</body>
+</html>

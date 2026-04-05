@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクセシビリティ方針 | minotel</title>
+  <meta name="description" content="株式会社minotelのウェブアクセシビリティ方針。JIS X 8341-3:2016 適合レベルAAに配慮したWebサイト運営を目指しています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* === リセット・ベース === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pastel-blue: #BFECFF;
+      --pastel-pink: #FFD6E8;
+      --pastel-purple: #E8DAFF;
+      --pastel-green: #D4F5D4;
+      --pastel-orange: #FFE8CC;
+      --pastel-yellow: #FFF9DB;
+      --text-main: #4A4A5A;
+      --text-light: #7A7A8A;
+      --white: #FFFFFF;
+      --bg-cream: #FDFBF7;
+      --border-soft: #E8E4E0;
+      --shadow-soft: 0 2px 16px rgba(0,0,0,0.06);
+      --shadow-hover: 0 4px 24px rgba(0,0,0,0.10);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
+      color: var(--text-main);
+      background: var(--bg-cream);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === ヒーローセクション === */
+    .hero {
+      background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-purple) 50%, var(--pastel-pink) 100%);
+      text-align: center;
+      padding: 60px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(255,255,255,0.2) 0%, transparent 40%);
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-2%, 2%) rotate(1deg); }
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-logo {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 5vw, 38px);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .hero h1 span {
+      display: block;
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(14px, 3vw, 18px);
+      font-weight: 500;
+      color: var(--text-light);
+      margin-top: 8px;
+      letter-spacing: 2px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--white);
+      color: var(--text-main);
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* === コンテナ === */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* === セクション共通 === */
+    .section {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 24px auto;
+      max-width: 800px;
+      box-shadow: var(--shadow-soft);
+      transition: box-shadow 0.3s ease;
+    }
+    .section:first-of-type {
+      margin-top: 40px;
+    }
+    .section:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* === セクションヘッダー === */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    /* 各セクションのアイコン背景色 */
+    .icon-blue { background: var(--pastel-blue); }
+    .icon-pink { background: var(--pastel-pink); }
+    .icon-purple { background: var(--pastel-purple); }
+    .icon-green { background: var(--pastel-green); }
+    .icon-orange { background: var(--pastel-orange); }
+    .icon-yellow { background: var(--pastel-yellow); }
+
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .section p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* === 取り組みリスト === */
+    .effort-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+    }
+    .effort-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg-cream);
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.7;
+      transition: transform 0.2s ease;
+    }
+    .effort-list li:last-child {
+      margin-bottom: 0;
+    }
+    .effort-list li:hover {
+      transform: translateX(4px);
+    }
+    .effort-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* === お問い合わせカード === */
+    .contact-card {
+      background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-purple) 100%);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 24px auto;
+      max-width: 800px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+    .contact-card h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .contact-card p {
+      font-size: 15px;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    .contact-link {
+      display: inline-block;
+      background: var(--white);
+      color: var(--text-main);
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .contact-link:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .contact-link:focus-visible {
+      outline: 3px solid var(--text-main);
+      outline-offset: 2px;
+    }
+
+    /* === 更新日 === */
+    .update-date {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
+      margin: 32px auto 0;
+      max-width: 800px;
+    }
+
+    /* === フッター === */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--white);
+      margin-top: 60px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .footer-logo {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .footer p {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .footer-links {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-light);
+      text-decoration: none;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-links a:focus-visible {
+      outline: 2px solid var(--text-main);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* === レスポンシブ === */
+    @media (max-width: 600px) {
+      .hero { padding: 40px 16px 36px; }
+      .section { margin: 16px 16px; padding: 24px 20px; }
+      .section:first-of-type { margin-top: 24px; }
+      .contact-card { margin: 16px 16px; padding: 24px 20px; }
+      .section-header { gap: 10px; }
+      .section-icon { width: 38px; height: 38px; font-size: 18px; }
+      .section-header h2 { font-size: 16px; }
+      .effort-list li { padding: 12px 14px; font-size: 14px; }
+      .footer-links { gap: 14px; }
+    }
+
+    /* === フォーカス表示（キーボード操作対応） === */
+    a:focus-visible {
+      outline: 2px solid var(--text-main);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* === スキップリンク（スクリーンリーダー・キーボードユーザー向け） === */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--white);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 100;
+      box-shadow: var(--shadow-soft);
+      text-decoration: none;
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- スキップリンク：キーボードユーザーがメインコンテンツへ直接移動できる -->
+  <a href="#main" class="skip-link">メインコンテンツへ</a>
+
+  <!-- ヒーロー -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-logo">minotel</div>
+      <h1>
+        アクセシビリティ方針
+        <span>Web Accessibility Policy</span>
+      </h1>
+      <div class="hero-badge">JIS X 8341-3:2016 適合レベルAA 配慮</div>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main id="main">
+
+    <!-- 基本方針 -->
+    <section class="section" aria-labelledby="policy-heading">
+      <div class="section-header">
+        <div class="section-icon icon-blue" aria-hidden="true">&#x1F3AF;</div>
+        <h2 id="policy-heading">基本方針</h2>
+      </div>
+      <p>
+        株式会社minotel（以下「当社」）は、年齢や障がいの有無にかかわらず、
+        全てのお客様が快適にご利用いただけるWebサイトを目指しています。
+      </p>
+      <p>
+        ウェブアクセシビリティの確保・向上に継続的に取り組み、
+        誰もが必要な情報にたどり着ける環境づくりを推進してまいります。
+      </p>
+    </section>
+
+    <!-- 対象範囲 -->
+    <section class="section" aria-labelledby="scope-heading">
+      <div class="section-header">
+        <div class="section-icon icon-purple" aria-hidden="true">&#x1F310;</div>
+        <h2 id="scope-heading">対象範囲</h2>
+      </div>
+      <p>
+        本方針の対象は、minotel.jp（https://minotel.jp）配下の全ページです。
+      </p>
+      <p>
+        ただし、外部サービスが提供するウィジェット・埋め込みコンテンツなど、
+        当社の管理範囲外のコンテンツについては対象外となる場合があります。
+      </p>
+    </section>
+
+    <!-- 目標とする適合レベル -->
+    <section class="section" aria-labelledby="target-heading">
+      <div class="section-header">
+        <div class="section-icon icon-green" aria-hidden="true">&#x2705;</div>
+        <h2 id="target-heading">目標とする適合レベル</h2>
+      </div>
+      <p>
+        JIS X 8341-3:2016（対応する国際規格: WCAG 2.1）の適合レベルAAに配慮し、
+        ウェブアクセシビリティの確保に努めます。
+      </p>
+    </section>
+
+    <!-- 現在の取り組み -->
+    <section class="section" aria-labelledby="efforts-heading">
+      <div class="section-header">
+        <div class="section-icon icon-pink" aria-hidden="true">&#x1F48E;</div>
+        <h2 id="efforts-heading">現在の取り組み</h2>
+      </div>
+      <p>当社Webサイトでは、以下の点に配慮した制作・運用を行っています。</p>
+      <ul class="effort-list">
+        <li>
+          <span class="effort-icon" aria-hidden="true">&#x1F4D6;</span>
+          <span>テキストの読みやすさ -- 十分な文字サイズと行間を確保し、読みやすいフォントを使用しています。</span>
+        </li>
+        <li>
+          <span class="effort-icon" aria-hidden="true">&#x1F3A8;</span>
+          <span>色のコントラスト確保 -- 文字色と背景色の間に十分なコントラスト比を確保し、色覚に配慮しています。</span>
+        </li>
+        <li>
+          <span class="effort-icon" aria-hidden="true">&#x2328;</span>
+          <span>キーボード操作対応 -- マウスを使わなくても、キーボードだけで全ての操作が可能です。</span>
+        </li>
+        <li>
+          <span class="effort-icon" aria-hidden="true">&#x1F5BC;</span>
+          <span>画像の代替テキスト -- 画像には適切な代替テキスト（alt属性）を付与し、スクリーンリーダーでの読み上げに対応しています。</span>
+        </li>
+        <li>
+          <span class="effort-icon" aria-hidden="true">&#x1F4F1;</span>
+          <span>レスポンシブデザイン -- パソコン、タブレット、スマートフォンなど、さまざまな端末で快適にご利用いただけます。</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 今後の予定 -->
+    <section class="section" aria-labelledby="future-heading">
+      <div class="section-header">
+        <div class="section-icon icon-orange" aria-hidden="true">&#x1F680;</div>
+        <h2 id="future-heading">今後の予定</h2>
+      </div>
+      <p>
+        現在、適合レベルAAへの完全な準拠を目指し、段階的にサイトの改善を進めています。
+        新しいページやコンテンツの制作時には、アクセシビリティガイドラインに沿った制作を行います。
+      </p>
+      <p>
+        お気づきの点やご不便がございましたら、お気軽にお問い合わせください。
+        いただいたご意見は、サイト改善の参考にさせていただきます。
+      </p>
+    </section>
+
+    <!-- お問い合わせ -->
+    <div class="contact-card" role="region" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">お問い合わせ</h2>
+      <p>
+        アクセシビリティに関するご意見・ご要望は<br>
+        下記のメールアドレスまでお寄せください。
+      </p>
+      <a href="mailto:info@minotel.jp" class="contact-link">
+        info@minotel.jp
+      </a>
+    </div>
+
+    <!-- 最終更新日 -->
+    <p class="update-date">最終更新日: 2026年4月</p>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-logo">minotel</div>
+    <p>&copy; 2026 minotel Inc. All rights reserved.</p>
+    <nav class="footer-links" aria-label="フッターナビゲーション">
+      <a href="https://minotel.jp">ホームページ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="accessibility.html" aria-current="page">アクセシビリティ</a>
+      <a href="shipping.html">配送ポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="refund.html">返金ポリシー</a>
+      <a href="https://minotel.jp/contact">お問い合わせ</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
