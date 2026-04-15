@@ -108,11 +108,13 @@
     }
     .hero-product-wrap {
       position: relative;
-      width: min(74vw, 920px);
-      aspect-ratio: 1280 / 860;
+      width: min(66vw, 820px);
+      aspect-ratio: 3 / 2;
+      border-radius: 32px;
+      overflow: hidden;
       animation: gentleFloat 7s ease-in-out infinite;
       will-change: transform;
-      filter: drop-shadow(0 30px 60px rgba(107, 140, 180, 0.22));
+      filter: drop-shadow(0 30px 60px rgba(107, 140, 180, 0.25));
     }
     .hero-slide {
       position: absolute;
@@ -490,6 +492,18 @@
     }
     .cloud-edge-top { top: -1px; }
     .cloud-edge-bottom { bottom: -1px; transform: scaleY(-1); }
+    /* 下から上へモクモクと伸びる雲（下のセクション色が上に向かって膨らむ） */
+    .cloud-edge-rise {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      bottom: calc(100% - 1px);
+      z-index: 3;
+      pointer-events: none;
+      display: block;
+      transform: scaleY(-1);
+    }
 
     /* ============================================
        LEDカラー（Top と同じく オーバーレイ）
@@ -793,8 +807,8 @@
     <!-- 製品画像（クロスフェード） -->
     <div class="hero-product">
       <div class="hero-product-wrap">
-        <div class="hero-slide active"><img src="images/hero/wrap-blue.jpg" alt="minotel cloud speaker Blue"></div>
-        <div class="hero-slide"><img src="images/hero/wrap-white.jpg" alt="minotel cloud speaker White"></div>
+        <div class="hero-slide active"><img src="images/hero/hero-floating-blue.png" alt="minotel cloud speaker Blue"></div>
+        <div class="hero-slide"><img src="images/hero/hero-floating-white.png" alt="minotel cloud speaker White"></div>
       </div>
     </div>
 
@@ -826,9 +840,9 @@
 
   <!-- 仕様 -->
   <section class="specs-wrap">
-    <!-- 上: イントロ(paper) から流れ込む雲エッジ -->
-    <svg class="cloud-edge cloud-edge-top" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M 0 0 L 0 42 C 38 98, 96 98, 138 42 C 178 74, 232 74, 272 42 C 320 100, 388 100, 432 42 C 478 82, 530 82, 572 42 C 620 108, 688 108, 732 42 C 780 74, 832 74, 872 42 C 920 110, 982 110, 1024 42 C 1070 88, 1122 88, 1164 42 C 1204 96, 1258 96, 1298 42 C 1340 76, 1398 76, 1440 42 L 1440 0 Z" fill="#fbfaf7"/>
+    <!-- 下から上へ: specs(paper-warm) がイントロへモクモク上昇 -->
+    <svg class="cloud-edge-rise" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 0 0 L 0 42 C 38 98, 96 98, 138 42 C 178 74, 232 74, 272 42 C 320 100, 388 100, 432 42 C 478 82, 530 82, 572 42 C 620 108, 688 108, 732 42 C 780 74, 832 74, 872 42 C 920 110, 982 110, 1024 42 C 1070 88, 1122 88, 1164 42 C 1204 96, 1258 96, 1298 42 C 1340 76, 1398 76, 1440 42 L 1440 0 Z" fill="#f5f2ec"/>
     </svg>
     <div class="specs-inner">
       <div class="specs-head">
@@ -952,9 +966,9 @@
 
   <!-- 購入 -->
   <section class="buy">
-    <!-- 上: LED背景から流れ込む雲エッジ（薄グレー） -->
-    <svg class="cloud-edge cloud-edge-top" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M 0 0 L 0 46 C 40 94, 100 94, 142 46 C 184 72, 240 72, 282 46 C 326 104, 394 104, 438 46 C 484 80, 536 80, 578 46 C 624 106, 688 106, 732 46 C 778 74, 832 74, 872 46 C 922 112, 984 112, 1026 46 C 1072 88, 1126 88, 1166 46 C 1212 96, 1264 96, 1304 46 C 1350 74, 1402 74, 1440 48 L 1440 0 Z" fill="#e8ecf0"/>
+    <!-- 下から上へ: buy(paper) がLEDへモクモク上昇 -->
+    <svg class="cloud-edge-rise" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 0 0 L 0 46 C 40 94, 100 94, 142 46 C 184 72, 240 72, 282 46 C 326 104, 394 104, 438 46 C 484 80, 536 80, 578 46 C 624 106, 688 106, 732 46 C 778 74, 832 74, 872 46 C 922 112, 984 112, 1026 46 C 1072 88, 1126 88, 1166 46 C 1212 96, 1264 96, 1304 46 C 1350 74, 1402 74, 1440 48 L 1440 0 Z" fill="#fbfaf7"/>
     </svg>
     <div class="buy-inner">
       <div class="buy-label reveal">MCS01</div>
@@ -984,7 +998,7 @@
             </li>
             <li>
               手書きメッセージカード 2枚付き
-              <small>お客様ご自身でご記入ください。書き損じに備えて2枚お入れしています。</small>
+              <small>ご希望の方に、書き損じに備えて2枚お入れしています。</small>
             </li>
           </ul>
           <a href="https://minotel.jp/shop" class="buy-btn">カートに追加 →</a>
