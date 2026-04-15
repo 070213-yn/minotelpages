@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>minotel — 毎日のデスクを、もっと可愛く彩る</title>
   <meta name="description" content="minotel は、可愛くて妥協しないものづくりをコンセプトにしたデスクガジェットブランドです。cloud speaker ではじまる、あなたの「好き」に満たされたデスク。">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
@@ -541,8 +543,8 @@
   <!-- ヒーロー（2枚クロスフェード） -->
   <section class="hero">
     <div class="hero-slides">
-      <div class="hero-slide active"><img src="images/hero/hero-floating-white.png" alt="minotel cloud speaker white"></div>
-      <div class="hero-slide"><img src="images/hero/hero-floating-blue.png" alt="minotel cloud speaker blue"></div>
+      <div class="hero-slide active"><img loading="eager" fetchpriority="high" decoding="async" src="images/hero/hero-floating-white.png" alt="minotel cloud speaker white"></div>
+      <div class="hero-slide"><img loading="eager" decoding="async" src="images/hero/hero-floating-blue.png" alt="minotel cloud speaker blue"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-inner">
@@ -582,10 +584,10 @@
   <section class="product" id="product">
     <div class="product-layout">
       <div class="product-slideshow reveal" id="slideshow">
-        <div class="slide active"><img src="images/product/floating-blue.png" alt="minotel cloud speaker Blue floating"></div>
-        <div class="slide"><img src="images/product/desk-wood-01.png" alt="minotel cloud speaker on wooden desk"></div>
-        <div class="slide"><img src="images/product/desk-wood-02.png" alt="minotel cloud speaker on wooden desk"></div>
-        <div class="slide"><img src="images/product/dial-warm.png" alt="minotel cloud speaker dial detail"></div>
+        <div class="slide active"><img loading="lazy" decoding="async" src="images/product/floating-blue.png" alt="minotel cloud speaker Blue floating"></div>
+        <div class="slide"><img loading="lazy" decoding="async" src="images/product/desk-wood-01.png" alt="minotel cloud speaker on wooden desk"></div>
+        <div class="slide"><img loading="lazy" decoding="async" src="images/product/desk-wood-02.png" alt="minotel cloud speaker on wooden desk"></div>
+        <div class="slide"><img loading="lazy" decoding="async" src="images/product/dial-warm.png" alt="minotel cloud speaker dial detail"></div>
         <div class="slide-nav">
           <div class="slide-dots">
             <button class="slide-dot active" data-idx="0" aria-label="スライド1"></button>
