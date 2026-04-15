@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cloud speaker | minotel</title>
+  <title>minotel cloud speaker | minotel</title>
   <meta name="description" content="minotel cloud speaker (MCS01) の製品詳細ページ。雲型のUSBデスクトップスピーカー、6色LEDイルミネーション搭載。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,9 +38,15 @@
     a { color: inherit; text-decoration: none; }
     button { border: none; background: none; cursor: pointer; color: inherit; font: inherit; }
 
+    /* 型番ラベル用の視認性高いサンセリフ */
+    .label-tech {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+    }
+
     /* ============================================
-       HERO — 雲のドリフトシーン
-       （Top ページとの差別化ポイント）
+       HERO — 雲ドリフト + 雲クリップ画像クロスフェード
        ============================================ */
     .hero {
       position: relative;
@@ -50,8 +56,6 @@
       overflow: hidden;
       background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 45%, var(--sky-3) 100%);
     }
-
-    /* 光のにじみ */
     .hero::before {
       content: '';
       position: absolute;
@@ -72,38 +76,27 @@
     .cloud-layer.back   { z-index: 2; }
     .cloud-layer.middle { z-index: 4; }
     .cloud-layer.front  { z-index: 6; }
-
     .cloud {
       position: absolute;
-      width: 340px;
       aspect-ratio: 1280 / 822;
       background-image: url('images/svg/cloud.svg');
       background-repeat: no-repeat;
       background-size: contain;
-      filter: drop-shadow(0 30px 60px rgba(107, 140, 180, 0.12));
-      opacity: 0.85;
+      filter: brightness(0) invert(1) drop-shadow(0 20px 40px rgba(107, 140, 180, 0.18));
     }
-
-    /* 個別位置とアニメーション */
-    .cloud-1 { top: 10%;  left: -12%; width: 440px; opacity: 0.55; animation: drift 62s linear infinite; }
-    .cloud-2 { top: 58%;  left: -18%; width: 520px; opacity: 0.4;  animation: drift 80s linear infinite 12s; }
-    .cloud-3 { top: 25%;  left: -20%; width: 280px; opacity: 0.92; animation: drift 48s linear infinite 4s; }
-    .cloud-4 { top: 72%;  left: -15%; width: 360px; opacity: 0.7;  animation: drift 56s linear infinite 22s; }
-    .cloud-5 { top: 6%;   left: -25%; width: 640px; opacity: 0.35; animation: drift 96s linear infinite 30s; }
-    .cloud-6 { top: 40%;  left: -10%; width: 220px; opacity: 1.0;  animation: drift 44s linear infinite 8s; }
-    .cloud-7 { top: 82%;  left: -30%; width: 720px; opacity: 0.3;  animation: drift 110s linear infinite 40s; }
-
-    /* 白色に変換（CSS filter） */
-    .cloud {
-      filter: brightness(0) invert(1) drop-shadow(0 20px 40px rgba(107, 140, 180, 0.2));
-    }
-
+    .cloud-1 { top: 8%;  left: -12%; width: 440px; opacity: 0.55; animation: drift 62s linear infinite; }
+    .cloud-2 { top: 58%; left: -18%; width: 520px; opacity: 0.4;  animation: drift 80s linear infinite 12s; }
+    .cloud-3 { top: 22%; left: -20%; width: 280px; opacity: 0.88; animation: drift 48s linear infinite 4s; }
+    .cloud-4 { top: 72%; left: -15%; width: 360px; opacity: 0.7;  animation: drift 56s linear infinite 22s; }
+    .cloud-5 { top: 4%;  left: -25%; width: 640px; opacity: 0.32; animation: drift 96s linear infinite 30s; }
+    .cloud-6 { top: 40%; left: -10%; width: 220px; opacity: 0.95; animation: drift 44s linear infinite 8s; }
+    .cloud-7 { top: 82%; left: -30%; width: 720px; opacity: 0.28; animation: drift 110s linear infinite 40s; }
     @keyframes drift {
       from { transform: translateX(0) translateY(0); }
-      to   { transform: translateX(140vw) translateY(-4%); }
+      to   { transform: translateX(140vw) translateY(-3%); }
     }
 
-    /* 製品画像 */
+    /* 製品画像（雲クリップ + クロスフェード） */
     .hero-product {
       position: absolute;
       inset: 0;
@@ -113,48 +106,75 @@
       justify-content: center;
       pointer-events: none;
     }
-    .hero-product-img {
-      width: min(62vw, 780px);
-      max-width: 100%;
-      height: auto;
+    .hero-product-mask {
+      position: relative;
+      width: min(72vw, 920px);
+      aspect-ratio: 1280 / 822;
       animation: gentleFloat 7s ease-in-out infinite;
-      transform-origin: center center;
       will-change: transform;
+      -webkit-mask-image: url('images/svg/cloud.svg');
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center center;
+      -webkit-mask-size: contain;
+      mask-image: url('images/svg/cloud.svg');
+      mask-repeat: no-repeat;
+      mask-position: center center;
+      mask-size: contain;
+      filter: drop-shadow(0 30px 60px rgba(107, 140, 180, 0.25));
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     @keyframes gentleFloat {
       0%, 100% { transform: translateY(0) rotate(-0.3deg); }
-      50%      { transform: translateY(-16px) rotate(0.3deg); }
+      50%      { transform: translateY(-14px) rotate(0.3deg); }
     }
 
     /* タイトル */
     .hero-text {
       position: absolute;
       left: 0; right: 0;
-      top: 15%;
+      top: 10%;
       z-index: 8;
       text-align: center;
       padding: 0 24px;
       color: var(--ink);
     }
-    .hero-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      letter-spacing: 0.24em;
+    .hero-mcs {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.2em;
       color: var(--ink-80);
       margin-bottom: 18px;
       opacity: 0;
       animation: fadeDown 1.2s 0.4s ease-out forwards;
     }
-    .hero-label small {
-      font-size: 0.75em;
-      color: var(--ink-60);
-      margin: 0 2px;
+    .hero-brand {
+      display: block;
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(18px, 1.8vw, 22px);
+      letter-spacing: 0.1em;
+      color: var(--ink-80);
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeDown 1.2s 0.7s ease-out forwards;
     }
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(46px, 9vw, 120px);
+      font-size: clamp(48px, 9vw, 120px);
       font-weight: 300;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       line-height: 1;
       color: var(--ink);
       text-shadow: 0 6px 40px rgba(255,255,255,0.9);
@@ -174,30 +194,20 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-sub {
-      margin-top: 28px;
-      font-family: 'Kiwi Maru', serif;
-      font-weight: 500;
-      font-size: clamp(15px, 1.6vw, 18px);
-      letter-spacing: 0.06em;
-      color: var(--ink-80);
-      opacity: 0;
-      animation: fadeDown 1.4s 2.2s ease-out forwards;
-    }
-
     /* スクロールインジケータ */
     .hero-scroll {
       position: absolute;
-      bottom: 40px;
+      bottom: 36px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 9;
       writing-mode: vertical-rl;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 400;
       font-size: 11px;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.28em;
       color: var(--ink-80);
-      padding-bottom: 60px;
+      padding-bottom: 56px;
       opacity: 0;
       animation: fadeDown 1.4s 2.6s ease-out forwards;
     }
@@ -207,7 +217,7 @@
       left: 50%;
       bottom: 0;
       width: 1px;
-      height: 48px;
+      height: 44px;
       background: var(--ink-80);
       animation: scrollLine 2.4s infinite 2.6s;
     }
@@ -240,13 +250,12 @@
     }
     .section-title {
       font-family: 'Kiwi Maru', 'Klee One', serif;
-      font-size: clamp(26px, 3.6vw, 42px);
       font-weight: 500;
+      font-size: clamp(26px, 3.6vw, 42px);
       letter-spacing: 0.02em;
       line-height: 1.65;
       margin-bottom: 40px;
     }
-
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -258,13 +267,35 @@
     .reveal-delay-3 { transition-delay: 0.45s; }
 
     /* ============================================
-       イントロ
+       イントロ（薄いピンクデスク背景）
        ============================================ */
     .intro {
-      padding: 160px 48px;
+      position: relative;
+      padding: 180px 48px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .intro::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('images/hero/bg-pink-desk.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .intro::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--paper) 0%, rgba(251, 250, 247, 0.4) 20%, rgba(251, 250, 247, 0.4) 80%, var(--paper) 100%);
+      z-index: 1;
+    }
+    .intro-inner {
+      position: relative;
+      z-index: 2;
       max-width: 860px;
       margin: 0 auto;
-      text-align: center;
     }
     .intro .section-label { justify-content: center; }
     .intro .section-label::after {
@@ -276,9 +307,9 @@
     .intro-quote {
       font-family: 'Kiwi Maru', 'Klee One', serif;
       font-weight: 500;
-      font-size: clamp(24px, 3vw, 34px);
+      font-size: clamp(26px, 3.4vw, 38px);
       letter-spacing: 0.02em;
-      line-height: 2;
+      line-height: 1.9;
       margin-bottom: 40px;
     }
     .intro-body {
@@ -294,7 +325,7 @@
        仕様
        ============================================ */
     .specs-wrap {
-      padding: 120px 48px;
+      padding: 140px 48px;
       background: var(--paper-warm);
     }
     .specs-inner {
@@ -329,9 +360,10 @@
     }
     .spec-item:nth-child(4n) { border-right: none; }
     .spec-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.2em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink-60);
       margin-bottom: 12px;
@@ -352,37 +384,75 @@
       margin-top: 4px;
       letter-spacing: 0.02em;
     }
+    .specs-more {
+      margin-top: 56px;
+      text-align: center;
+    }
+    .specs-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--ink);
+      color: var(--ink);
+      transition: gap 0.4s ease;
+    }
+    .specs-link::after { content: '→'; font-family: sans-serif; }
+    .specs-link:hover { gap: 28px; }
 
     /* ============================================
-       フィーチャー
+       フィーチャー (すっきり統一レイアウト)
        ============================================ */
     .features {
-      padding: 140px 0 60px;
+      padding: 160px 0;
       background: #fff;
     }
     .features-head {
       padding: 0 48px;
-      max-width: 1200px;
-      margin: 0 auto 100px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: end;
+      max-width: 1100px;
+      margin: 0 auto 120px;
+      text-align: center;
     }
-    .features-desc {
+    .features-head .section-label { justify-content: center; }
+    .features-head .section-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--ink-40);
+    }
+    .features-head-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(28px, 3.6vw, 42px);
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .features-head-desc {
       font-size: 14px;
       line-height: 2.1;
       letter-spacing: 0.02em;
       color: var(--ink-80);
+      max-width: 520px;
+      margin: 0 auto;
     }
+
     .feature-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      min-height: 80vh;
+      gap: 80px;
+      max-width: 1280px;
+      margin: 0 auto 120px;
+      padding: 0 48px;
     }
-    .feature-row:nth-child(even) .feature-img-wrap { order: 2; }
-    .feature-row:nth-child(even) .feature-text-wrap { order: 1; }
+    .feature-row:last-child { margin-bottom: 0; }
+    .feature-row:nth-child(odd) .feature-img-wrap { order: 2; }
+    .feature-row:nth-child(odd) .feature-text-wrap { order: 1; }
     .feature-img-wrap {
       aspect-ratio: 5 / 4;
       overflow: hidden;
@@ -394,16 +464,17 @@
       transition: transform 2s cubic-bezier(0.2, 0.7, 0.2, 1);
     }
     .feature-row.in .feature-img-wrap img { transform: scale(1.02); }
-    .feature-text-wrap { padding: 0 80px; }
+    .feature-text-wrap { padding: 0; }
     .feature-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
       letter-spacing: 0.2em;
       color: var(--ink-60);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .feature-title {
-      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-family: 'Kiwi Maru', serif;
       font-weight: 500;
       font-size: clamp(24px, 2.8vw, 32px);
       letter-spacing: 0.02em;
@@ -418,44 +489,80 @@
     }
 
     /* ============================================
-       LEDカラー（シンプル中央配置）
+       LEDカラー（Top と同じく オーバーレイ）
        ============================================ */
     .led {
-      padding: 140px 48px;
-      background: var(--paper-warm);
+      position: relative;
+      padding: 0;
+      background: #fff;
     }
-    .led-head {
+    .led-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2400 / 1686;
+      max-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .led-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/product/led-wide.jpg') no-repeat center center;
+      background-size: cover;
+    }
+    .led-overlay-white {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.22) 45%, rgba(255,255,255,0.08) 100%);
+    }
+    .led-text {
+      position: relative;
       text-align: center;
-      margin-bottom: 80px;
+      z-index: 2;
+      padding: 60px 32px;
     }
-    .led-head .section-label { justify-content: center; }
-    .led-head .section-label::after {
+    .led-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--ink-80);
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .led-label::before,
+    .led-label::after {
       content: '';
       width: 40px;
       height: 1px;
       background: var(--ink-40);
     }
-    .led-image-wrap {
-      max-width: 1000px;
-      margin: 0 auto;
+    .led-title {
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 500;
+      font-size: clamp(32px, 4.2vw, 52px);
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      color: var(--ink);
+      text-shadow: 0 2px 32px rgba(255,255,255,0.7);
     }
-    .led-image-wrap img { width: 100%; }
-    .led-captions {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 24px;
-      max-width: 780px;
-      margin: 56px auto 0;
-      text-align: center;
+    .led-sub {
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      color: var(--ink-80);
+      margin-top: 32px;
+      line-height: 2;
     }
-    .led-caption {
+    .led-sub-en {
       font-family: 'Cormorant Garamond', serif;
       font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      letter-spacing: 0.15em;
       color: var(--ink-60);
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
+      margin-top: 10px;
+      display: block;
     }
 
     /* ============================================
@@ -464,22 +571,23 @@
     .buy {
       padding: 160px 48px;
       text-align: center;
-      background: #fff;
+      background: var(--paper);
+    }
+    .buy-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      margin-bottom: 12px;
     }
     .buy-title {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 18px;
+      font-size: clamp(22px, 2.6vw, 28px);
       letter-spacing: 0.04em;
-      margin-bottom: 36px;
-      color: var(--ink-80);
-    }
-    .buy-title small {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.78em;
-      letter-spacing: 0.14em;
-      color: var(--ink-60);
-      margin: 0 4px;
+      margin-bottom: 44px;
+      color: var(--ink);
     }
     .buy-price {
       display: flex;
@@ -526,30 +634,31 @@
       .cloud-5 { width: 420px; }
       .cloud-6 { width: 180px; }
       .cloud-7 { width: 500px; }
-      .hero-product-img { width: 80vw; }
-      .hero-text { top: 12%; }
+      .hero-product-mask { width: 90vw; }
+      .hero-text { top: 8%; }
 
-      .intro { padding: 80px 24px; }
+      .intro { padding: 100px 24px; }
       .specs-wrap { padding: 80px 24px; }
       .specs-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
       .specs-grid { grid-template-columns: 1fr 1fr; }
       .spec-item:nth-child(4n) { border-right: 1px solid var(--line); }
       .spec-item:nth-child(2n) { border-right: none; }
-      .features { padding: 80px 0 20px; }
-      .features-head { grid-template-columns: 1fr; padding: 0 24px; gap: 24px; margin-bottom: 60px; }
-      .feature-row { grid-template-columns: 1fr; min-height: auto; }
-      .feature-row:nth-child(even) .feature-img-wrap { order: 0; }
-      .feature-row:nth-child(even) .feature-text-wrap { order: 1; }
-      .feature-text-wrap { padding: 48px 24px; }
-      .led { padding: 80px 24px; }
-      .led-captions { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+      .features { padding: 80px 0; }
+      .features-head { padding: 0 24px; margin-bottom: 60px; }
+      .feature-row { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; margin-bottom: 80px; }
+      .feature-row:nth-child(odd) .feature-img-wrap { order: 0; }
+      .feature-row:nth-child(odd) .feature-text-wrap { order: 1; }
+
+      .led-stage { aspect-ratio: 4 / 5; max-height: none; }
+      .led-text { padding: 40px 24px; }
       .buy { padding: 80px 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ヒーロー（雲ドリフト） -->
+  <!-- HERO：雲ドリフト + 雲クリップ画像 -->
   <section class="hero" id="hero">
     <!-- 後ろの雲 -->
     <div class="cloud-layer back" id="layer-back">
@@ -560,7 +669,8 @@
 
     <!-- タイトル -->
     <div class="hero-text">
-      <div class="hero-label">— MCS<small>01</small></div>
+      <div class="hero-mcs">MCS01</div>
+      <div class="hero-brand">minotel</div>
       <h1 class="hero-name">
         <span class="letter" style="animation-delay: 0.6s">c</span>
         <span class="letter" style="animation-delay: 0.72s">l</span>
@@ -576,21 +686,23 @@
         <span class="letter" style="animation-delay: 2.04s">e</span>
         <span class="letter" style="animation-delay: 2.16s">r</span>
       </h1>
-      <p class="hero-sub">雲をモチーフにした、デスクトップスピーカー</p>
     </div>
 
-    <!-- 製品画像（浮遊） -->
+    <!-- 雲クリップされた製品画像（2枚クロスフェード） -->
     <div class="hero-product">
-      <img class="hero-product-img" src="images/hero/hero-floating-blue.png" alt="minotel cloud speaker">
+      <div class="hero-product-mask">
+        <div class="hero-slide active"><img src="images/hero/wrap-blue.jpg" alt="minotel cloud speaker Blue"></div>
+        <div class="hero-slide"><img src="images/hero/wrap-white.jpg" alt="minotel cloud speaker White"></div>
+      </div>
     </div>
 
-    <!-- 中間レイヤーの雲 -->
+    <!-- 中間レイヤー -->
     <div class="cloud-layer middle" id="layer-middle">
       <div class="cloud cloud-1"></div>
       <div class="cloud cloud-4"></div>
     </div>
 
-    <!-- 前景の雲 -->
+    <!-- 前景 -->
     <div class="cloud-layer front" id="layer-front">
       <div class="cloud cloud-3"></div>
       <div class="cloud cloud-6"></div>
@@ -599,18 +711,19 @@
     <div class="hero-scroll">SCROLL</div>
   </section>
 
-  <!-- イントロ -->
+  <!-- イントロ（薄いピンクデスク背景） -->
   <section class="intro">
-    <div class="section-label reveal">— Product</div>
-    <p class="intro-quote reveal reveal-delay-1">
-      雲が浮かぶような、<br>
-      やさしい音を。
-    </p>
-    <p class="intro-body reveal reveal-delay-2">
-      雲をモチーフにしたふたつの雲型スピーカー。<br>
-      可愛いシルエットとLEDの光で、<br>
-      あなたのデスクを優しく彩ります。
-    </p>
+    <div class="intro-inner">
+      <div class="section-label reveal">— Product</div>
+      <p class="intro-quote reveal reveal-delay-1">
+        雲が浮かぶような、<br>
+        やさしい音を。
+      </p>
+      <p class="intro-body reveal reveal-delay-2">
+        雲をモチーフにしたふたつの雲型スピーカー。<br>
+        可愛いシルエットとLEDの光で、あなたのデスクを優しく彩ります。
+      </p>
+    </div>
   </section>
 
   <!-- 仕様 -->
@@ -619,7 +732,7 @@
       <div class="specs-head">
         <div>
           <div class="section-label reveal">— Specifications</div>
-          <h2 class="section-title reveal reveal-delay-1">数字で知る、<br>cloud speaker。</h2>
+          <h2 class="section-title reveal reveal-delay-1">数字で知る、<br>minotel cloud speaker。</h2>
         </div>
         <p class="specs-desc reveal reveal-delay-2">
           52mmスピーカーユニットを採用。<br>
@@ -661,17 +774,20 @@
           <div class="spec-value">2 Tones<small>White / Pastel Blue</small></div>
         </div>
       </div>
+      <div class="specs-more reveal">
+        <a href="support-cloudspeaker.html" class="specs-link">詳しくはこちら</a>
+      </div>
     </div>
   </section>
 
   <!-- フィーチャー -->
   <section class="features">
     <div class="features-head">
-      <div>
-        <div class="section-label reveal">— Features</div>
-        <h2 class="section-title reveal reveal-delay-1">細部まで、<br>デザインしました。</h2>
-      </div>
-      <p class="features-desc reveal reveal-delay-2">
+      <div class="section-label reveal">— Features</div>
+      <h2 class="features-head-title reveal reveal-delay-1">
+        細部まで、<br>デザインしました。
+      </h2>
+      <p class="features-head-desc reveal reveal-delay-2">
         見た目の可愛さだけではない、<br>
         毎日触れるものだからこそのこだわり。
       </p>
@@ -683,7 +799,7 @@
       </div>
       <div class="feature-text-wrap">
         <div class="feature-number">01 / Dial</div>
-        <h3 class="feature-title">触り心地まで、<br>デザインしました。</h3>
+        <h3 class="feature-title">触り心地まで、<br>こだわりました。</h3>
         <p class="feature-desc">
           ラバー塗装のさらさらとした手触り。<br>
           適度な抵抗を感じるしっとりとした回し心地。<br>
@@ -708,33 +824,31 @@
     </div>
   </section>
 
-  <!-- LED カラー -->
+  <!-- LEDカラー（オーバーレイ） -->
   <section class="led">
-    <div class="led-head">
-      <div class="section-label reveal">— Color Variation</div>
-      <h2 class="section-title reveal reveal-delay-1">推しカラーで、<br>あなたらしく。</h2>
-    </div>
-    <div class="led-image-wrap reveal reveal-delay-2">
-      <img src="images/product/led-wide.jpg" alt="6色のLEDカラー">
-    </div>
-    <div class="led-captions">
-      <div class="led-caption reveal">Blue</div>
-      <div class="led-caption reveal reveal-delay-1">Green</div>
-      <div class="led-caption reveal reveal-delay-1">Pink</div>
-      <div class="led-caption reveal reveal-delay-2">Purple</div>
-      <div class="led-caption reveal reveal-delay-2">Orange</div>
-      <div class="led-caption reveal reveal-delay-3">White</div>
+    <div class="led-stage">
+      <div class="led-bg"></div>
+      <div class="led-overlay-white"></div>
+      <div class="led-text">
+        <div class="led-label reveal">Color Variation</div>
+        <h2 class="led-title reveal reveal-delay-1">推しカラーで、<br>あなたらしく。</h2>
+        <p class="led-sub reveal reveal-delay-2">
+          6色のLEDで、あなたの世界観を自由に。
+          <span class="led-sub-en">Blue &nbsp;・&nbsp; Green &nbsp;・&nbsp; Pink &nbsp;・&nbsp; Purple &nbsp;・&nbsp; Orange &nbsp;・&nbsp; White</span>
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- 購入 -->
   <section class="buy">
-    <h2 class="buy-title reveal">minotel cloud speaker <small>—</small> MCS01</h2>
-    <div class="buy-price reveal reveal-delay-1">
+    <div class="buy-label reveal">MCS01</div>
+    <h2 class="buy-title reveal reveal-delay-1">minotel cloud speaker</h2>
+    <div class="buy-price reveal reveal-delay-2">
       <span class="buy-price-value">¥15,200</span>
       <span class="buy-price-tax">税込</span>
     </div>
-    <a href="https://minotel.jp/shop" class="buy-btn reveal reveal-delay-2">カートに追加 →</a>
+    <a href="https://minotel.jp/shop" class="buy-btn reveal reveal-delay-3">カートに追加 →</a>
   </section>
 
   <script>
@@ -749,58 +863,44 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
     document.querySelectorAll('.reveal, .feature-row').forEach(el => observer.observe(el));
 
-    // === 雲のパララックス（マウス追従 + スクロール） ===
+    // 雲のマウスパララックス
     const hero = document.getElementById('hero');
     const layerBack = document.getElementById('layer-back');
     const layerMiddle = document.getElementById('layer-middle');
     const layerFront = document.getElementById('layer-front');
-    const heroProduct = document.querySelector('.hero-product');
 
-    let mouseX = 0, mouseY = 0;
-    let targetBackX = 0, targetBackY = 0;
-    let targetMidX = 0, targetMidY = 0;
-    let targetFrontX = 0, targetFrontY = 0;
-    let currBackX = 0, currBackY = 0;
-    let currMidX = 0, currMidY = 0;
-    let currFrontX = 0, currFrontY = 0;
+    let tBX=0, tBY=0, tMX=0, tMY=0, tFX=0, tFY=0;
+    let cBX=0, cBY=0, cMX=0, cMY=0, cFX=0, cFY=0;
 
     hero.addEventListener('mousemove', (e) => {
       const rect = hero.getBoundingClientRect();
-      mouseX = (e.clientX - rect.left) / rect.width - 0.5;
-      mouseY = (e.clientY - rect.top) / rect.height - 0.5;
-      targetBackX  = mouseX * 12;
-      targetBackY  = mouseY * 8;
-      targetMidX   = mouseX * 24;
-      targetMidY   = mouseY * 16;
-      targetFrontX = mouseX * 40;
-      targetFrontY = mouseY * 26;
+      const mx = (e.clientX - rect.left) / rect.width - 0.5;
+      const my = (e.clientY - rect.top) / rect.height - 0.5;
+      tBX = mx * 12; tBY = my * 8;
+      tMX = mx * 24; tMY = my * 16;
+      tFX = mx * 40; tFY = my * 26;
     });
 
     function animate() {
-      const ease = 0.08;
-      currBackX  += (targetBackX - currBackX) * ease;
-      currBackY  += (targetBackY - currBackY) * ease;
-      currMidX   += (targetMidX - currMidX) * ease;
-      currMidY   += (targetMidY - currMidY) * ease;
-      currFrontX += (targetFrontX - currFrontX) * ease;
-      currFrontY += (targetFrontY - currFrontY) * ease;
-
-      layerBack.style.transform  = `translate(${currBackX}px, ${currBackY}px)`;
-      layerMiddle.style.transform = `translate(${currMidX}px, ${currMidY}px)`;
-      layerFront.style.transform  = `translate(${currFrontX}px, ${currFrontY}px)`;
-
+      const e = 0.08;
+      cBX += (tBX - cBX) * e;  cBY += (tBY - cBY) * e;
+      cMX += (tMX - cMX) * e;  cMY += (tMY - cMY) * e;
+      cFX += (tFX - cFX) * e;  cFY += (tFY - cFY) * e;
+      layerBack.style.transform = `translate(${cBX}px, ${cBY}px)`;
+      layerMiddle.style.transform = `translate(${cMX}px, ${cMY}px)`;
+      layerFront.style.transform = `translate(${cFX}px, ${cFY}px)`;
       requestAnimationFrame(animate);
     }
     animate();
 
-    // スクロール時、雲レイヤーを上下に少しずつズラす（縦パララックス）
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y > window.innerHeight) return;
-      layerBack.style.setProperty('--scroll-y', `${y * 0.1}px`);
-      layerMiddle.style.setProperty('--scroll-y', `${y * 0.2}px`);
-      layerFront.style.setProperty('--scroll-y', `${y * 0.35}px`);
-    }, { passive: true });
+    // 製品画像クロスフェード
+    const pSlides = document.querySelectorAll('.hero-slide');
+    let pIdx = 0;
+    setInterval(() => {
+      pSlides[pIdx].classList.remove('active');
+      pIdx = (pIdx + 1) % pSlides.length;
+      pSlides[pIdx].classList.add('active');
+    }, 5000);
   </script>
 </body>
 </html>
