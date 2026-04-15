@@ -494,16 +494,45 @@
 
     /* === レスポンシブ === */
     @media (max-width: 900px) {
-      .hero-inner { padding: 0 24px 60px; }
-      .hero-scroll { right: 24px; bottom: 24px; }
-      .concept { padding: 100px 24px; }
-      .product { padding: 80px 24px; }
-      .product-layout { grid-template-columns: 1fr; gap: 48px; }
+      .hero { height: 680px; min-height: 560px; max-height: 720px; }
+      .hero-inner { padding: 0 24px 48px; }
+      .hero-title { font-size: clamp(24px, 6.8vw, 36px); line-height: 1.55; margin-bottom: 24px; }
+      .hero-sub { font-size: 12px; letter-spacing: 0.24em; margin-bottom: 20px; }
+      .hero-desc { font-size: 13px; line-height: 1.9; }
+      .hero-btn { padding: 14px 24px 14px 28px; margin-top: 28px; }
+      .hero-btn-label { font-size: 13px; }
+      .hero-scroll { display: none; }
+      .concept { padding: 80px 24px; }
+      .product { padding: 72px 20px; }
+      .product-layout { grid-template-columns: 1fr; gap: 40px; }
       .product-info { padding: 0; }
+      .product-title { font-size: clamp(22px, 6vw, 30px); }
       .slide-nav { bottom: 16px; left: 16px; right: 16px; }
       .slide-btn { width: 36px; height: 36px; }
       .led-stage { aspect-ratio: 4 / 5; max-height: none; }
-      .led-text { padding: 40px 24px; }
+      .led-text { padding: 40px 20px; }
+      .led-title { font-size: clamp(24px, 6.4vw, 36px); }
+    }
+    @media (max-width: 500px) {
+      .hero { height: 600px; min-height: 520px; }
+      .hero-inner { padding: 0 20px 36px; }
+      .hero-title { font-size: 22px; line-height: 1.5; }
+      .hero-sub { font-size: 11px; margin-bottom: 16px; }
+      .hero-desc { font-size: 12px; line-height: 1.85; }
+      .hero-copy { max-width: 100%; }
+      .hero-btn { padding: 12px 20px 12px 24px; }
+      .hero-btn-label { font-size: 12px; }
+      .concept { padding: 64px 20px; }
+      .concept-quote { font-size: 20px; line-height: 1.9; }
+      .concept-body { font-size: 12px; line-height: 1.95; }
+      .product { padding: 56px 16px; }
+      .product-info { padding: 0; }
+      .product-name { font-size: 11px; letter-spacing: 0.14em; }
+      .product-desc { font-size: 12px; }
+      .led-text { padding: 32px 16px; }
+      .led-label { font-size: 11px; letter-spacing: 0.18em; }
+      .led-title { font-size: 22px; }
+      .led-sub { font-size: 12px; margin-top: 20px; }
     }
   </style>
 </head>
