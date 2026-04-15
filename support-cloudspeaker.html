@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>minotel cloud speaker 使い方ガイド</title>
+  <title>Manual | minotel cloud speaker</title>
+  <meta name="description" content="minotel cloud speaker の製品マニュアル。同梱物、接続方法、LED操作、仕様、お手入れ方法についてご案内します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    
     /* スクロールバー完全非表示 (Wix iframe対応) */
     html, body {
       scrollbar-width: none !important;
@@ -25,919 +25,1026 @@
     }
     * { scrollbar-width: none; -ms-overflow-style: none; }
 
-    /* === リセット・ベース === */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --pastel-blue: #BFECFF;
-      --pastel-pink: #FFD6E8;
-      --pastel-purple: #E8DAFF;
-      --pastel-green: #D4F5D4;
-      --pastel-orange: #FFE8CC;
-      --pastel-yellow: #FFF9DB;
-      --text-main: #4A4A5A;
-      --text-light: #7A7A8A;
-      --white: #FFFFFF;
-      --bg-cream: #FDFBF7;
-      --border-soft: #E8E4E0;
-      --shadow-soft: 0 2px 16px rgba(0,0,0,0.06);
-      --shadow-hover: 0 4px 24px rgba(0,0,0,0.10);
-      --radius: 20px;
-      --radius-sm: 12px;
+      --ink: #2b2a33;
+      --ink-60: rgba(43, 42, 51, 0.72);
+      --ink-80: rgba(43, 42, 51, 0.85);
+      --ink-40: rgba(43, 42, 51, 0.42);
+      --paper: #fbfaf7;
+      --paper-warm: #f5f2ec;
+      --sky-1: #e8f2fb;
+      --sky-2: #d6e8f6;
+      --sky-3: #f5e6ee;
+      --line: rgba(43, 42, 51, 0.12);
     }
 
-    html { scroll-behavior: smooth; }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body {
-      font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
-      color: var(--text-main);
-      background: var(--bg-cream);
-      line-height: 1.8;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.9;
+      letter-spacing: 0.02em;
     }
 
-    /* === ヘッダー === */
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { border: none; background: none; cursor: pointer; color: inherit; font: inherit; }
+
+    /* ============================================
+       HERO
+       ============================================ */
     .hero {
-      background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-purple) 50%, var(--pastel-pink) 100%);
-      text-align: center;
-      padding: 60px 20px 50px;
       position: relative;
+      width: 100%;
+      height: 680px;
+      min-height: 560px;
+      max-height: 780px;
       overflow: hidden;
+      background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 50%, var(--sky-3) 100%);
     }
     .hero::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.3) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 60%, rgba(255,255,255,0.2) 0%, transparent 40%);
-      animation: float 8s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-2%, 2%) rotate(1deg); }
-    }
-    .hero-content { position: relative; z-index: 1; }
-    .hero-logo {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      color: var(--text-light);
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-    .hero h1 {
-      font-size: clamp(24px, 5vw, 38px);
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-    .hero h1 span {
-      display: block;
-      font-family: 'Quicksand', sans-serif;
-      font-size: clamp(14px, 3vw, 18px);
-      font-weight: 500;
-      color: var(--text-light);
-      margin-top: 8px;
-      letter-spacing: 2px;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: var(--white);
-      color: var(--text-main);
-      padding: 8px 24px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 500;
-      margin-top: 20px;
-      box-shadow: var(--shadow-soft);
+      inset: -20%;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 40%),
+                  radial-gradient(circle at 75% 65%, rgba(255,255,220,0.3) 0%, transparent 45%);
+      pointer-events: none;
     }
 
-    /* === 製品画像エリア === */
-    .product-showcase {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--white);
+    /* 雲レイヤー */
+    .cloud-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
     }
-    .product-gallery {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      max-width: 700px;
-      margin: 0 auto;
+    .cloud {
+      position: absolute;
+      left: 0;
+      aspect-ratio: 1280 / 822;
+      background-image: url('images/svg/cloud.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      filter: brightness(0) invert(1) drop-shadow(0 20px 40px rgba(107, 140, 180, 0.15));
     }
-    .product-gallery img {
-      width: 100%;
-      max-width: 300px;
-      height: auto;
-      border-radius: var(--radius);
-      transition: transform 0.3s ease;
-    }
-    .product-gallery img:hover {
-      transform: scale(1.03);
-    }
-    .product-lifestyle {
-      width: 100%;
-      max-width: 600px;
-      margin: 24px auto 0;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-    }
-    .product-lifestyle img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .color-options {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .color-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 500;
-      border: 2px solid var(--border-soft);
-      background: var(--white);
-    }
-    .color-dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.1);
+    .cloud-a { top: 12%; width: 380px; opacity: 0.5; animation: drift 70s linear infinite -10s; }
+    .cloud-b { top: 62%; width: 480px; opacity: 0.38; animation: drift 90s linear infinite -50s; }
+    .cloud-c { top: 28%; width: 260px; opacity: 0.85; animation: drift 52s linear infinite -25s; }
+    .cloud-d { top: 78%; width: 320px; opacity: 0.6; animation: drift 64s linear infinite -38s; }
+    .cloud-e { top: 6%;  width: 560px; opacity: 0.28; animation: drift 100s linear infinite -70s; }
+    @keyframes drift {
+      from { transform: translateX(-110%); }
+      to   { transform: translateX(calc(100vw + 10%)); }
     }
 
-    /* === コンテナ === */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* === ナビゲーション（もくじ） === */
-    .toc {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 32px;
-      margin: 40px auto;
-      max-width: 800px;
-      box-shadow: var(--shadow-soft);
-    }
-    .toc h2 {
-      font-size: 18px;
-      margin-bottom: 20px;
-      text-align: center;
-      color: var(--text-main);
-    }
-    .toc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-    }
-    .toc-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-cream);
-      text-decoration: none;
-      color: var(--text-main);
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    .toc-item:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-    }
-    .toc-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
-    /* === セクション === */
-    .section {
-      margin: 40px auto;
-      max-width: 800px;
-    }
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-      padding-bottom: 14px;
-      border-bottom: 2px dashed var(--border-soft);
-    }
-    .section-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-    .section-header h2 {
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    /* === カード === */
-    .card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow-soft);
-    }
-    .card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-    .card p, .card li {
-      font-size: 14px;
-      line-height: 1.9;
-      color: var(--text-main);
-    }
-
-    /* === ステップ（手順） === */
-    .steps { counter-reset: step; }
-    .step {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 28px;
+    .hero-inner {
       position: relative;
-    }
-    .step::before {
-      counter-increment: step;
-      content: counter(step);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple));
-      color: var(--text-main);
+      height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-      flex-shrink: 0;
+      padding: 0 24px;
+      text-align: center;
     }
-    .step-content {
-      flex: 1;
-      padding-top: 6px;
+    .hero-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--ink-80);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.3s ease-out forwards;
     }
-    .step-content h4 {
-      font-size: 15px;
-      font-weight: 700;
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 10vw, 140px);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: var(--ink);
+      text-shadow: 0 4px 30px rgba(255,255,255,0.9);
+      opacity: 0;
+      animation: fadeUp 1.4s 0.6s ease-out forwards;
+    }
+    .hero-sub {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(14px, 1.4vw, 17px);
+      letter-spacing: 0.08em;
+      color: var(--ink-80);
+      margin-top: 28px;
+      opacity: 0;
+      animation: fadeUp 1.4s 1.0s ease-out forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       Section Navigation (sticky)
+       ============================================ */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251, 250, 247, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 32px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .nav-inner a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-inner a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 4px;
+      width: 100%;
+      height: 1px;
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+    }
+    .nav-inner a:hover { color: var(--ink); }
+    .nav-inner a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* ============================================
+       Section Common
+       ============================================ */
+    section.manual-section {
+      position: relative;
+      padding: 140px 48px 120px;
+      scroll-margin-top: 80px;
+    }
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 40px;
+      margin-bottom: 60px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      color: var(--ink-40);
+      padding-top: 14px;
+      min-width: 56px;
+    }
+    .section-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .section-title {
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 500;
+      font-size: clamp(28px, 3.6vw, 42px);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+    .section-title-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      margin-top: 10px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.22s; }
+    .reveal-d3 { transition-delay: 0.34s; }
+
+    /* Alt background sections */
+    .bg-warm { background: var(--paper-warm); }
+    .bg-white { background: #fff; }
+
+    /* ============================================
+       Cloud edge (section separator)
+       ============================================ */
+    .cloud-edge {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      pointer-events: none;
+      display: block;
+      z-index: 3;
+    }
+    .cloud-edge-top { top: -1px; }
+
+    /* ============================================
+       Box Contents — パララックスリスト
+       ============================================ */
+    .contents-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+    .content-item {
+      padding: 36px 0 32px;
+      padding-left: 32px;
+      padding-right: 24px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+    .content-item:nth-child(2n) { border-right: none; }
+    .content-item:nth-last-child(-n+2) { border-bottom: none; }
+    .content-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--ink-40);
+      margin-bottom: 10px;
+    }
+    .content-name {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 0.03em;
       margin-bottom: 6px;
     }
-    .step-content p {
-      font-size: 14px;
-      color: var(--text-light);
-      line-height: 1.8;
+    .content-desc {
+      font-size: 13px;
+      color: var(--ink-60);
+      line-height: 1.9;
     }
 
-    /* === 仕様テーブル === */
-    .spec-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      font-size: 14px;
-    }
-    .spec-table th {
-      background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple));
-      padding: 12px 18px;
-      text-align: left;
-      font-weight: 600;
-      width: 40%;
-      border-bottom: 1px solid rgba(255,255,255,0.5);
-    }
-    .spec-table td {
-      padding: 12px 18px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .spec-table tr:last-child th,
-    .spec-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* === LED カラー === */
-    .led-colors {
+    /* ============================================
+       Setup Steps
+       ============================================ */
+    .steps-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+    }
+    .step-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      letter-spacing: 0.22em;
+      color: var(--ink-40);
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    .step-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 19px;
+      letter-spacing: 0.03em;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--ink-80);
+      line-height: 2;
+    }
+
+    .note {
+      margin-top: 40px;
+      padding: 20px 28px;
+      background: var(--paper-warm);
+      font-size: 13px;
+      color: var(--ink-80);
+      line-height: 1.9;
+      border-left: 2px solid var(--ink);
+    }
+    .note-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      margin-bottom: 6px;
+    }
+
+    /* ============================================
+       LED Section
+       ============================================ */
+    .led-modes {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .led-mode {
+      padding: 24px 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+    .led-mode-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--ink-40);
+      margin-bottom: 12px;
+    }
+    .led-mode-name {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .led-mode-desc {
+      font-size: 11px;
+      color: var(--ink-60);
+      line-height: 1.7;
+    }
+
+    .led-colors-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      margin-top: 40px;
     }
     .led-color {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-cream);
-      font-size: 13px;
-      font-weight: 500;
+      text-align: center;
     }
     .led-swatch {
-      width: 24px;
-      height: 24px;
+      width: 100%;
+      aspect-ratio: 1;
       border-radius: 50%;
-      border: 2px solid rgba(0,0,0,0.08);
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      margin-bottom: 14px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
     }
-
-    /* === 注意事項 === */
-    .notice {
-      border-left: 4px solid;
-      padding: 16px 20px;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin: 16px 0;
-      font-size: 14px;
-    }
-    .notice-warning {
-      border-color: #FFB366;
-      background: var(--pastel-orange);
-    }
-    .notice-info {
-      border-color: #88BBFF;
-      background: #EBF3FF;
-    }
-    .notice-tip {
-      border-color: #88DD88;
-      background: var(--pastel-green);
-    }
-    .notice-title {
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    /* === FAQ === */
-    .faq-item {
-      background: var(--white);
-      border-radius: var(--radius);
-      margin-bottom: 12px;
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
-    .faq-question {
-      padding: 20px 24px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: background 0.2s;
-    }
-    .faq-question:hover { background: var(--bg-cream); }
-    .faq-question .q-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-purple));
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .led-color-name {
+      font-family: 'Cormorant Garamond', serif;
       font-size: 13px;
-      font-weight: 700;
-      flex-shrink: 0;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-80);
     }
-    .faq-answer {
-      padding: 0 24px 20px 64px;
-      font-size: 14px;
-      color: var(--text-light);
-      line-height: 1.8;
-      display: none;
-    }
-    .faq-item.active .faq-answer { display: block; }
-    .faq-toggle {
-      margin-left: auto;
-      font-size: 18px;
-      transition: transform 0.3s;
-      color: var(--text-light);
-    }
-    .faq-item.active .faq-toggle { transform: rotate(45deg); }
-
-    /* === 部品構成 === */
-    .parts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .part-item {
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-cream);
-      font-size: 13px;
-    }
-    .part-item strong {
+    .led-color-code {
       display: block;
-      font-size: 13px;
-      margin-bottom: 2px;
-    }
-    .part-item span {
-      color: var(--text-light);
-      font-size: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      color: var(--ink-40);
+      margin-top: 2px;
     }
 
-    /* === フッター === */
-    .footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--white);
-      margin-top: 60px;
-      border-top: 1px solid var(--border-soft);
+    .btn-control {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
     }
-    .footer-logo {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      color: var(--text-light);
+    .btn-control-item {
+      padding-left: 28px;
+      border-left: 1px solid var(--line);
+    }
+    .btn-control-action {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 10px;
+    }
+    .btn-control-label {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 17px;
+      letter-spacing: 0.03em;
       margin-bottom: 8px;
     }
-    .footer p {
-      font-size: 12px;
-      color: var(--text-light);
+    .btn-control-desc {
+      font-size: 13px;
+      color: var(--ink-80);
+      line-height: 1.95;
     }
-    .footer-links {
-      margin-top: 16px;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-    }
-    .footer-links a {
-      font-size: 12px;
-      color: var(--text-light);
-      text-decoration: none;
-    }
-    .footer-links a:hover { text-decoration: underline; }
 
-    /* === レスポンシブ === */
-    @media (max-width: 600px) {
-      .hero { padding: 40px 16px 36px; }
-      .product-gallery { gap: 16px; }
-      .product-gallery img { max-width: 45%; }
-      .toc { padding: 20px; margin: 24px 16px; }
-      .toc-grid { grid-template-columns: 1fr; }
-      .section { margin: 24px 16px; }
-      .card { padding: 20px; }
-      .led-colors { grid-template-columns: repeat(2, 1fr); }
-      .spec-table th { width: 45%; }
-      .step { gap: 14px; }
-      .parts-grid { grid-template-columns: 1fr 1fr; }
+    /* ============================================
+       Specs Table
+       ============================================ */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .specs-table tr {
+      border-bottom: 1px solid var(--line);
+    }
+    .specs-table tr:first-child {
+      border-top: 1px solid var(--line);
+    }
+    .specs-table th {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      text-align: left;
+      padding: 22px 24px 22px 0;
+      vertical-align: top;
+      width: 32%;
+    }
+    .specs-table td {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      padding: 22px 0;
+    }
+    .specs-table td small {
+      display: block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--ink-60);
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================
+       Care & Warning
+       ============================================ */
+    .care-list {
+      display: grid;
+      gap: 32px;
+    }
+    .care-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .care-item:last-child { border-bottom: none; }
+    .care-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--ink-40);
+      padding-top: 4px;
+      min-width: 48px;
+    }
+    .care-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 17px;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .care-desc {
+      font-size: 13px;
+      color: var(--ink-80);
+      line-height: 1.95;
+    }
+
+    /* ============================================
+       Warranty
+       ============================================ */
+    .warranty {
+      padding: 80px 64px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+    .warranty-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      margin-bottom: 14px;
+    }
+    .warranty-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(24px, 3vw, 32px);
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .warranty-desc {
+      font-size: 14px;
+      color: var(--ink-80);
+      line-height: 2.1;
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+    .warranty-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--ink);
+      transition: gap 0.4s ease;
+    }
+    .warranty-link:hover { gap: 28px; }
+    .warranty-link::after { content: '→'; font-family: sans-serif; }
+
+    /* ============================================
+       Contact
+       ============================================ */
+    .contact {
+      padding: 160px 48px;
+      text-align: center;
+      background: var(--paper-warm);
+    }
+    .contact-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      margin-bottom: 20px;
+    }
+    .contact-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(24px, 3.2vw, 34px);
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .contact-desc {
+      font-size: 14px;
+      color: var(--ink-80);
+      line-height: 2.1;
+      margin-bottom: 48px;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      padding: 20px 56px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      transition: gap 0.4s ease, background 0.4s ease;
+    }
+    .contact-btn:hover { gap: 28px; background: #000; }
+    .contact-email {
+      display: block;
+      margin-top: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+    }
+
+    /* ============================================
+       Responsive
+       ============================================ */
+    @media (max-width: 900px) {
+      .hero { height: 520px; min-height: 460px; }
+      .hero-title { font-size: clamp(42px, 12vw, 80px); }
+      .hero-sub { font-size: 13px; margin-top: 20px; }
+      .cloud-a { width: 240px; }
+      .cloud-b { width: 320px; }
+      .cloud-c { width: 180px; }
+      .cloud-d { width: 220px; }
+      .cloud-e { width: 360px; }
+
+      .nav-inner { padding: 14px 20px; gap: 20px; }
+      .nav-inner a { font-size: 10px; letter-spacing: 0.16em; }
+
+      section.manual-section { padding: 80px 24px 70px; }
+      .section-head { grid-template-columns: 1fr; gap: 12px; padding-bottom: 32px; margin-bottom: 48px; }
+      .section-num { padding-top: 0; }
+      .section-title { font-size: clamp(24px, 6vw, 34px); }
+
+      .contents-grid { grid-template-columns: 1fr; }
+      .content-item { border-right: none !important; padding-left: 20px; padding-right: 16px; }
+      .content-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .content-item:last-child { border-bottom: none; }
+
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+      .step-num { padding-bottom: 14px; margin-bottom: 16px; }
+
+      .led-modes { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .led-modes .led-mode:nth-child(5) { grid-column: span 2; }
+      .led-colors-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .btn-control { grid-template-columns: 1fr; gap: 24px; }
+      .btn-control-item { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 24px; }
+
+      .specs-table th { font-size: 11px; padding-right: 16px; width: 40%; }
+      .specs-table td { font-size: 14px; }
+
+      .care-item { grid-template-columns: 1fr; gap: 10px; padding: 24px 0; }
+
+      .warranty { padding: 56px 28px; }
+      .contact { padding: 80px 24px; }
+    }
+    @media (max-width: 500px) {
+      .hero { height: 440px; min-height: 400px; }
+      .hero-title { font-size: 48px; }
+      .hero-label { font-size: 11px; }
+      .hero-sub { font-size: 12px; }
+      section.manual-section { padding: 64px 20px 56px; }
+      .section-title { font-size: 22px; }
+      .content-name { font-size: 16px; }
+      .step-title { font-size: 17px; }
+      .led-colors-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .led-color-name { font-size: 11px; }
+      .specs-table th { font-size: 10px; padding: 16px 12px 16px 0; }
+      .specs-table td { font-size: 13px; padding: 16px 0; }
+      .warranty-title { font-size: 22px; }
+      .warranty-desc { font-size: 13px; }
+      .contact-title { font-size: 22px; }
+      .contact-btn { padding: 16px 32px; font-size: 14px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ヒーロー -->
-  <header class="hero">
-    <div class="hero-content">
-      <div class="hero-logo">minotel</div>
-      <h1>
-        cloud speaker
-        <span>MNC-CL01 使い方ガイド</span>
-      </h1>
-      <div class="hero-badge">USB 雲型デスクトップスピーカー</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="cloud-layer">
+      <div class="cloud cloud-e"></div>
+      <div class="cloud cloud-a"></div>
+      <div class="cloud cloud-b"></div>
+      <div class="cloud cloud-c"></div>
+      <div class="cloud cloud-d"></div>
     </div>
-  </header>
-
-  <!-- 製品ショーケース -->
-  <section class="product-showcase">
-    <div class="product-gallery">
-      <img src="images/white.png" alt="minotel cloud speaker ピュアホワイト">
-      <img src="images/blue.png" alt="minotel cloud speaker パステルブルー">
-    </div>
-    <div class="color-options">
-      <div class="color-chip">
-        <div class="color-dot" style="background: #FFFFFF;"></div>
-        ピュアホワイト
-      </div>
-      <div class="color-chip">
-        <div class="color-dot" style="background: var(--pastel-blue);"></div>
-        パステルブルー
-      </div>
-    </div>
-    <div class="product-lifestyle">
-      <img src="images/desk.png" alt="デスクに置かれた minotel cloud speaker の使用イメージ">
+    <div class="hero-inner">
+      <div class="hero-label">MCS01</div>
+      <h1 class="hero-title">Manual</h1>
+      <p class="hero-sub">minotel cloud speaker 取扱説明書</p>
     </div>
   </section>
 
-  <!-- もくじ -->
-  <nav class="toc container">
-    <h2>もくじ</h2>
-    <div class="toc-grid">
-      <a href="#whats-inside" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-blue);">1</div>
-        同梱物の確認
-      </a>
-      <a href="#setup" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-pink);">2</div>
-        接続方法
-      </a>
-      <a href="#led" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-purple);">3</div>
-        LEDの使い方
-      </a>
-      <a href="#specs" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-green);">4</div>
-        製品仕様
-      </a>
-      <a href="#structure" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-yellow);">5</div>
-        構造・素材
-      </a>
-      <a href="#care" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-orange);">6</div>
-        取り扱い上の注意
-      </a>
-      <a href="#faq" class="toc-item">
-        <div class="toc-icon" style="background: var(--pastel-pink);">7</div>
-        よくある質問
-      </a>
+  <!-- Sticky Navigation -->
+  <nav class="nav-wrap">
+    <div class="nav-inner">
+      <a href="#contents">Contents</a>
+      <a href="#setup">Setup</a>
+      <a href="#led">LED</a>
+      <a href="#specs">Specs</a>
+      <a href="#care">Care</a>
+      <a href="#warranty">Warranty</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
-  <main class="container">
-
-    <!-- 1. 同梱物の確認 -->
-    <section id="whats-inside" class="section">
-      <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-blue);">1</div>
-        <h2>同梱物の確認</h2>
-      </div>
-      <div class="card">
-        <p>箱を開けたら、以下のものが入っているか確認してください。</p>
-        <ul style="list-style: none; margin-top: 16px;">
-          <li style="padding: 8px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>スピーカー本体</strong> ... 2台（左・右）
-          </li>
-          <li style="padding: 8px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>USB ケーブル</strong> ... 1本（電源＆音声入力用、PVC ホワイト）
-          </li>
-          <li style="padding: 8px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>スピーカー接続ケーブル</strong> ... 1本（左右のスピーカーをつなぐ用、3.5mm 4極）
-          </li>
-          <li style="padding: 8px 0;">
-            <strong>保証書・かんたんガイド</strong> ... 1枚
-          </li>
-        </ul>
-        <div class="notice notice-info" style="margin-top: 20px;">
-          <div class="notice-title">足りないものがあったら</div>
-          お手数ですが、下記のお問い合わせ先までご連絡ください。すぐに対応いたします。
+  <!-- 01 Box Contents -->
+  <section id="contents" class="manual-section bg-white">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-num reveal">01</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title reveal reveal-d1">同梱物の確認</h2>
+          <div class="section-title-en reveal reveal-d2">— Box Contents</div>
         </div>
       </div>
-    </section>
-
-    <!-- 2. 接続方法 -->
-    <section id="setup" class="section">
-      <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-pink);">2</div>
-        <h2>接続方法</h2>
-      </div>
-      <div class="card">
-        <p>かんたん3ステップで、すぐに使い始められます。</p>
-        <div class="steps" style="margin-top: 24px;">
-          <div class="step">
-            <div class="step-content">
-              <h4>左右のスピーカーをつなぐ</h4>
-              <p>付属のスピーカー接続ケーブル（3.5mm端子）で、2台のスピーカーを接続します。ケーブルの端子は同じ形なので、どちらに挿してもOKです。</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-content">
-              <h4>USBケーブルをパソコンに接続</h4>
-              <p>付属のUSBケーブルを、メイン側のスピーカー（ボタンがある方）とパソコンのUSBポートに接続します。電源も音声もこの1本でOK。ドライバーのインストールは不要です。</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-content">
-              <h4>音を鳴らしてみよう</h4>
-              <p>パソコンの音声出力先を「MNC-CL01」に設定すれば準備完了。お気に入りの音楽を再生してみてください。</p>
-            </div>
-          </div>
+      <div class="contents-grid reveal reveal-d1">
+        <div class="content-item">
+          <div class="content-num">01</div>
+          <div class="content-name">スピーカー本体</div>
+          <div class="content-desc">2台セット（左・右 / 雲型）</div>
         </div>
-        <div class="notice notice-tip">
-          <div class="notice-title">おすすめ</div>
-          USB 3.2 以上のポート、または独立給電のUSBハブに接続すると、安定した電力供給で最高の音質をお楽しみいただけます。動作電圧は 4.75 ~ 5.25V です。
+        <div class="content-item">
+          <div class="content-num">02</div>
+          <div class="content-name">USB ケーブル</div>
+          <div class="content-desc">1本（電源＆音声入力用 / PVCホワイト）</div>
+        </div>
+        <div class="content-item">
+          <div class="content-num">03</div>
+          <div class="content-name">スピーカー接続ケーブル</div>
+          <div class="content-desc">1本（3.5mm 4極 / 左右接続用）</div>
+        </div>
+        <div class="content-item">
+          <div class="content-num">04</div>
+          <div class="content-name">保証書・かんたんガイド</div>
+          <div class="content-desc">1枚（QRコード付き）</div>
         </div>
       </div>
-    </section>
-
-    <!-- 3. LEDの使い方 -->
-    <section id="led" class="section">
-      <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-purple);">3</div>
-        <h2>LEDの使い方</h2>
+      <div class="note">
+        <div class="note-label">— Note</div>
+        同梱物に不足・破損がある場合は、お手数ですが下記のお問い合わせ先までご連絡ください。
       </div>
-      <div class="card">
-        <p>cloud speaker には、気分に合わせて光る6色のLEDイルミネーションが搭載されています。メイン側スピーカーのボタンで操作できます。</p>
-
-        <h3 style="margin-top: 20px;">カラーバリエーション</h3>
-        <div class="led-colors">
-          <div class="led-color">
-            <div class="led-swatch" style="background: #BFECFF; box-shadow: 0 0 12px #BFECFF;"></div>
-            ライトブルー
-          </div>
-          <div class="led-color">
-            <div class="led-swatch" style="background: #71FFA2; box-shadow: 0 0 12px #71FFA2;"></div>
-            グリーン
-          </div>
-          <div class="led-color">
-            <div class="led-swatch" style="background: #FF6BAE; box-shadow: 0 0 12px #FF6BAE;"></div>
-            ピンク
-          </div>
-          <div class="led-color">
-            <div class="led-swatch" style="background: #E68EFF; box-shadow: 0 0 12px #E68EFF;"></div>
-            パープル
-          </div>
-          <div class="led-color">
-            <div class="led-swatch" style="background: #FFC465; box-shadow: 0 0 12px #FFC465;"></div>
-            オレンジ
-          </div>
-          <div class="led-color">
-            <div class="led-swatch" style="background: #FFFFFF; box-shadow: 0 0 12px rgba(0,0,0,0.15);"></div>
-            ホワイト
-          </div>
-        </div>
-
-        <div class="notice notice-info" style="margin-top: 20px;">
-          <div class="notice-title">操作方法</div>
-          ボタンを押すたびにカラーが切り替わります。長押しでLEDのオン/オフを切り替えられます。
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. 製品仕様 -->
-    <section id="specs" class="section">
-      <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-green);">4</div>
-        <h2>製品仕様</h2>
-      </div>
-      <div class="card">
-        <h3>基本仕様</h3>
-        <table class="spec-table">
-          <tr><th>製品名</th><td>minotel cloud speaker</td></tr>
-          <tr><th>型番</th><td>MNC-CL01</td></tr>
-          <tr><th>製品タイプ</th><td>雲型デスクトップスピーカーセット</td></tr>
-          <tr><th>音声入力</th><td>USB デジタル音声入力</td></tr>
-          <tr><th>動作電圧</th><td>4.75 ~ 5.25V（USB給電）</td></tr>
-          <tr><th>最大消費電力</th><td>7W</td></tr>
-          <tr><th>カラー</th><td>ピュアホワイト / パステルブルー</td></tr>
-        </table>
-      </div>
-      <div class="card">
-        <h3>スピーカー仕様</h3>
-        <table class="spec-table">
-          <tr><th>スピーカー口径</th><td>52mm（ダイナミック型）</td></tr>
-          <tr><th>インピーダンス</th><td>4.0 &Omega; &plusmn;20%</td></tr>
-          <tr><th>音圧感度</th><td>85 &plusmn;3 dB（0.5m / 1W）</td></tr>
-          <tr><th>定格電力</th><td>3W</td></tr>
-          <tr><th>最大電力</th><td>5W</td></tr>
-          <tr><th>周波数帯域</th><td>140Hz ~ 20kHz</td></tr>
-          <tr><th>最低共振周波数</th><td>140 &plusmn;20 Hz</td></tr>
-        </table>
-      </div>
-      <div class="card">
-        <h3>ケーブル仕様</h3>
-        <table class="spec-table">
-          <tr><th>端子</th><td>3.5mm / 4極</td></tr>
-          <tr><th>色</th><td>ホワイト</td></tr>
-          <tr><th>材質</th><td>PVC</td></tr>
-          <tr><th>引張強度</th><td>3kg 以上</td></tr>
-        </table>
-      </div>
-    </section>
-
-    <!-- 5. 構造・素材 -->
-    <section id="structure" class="section">
-      <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-yellow);">5</div>
-        <h2>構造・素材</h2>
-      </div>
-      <div class="card">
-        <p>cloud speaker は、手触りのいいラバー塗装仕上げのABS樹脂で作られています。底面にはシリコンパッドが4つ付いているので、デスクの上で滑りにくく安定します。</p>
-        <h3 style="margin-top: 20px;">主な部品と素材</h3>
-        <div class="parts-grid">
-          <div class="part-item">
-            <strong>前面カバー</strong>
-            <span>ABS樹脂 / ラバー塗装</span>
-          </div>
-          <div class="part-item">
-            <strong>前面シェル</strong>
-            <span>ABS樹脂 / ラバー塗装</span>
-          </div>
-          <div class="part-item">
-            <strong>背面シェル</strong>
-            <span>ABS樹脂 / ラバー塗装</span>
-          </div>
-          <div class="part-item">
-            <strong>操作ボタン</strong>
-            <span>ABS樹脂 / ラバー塗装</span>
-          </div>
-          <div class="part-item">
-            <strong>LEDカバー</strong>
-            <span>PP素材（半透明）</span>
-          </div>
-          <div class="part-item">
-            <strong>スピーカーグリル</strong>
-            <span>ABS素材</span>
-          </div>
-          <div class="part-item">
-            <strong>底面パッド</strong>
-            <span>シリコン x 4</span>
-          </div>
-          <div class="part-item">
-            <strong>スピーカー</strong>
-            <span>52mm ダイナミック型</span>
-          </div>
-        </div>
-
-        <h3 style="margin-top: 24px;">本体カラーの仕上げ</h3>
-        <table class="spec-table" style="margin-top: 12px;">
-          <tr><th>ピュアホワイト</th><td>白色成形 + 透明マット塗装</td></tr>
-          <tr><th>パステルブルー</th><td>白色成形 + 指定色塗装 + 透明マット塗装</td></tr>
-        </table>
-      </div>
-    </section>
-
-    <!-- 6. 取り扱い上の注意 -->
-    <section id="care" class="section">
-      <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-orange);">6</div>
-        <h2>取り扱い上の注意</h2>
-      </div>
-      <div class="card">
-        <div class="notice notice-warning">
-          <div class="notice-title">安全にお使いいただくために</div>
-          以下の点にご注意ください。
-        </div>
-        <ul style="list-style: none; margin-top: 16px;">
-          <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>水濡れに注意</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">本製品は防水仕様ではありません。飲み物のそばに置く際はご注意ください。</span>
-          </li>
-          <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>直射日光・高温を避ける</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">直射日光が当たる場所や、暖房器具のそばなど高温になる場所に置かないでください。（使用温度範囲: -20&#8451; ~ 50&#8451;）</span>
-          </li>
-          <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>ケーブルを無理に曲げない</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">ケーブルを鋭く折り曲げたり、強く引っ張ったりしないでください。引張強度は3kg以上ありますが、断線の原因になります。</span>
-          </li>
-          <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>落下にご注意</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">高い場所からの落下は故障の原因になります。安定した平面の上でお使いください。</span>
-          </li>
-          <li style="padding: 10px 0; border-bottom: 1px dashed var(--border-soft);">
-            <strong>分解・改造しない</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">内部に触れると故障や感電の原因になります。修理が必要な場合はお問い合わせください。</span>
-          </li>
-          <li style="padding: 10px 0;">
-            <strong>お手入れ方法</strong><br>
-            <span style="color: var(--text-light); font-size: 13px;">乾いた柔らかい布で拭いてください。アルコールやシンナーなどの溶剤は使用しないでください。表面のラバー塗装が傷む場合があります。</span>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>環境への配慮</h3>
-        <p>本製品はRoHS（有害物質使用制限）基準に適合しています。廃棄の際はお住まいの自治体のルールに従ってください。</p>
-      </div>
-    </section>
-
-    <!-- 7. よくある質問 -->
-    <section id="faq" class="section">
-      <div class="section-header">
-        <div class="section-icon" style="background: var(--pastel-pink);">7</div>
-        <h2>よくある質問</h2>
-      </div>
-
-      <div class="faq-item active">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
-          <span class="q-mark">Q</span>
-          ドライバーのインストールは必要ですか？
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          いいえ、不要です。USBを接続するだけで、Windows / Mac / Linux で自動認識されます。ドライバーレスですぐにお使いいただけます。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
-          <span class="q-mark">Q</span>
-          音が出ません
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          以下を確認してください:
-          <br>1. パソコンの音声出力先が「MNC-CL01」になっていますか？
-          <br>2. 音量がミュート（消音）になっていませんか？
-          <br>3. USBケーブルがしっかり接続されていますか？
-          <br>4. 別のUSBポートに挿し替えてみてください。USB 3.2以上のポートがおすすめです。
-          <br>それでも解決しない場合は、お問い合わせください。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
-          <span class="q-mark">Q</span>
-          左右の音量が違います
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          パソコンのサウンド設定で、左右のバランスが均等になっているか確認してください。また、左右のスピーカー接続ケーブル（3.5mm端子）がしっかり差し込まれているかもご確認ください。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
-          <span class="q-mark">Q</span>
-          スマートフォンでも使えますか？
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          USB-C対応のスマートフォンであれば、USB OTGアダプター（別売）を介して使用できる場合があります。ただし、すべてのスマートフォンでの動作を保証するものではありません。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
-          <span class="q-mark">Q</span>
-          LEDだけ消すことはできますか？
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          はい、できます。ボタンを長押しするとLEDのオン/オフを切り替えられます。LEDを消しても音声出力には影響ありません。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
-          <span class="q-mark">Q</span>
-          音割れ・雑音がします
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          音量を下げてみてください。最大音量での使用は定格電力（3W）を超える場合があります。また、USBポートの電力供給が不安定な場合にも発生することがあります。独立給電のUSBハブを試してみてください。
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
-          <span class="q-mark">Q</span>
-          USBハブ経由でも使えますか？
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          はい、使えます。ただし、電力不足による音質低下を防ぐため、セルフパワー（電源アダプター付き）のUSBハブをおすすめします。最大消費電力は7Wです。
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- フッター -->
-  <footer class="footer">
-    <div class="footer-logo">minotel</div>
-    <p>&copy; 2026 minotel. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="https://minotel.jp">ホームページ</a>
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="shipping.html">配送ポリシー</a>
-      <a href="terms.html">利用規約</a>
-      <a href="refund.html">返金ポリシー</a>
-      <a href="https://minotel.jp/contact">お問い合わせ</a>
     </div>
-  </footer>
+  </section>
 
+  <!-- 02 Setup -->
+  <section id="setup" class="manual-section bg-warm">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-num reveal">02</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title reveal reveal-d1">接続方法</h2>
+          <div class="section-title-en reveal reveal-d2">— Setup in 3 Steps</div>
+        </div>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-num">Step 01</div>
+          <h3 class="step-title">左右のスピーカーをつなぐ</h3>
+          <p class="step-desc">
+            付属のスピーカー接続ケーブル（3.5mm端子）で、2台のスピーカーを接続します。ケーブルの端子は同じ形状なので、どちらに差してもOKです。
+          </p>
+        </div>
+        <div class="step-card reveal reveal-d1">
+          <div class="step-num">Step 02</div>
+          <h3 class="step-title">USBをパソコンへ</h3>
+          <p class="step-desc">
+            メイン側のスピーカー（ボタンがある方）に付属のUSBケーブルを差し、反対側をパソコンのUSBポートに接続します。電源も音声もこの1本で完結です。
+          </p>
+        </div>
+        <div class="step-card reveal reveal-d2">
+          <div class="step-num">Step 03</div>
+          <h3 class="step-title">音を鳴らしてみる</h3>
+          <p class="step-desc">
+            パソコンの音声出力先を「MNC-CL01」に設定すれば準備完了。ドライバー不要、接続するだけですぐにお使いいただけます。
+          </p>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-label">— Recommended</div>
+        USB 3.2 以上のポート、または独立給電のセルフパワーUSBハブへの接続がおすすめです。電力供給が安定することで、最大音量でもクリアな音をお楽しみいただけます。
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 LED -->
+  <section id="led" class="manual-section bg-white">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-num reveal">03</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title reveal reveal-d1">LEDの使い方</h2>
+          <div class="section-title-en reveal reveal-d2">— LED Operation</div>
+        </div>
+      </div>
+
+      <p class="reveal" style="font-size: 14px; line-height: 2.1; color: var(--ink-80); max-width: 620px;">
+        minotel cloud speaker には、気分やお部屋の雰囲気に合わせて選べる<br>
+        6色のLEDと、5つのライティングモードが搭載されています。
+      </p>
+
+      <!-- 6 Colors -->
+      <div class="led-colors-grid">
+        <div class="led-color reveal">
+          <div class="led-swatch" style="background: radial-gradient(circle, #BFECFF 30%, #8fc8e8 100%);"></div>
+          <div class="led-color-name">Blue</div>
+          <div class="led-color-code">#BFECFF</div>
+        </div>
+        <div class="led-color reveal reveal-d1">
+          <div class="led-swatch" style="background: radial-gradient(circle, #71FFA2 30%, #4ec77c 100%);"></div>
+          <div class="led-color-name">Green</div>
+          <div class="led-color-code">#71FFA2</div>
+        </div>
+        <div class="led-color reveal reveal-d1">
+          <div class="led-swatch" style="background: radial-gradient(circle, #FF6BAE 30%, #c8508a 100%);"></div>
+          <div class="led-color-name">Pink</div>
+          <div class="led-color-code">#FF6BAE</div>
+        </div>
+        <div class="led-color reveal reveal-d2">
+          <div class="led-swatch" style="background: radial-gradient(circle, #E68EFF 30%, #b568cc 100%);"></div>
+          <div class="led-color-name">Purple</div>
+          <div class="led-color-code">#E68EFF</div>
+        </div>
+        <div class="led-color reveal reveal-d2">
+          <div class="led-swatch" style="background: radial-gradient(circle, #FFC465 30%, #cd994d 100%);"></div>
+          <div class="led-color-name">Orange</div>
+          <div class="led-color-code">#FFC465</div>
+        </div>
+        <div class="led-color reveal reveal-d3">
+          <div class="led-swatch" style="background: radial-gradient(circle, #FFFFFF 30%, #d8d8d8 100%);"></div>
+          <div class="led-color-name">White</div>
+          <div class="led-color-code">#FFFFFF</div>
+        </div>
+      </div>
+
+      <!-- 5 Modes -->
+      <div class="led-modes">
+        <div class="led-mode reveal">
+          <div class="led-mode-num">Mode 01</div>
+          <div class="led-mode-name">常時点灯</div>
+          <div class="led-mode-desc">選んだ色で<br>ずっと点灯</div>
+        </div>
+        <div class="led-mode reveal reveal-d1">
+          <div class="led-mode-num">Mode 02</div>
+          <div class="led-mode-name">ブレス</div>
+          <div class="led-mode-desc">ゆっくりと<br>呼吸のように光る</div>
+        </div>
+        <div class="led-mode reveal reveal-d1">
+          <div class="led-mode-num">Mode 03</div>
+          <div class="led-mode-name">グラデーション 1</div>
+          <div class="led-mode-desc">色がゆるやかに<br>移ろう</div>
+        </div>
+        <div class="led-mode reveal reveal-d2">
+          <div class="led-mode-num">Mode 04</div>
+          <div class="led-mode-name">グラデーション 2</div>
+          <div class="led-mode-desc">色が彩りよく<br>流れるように変化</div>
+        </div>
+        <div class="led-mode reveal reveal-d2">
+          <div class="led-mode-num">Mode 05</div>
+          <div class="led-mode-name">消灯</div>
+          <div class="led-mode-desc">LEDオフ<br>音声は継続</div>
+        </div>
+      </div>
+
+      <!-- Button Controls -->
+      <div class="btn-control">
+        <div class="btn-control-item reveal">
+          <div class="btn-control-action">Press</div>
+          <div class="btn-control-label">ボタンを短く押す</div>
+          <div class="btn-control-desc">
+            カラー / モードが順番に切り替わります。押すたびに次の色・モードへ。
+          </div>
+        </div>
+        <div class="btn-control-item reveal reveal-d1">
+          <div class="btn-control-action">Long press</div>
+          <div class="btn-control-label">ボタンを長押し</div>
+          <div class="btn-control-desc">
+            LEDの オン / オフ を切り替えます。電源を切っても設定は自動保存されます。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Specs -->
+  <section id="specs" class="manual-section bg-warm">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-num reveal">04</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title reveal reveal-d1">製品仕様</h2>
+          <div class="section-title-en reveal reveal-d2">— Specifications</div>
+        </div>
+      </div>
+
+      <table class="specs-table reveal">
+        <tr><th>Model</th><td>MCS01<small>minotel cloud speaker</small></td></tr>
+        <tr><th>Type</th><td>雲型デスクトップスピーカー</td></tr>
+        <tr><th>Driver</th><td>Φ 52mm<small>ダイナミック型</small></td></tr>
+        <tr><th>Impedance</th><td>4.0 Ω ± 20%</td></tr>
+        <tr><th>Sensitivity</th><td>85 ± 3 dB<small>0.5m / 1W 平均</small></td></tr>
+        <tr><th>Rated Output</th><td>3 W<small>最大 5 W / ch</small></td></tr>
+        <tr><th>Frequency Response</th><td>140 Hz ~ 20 kHz</td></tr>
+        <tr><th>Resonance Freq.</th><td>140 ± 20 Hz</td></tr>
+        <tr><th>Input</th><td>USB デジタル音声入力</td></tr>
+        <tr><th>Operating Voltage</th><td>DC 4.75 ~ 5.25 V</td></tr>
+        <tr><th>Max Power</th><td>7 W</td></tr>
+        <tr><th>LED</th><td>6 Colors × 5 modes<small>Blue / Green / Pink / Purple / Orange / White</small></td></tr>
+        <tr><th>Cable</th><td>3.5mm 4極 / PVC ホワイト<small>引張強度 3kg 以上</small></td></tr>
+        <tr><th>Material</th><td>ABS樹脂<small>ラバー塗装仕上げ</small></td></tr>
+        <tr><th>Color</th><td>Pure White / Pastel Blue</td></tr>
+        <tr><th>Environmental</th><td>RoHS 適合</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 Care -->
+  <section id="care" class="manual-section bg-white">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-num reveal">05</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title reveal reveal-d1">お取り扱い・お手入れ</h2>
+          <div class="section-title-en reveal reveal-d2">— Care & Handling</div>
+        </div>
+      </div>
+
+      <div class="care-list">
+        <div class="care-item reveal">
+          <div class="care-num">01</div>
+          <div>
+            <div class="care-title">水濡れにご注意ください</div>
+            <div class="care-desc">本製品は防水仕様ではありません。飲み物やお花など水気のあるもののそばでの使用はお控えください。</div>
+          </div>
+        </div>
+        <div class="care-item reveal">
+          <div class="care-num">02</div>
+          <div>
+            <div class="care-title">直射日光・高温を避ける</div>
+            <div class="care-desc">直射日光が当たる場所や暖房器具のそばなど、高温になる場所に置かないでください。使用温度範囲は -20℃ ~ 50℃ です。</div>
+          </div>
+        </div>
+        <div class="care-item reveal">
+          <div class="care-num">03</div>
+          <div>
+            <div class="care-title">ケーブルを鋭く曲げない</div>
+            <div class="care-desc">ケーブルを折り曲げたり強く引っ張ったりしないでください。引張強度は 3kg 以上ありますが、断線の原因になります。</div>
+          </div>
+        </div>
+        <div class="care-item reveal">
+          <div class="care-num">04</div>
+          <div>
+            <div class="care-title">落下にご注意ください</div>
+            <div class="care-desc">高い場所からの落下は故障の原因になります。安定した平面の上でお使いください。</div>
+          </div>
+        </div>
+        <div class="care-item reveal">
+          <div class="care-num">05</div>
+          <div>
+            <div class="care-title">分解・改造はしないでください</div>
+            <div class="care-desc">内部に触れると故障や感電の原因になります。修理が必要な場合は下記お問い合わせ先までご連絡ください。</div>
+          </div>
+        </div>
+        <div class="care-item reveal">
+          <div class="care-num">06</div>
+          <div>
+            <div class="care-title">お手入れは乾いた柔らかい布で</div>
+            <div class="care-desc">乾いた柔らかい布でやさしく拭いてください。アルコール、シンナー、ベンジン等の溶剤は、表面のラバー塗装を傷める原因になるため使用しないでください。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Warranty -->
+  <section id="warranty" class="manual-section bg-warm">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="section-num reveal">06</div>
+        <div class="section-title-wrap">
+          <h2 class="section-title reveal reveal-d1">保証について</h2>
+          <div class="section-title-en reveal reveal-d2">— Warranty</div>
+        </div>
+      </div>
+
+      <div class="warranty reveal">
+        <div class="warranty-label">— 12 Month Warranty</div>
+        <h3 class="warranty-title">ご購入日から<br>12ヶ月のメーカー保証付き</h3>
+        <p class="warranty-desc">
+          通常使用において故障が発生した場合は、保証期間内であれば無償修理または交換にて対応いたします。
+          お客様の過失・改造・水濡れ・落下等による故障は保証対象外となります。
+          返品・交換の詳細条件については、返金ポリシーをご確認ください。
+        </p>
+        <a href="refund.html" target="_top" class="warranty-link">返金ポリシーを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="contact-label reveal">— Need Help?</div>
+    <h2 class="contact-title reveal reveal-d1">お困りのことがあれば、<br>お気軽にお問い合わせください。</h2>
+    <p class="contact-desc reveal reveal-d2">
+      マニュアルで解決しないご質問・不明点は、<br>
+      お問い合わせフォームまたはメールにてお気軽にご連絡ください。
+    </p>
+    <a href="https://minotel.jp/contact" target="_top" class="contact-btn reveal reveal-d3">Contact Us →</a>
+    <a href="mailto:info@minotel.jp" class="contact-email reveal reveal-d3">info@minotel.jp</a>
+  </section>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
