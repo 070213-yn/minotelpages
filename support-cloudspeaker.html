@@ -12,10 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     /* スクロールバー完全非表示 (Wix iframe対応) */
-    html, body {
+    html {
       scrollbar-width: none !important;
       -ms-overflow-style: none !important;
-      overflow-x: hidden !important;
+    }
+    body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      overflow-x: clip;
     }
     html::-webkit-scrollbar,
     body::-webkit-scrollbar,
