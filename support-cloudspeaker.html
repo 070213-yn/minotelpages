@@ -9,10 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     
-    /* スクロールバー非表示 (Wix iframe対応) */
-    html { scrollbar-width: none; -ms-overflow-style: none; }
-    html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
-    body { -ms-overflow-style: none; scrollbar-width: none; }
+    /* スクロールバー完全非表示 (Wix iframe対応) */
+    html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      overflow-x: hidden !important;
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+    }
+    * { scrollbar-width: none; -ms-overflow-style: none; }
 
     /* === リセット・ベース === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
