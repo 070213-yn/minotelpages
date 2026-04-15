@@ -3,455 +3,305 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>配送ポリシー | minotel</title>
-  <meta name="description" content="minotelの配送ポリシー。配送エリア、送料、お届け日数についてご案内します。">
+  <title>Shipping Policy | minotel</title>
+  <meta name="description" content="minotel の配送ポリシー。配送エリア・送料・お届け日数・ギフトラッピングについてご案内します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    
-    /* スクロールバー完全非表示 (Wix iframe対応) */
-    html, body {
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
-      overflow-x: hidden !important;
-    }
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar,
-    *::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-      background: transparent !important;
-    }
+    html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; overflow-x: hidden !important; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
     * { scrollbar-width: none; -ms-overflow-style: none; }
-
-    /* === 共通デザインシステム === */
     :root {
-      --pastel-blue: #BFECFF;
-      --pastel-pink: #FFD6E8;
-      --pastel-purple: #E8DAFF;
-      --pastel-green: #D4F5D4;
-      --pastel-orange: #FFE8CC;
-      --text-main: #4A4A5A;
-      --text-light: #7A7A8A;
-      --bg-cream: #FDFBF7;
-      --border-soft: #E8E4E0;
+      --ink: #2b2a33;
+      --ink-60: rgba(43, 42, 51, 0.72);
+      --ink-80: rgba(43, 42, 51, 0.85);
+      --ink-40: rgba(43, 42, 51, 0.42);
+      --paper: #fbfaf7;
+      --paper-warm: #f5f2ec;
+      --sky-1: #e8f2fb;
+      --sky-2: #d6e8f6;
+      --sky-3: #f5e6ee;
+      --line: rgba(43, 42, 51, 0.12);
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: var(--ink); background: var(--paper); line-height: 1.9; letter-spacing: 0.02em; }
+    a { color: inherit; text-decoration: none; }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .hero { position: relative; width: 100%; height: 480px; min-height: 420px; max-height: 560px; overflow: hidden; background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 50%, var(--sky-3) 100%); }
+    .hero::before { content: ''; position: absolute; inset: -20%; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 40%), radial-gradient(circle at 75% 65%, rgba(255,255,220,0.3) 0%, transparent 45%); }
+    .cloud-layer { position: absolute; inset: 0; pointer-events: none; }
+    .cloud { position: absolute; left: 0; aspect-ratio: 1280 / 822; background-image: url('images/svg/cloud.svg'); background-repeat: no-repeat; background-size: contain; filter: brightness(0) invert(1) drop-shadow(0 20px 40px rgba(107, 140, 180, 0.15)); }
+    .cloud-a { top: 14%; width: 360px; opacity: 0.5; animation: drift 70s linear infinite -10s; }
+    .cloud-b { top: 60%; width: 460px; opacity: 0.38; animation: drift 90s linear infinite -50s; }
+    .cloud-c { top: 32%; width: 240px; opacity: 0.82; animation: drift 52s linear infinite -25s; }
+    .cloud-d { top: 78%; width: 300px; opacity: 0.58; animation: drift 64s linear infinite -38s; }
+    .cloud-e { top: 8%;  width: 540px; opacity: 0.28; animation: drift 100s linear infinite -70s; }
+    @keyframes drift { from { transform: translateX(-110%); } to { transform: translateX(calc(100vw + 10%)); } }
+
+    .hero-inner { position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 24px; text-align: center; }
+    .hero-label { font-family: 'Noto Sans JP', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.22em; color: var(--ink-80); margin-bottom: 22px; opacity: 0; animation: fadeUp 1.2s 0.3s ease-out forwards; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 8vw, 108px); font-weight: 300; letter-spacing: 0.06em; line-height: 1; color: var(--ink); text-shadow: 0 4px 30px rgba(255,255,255,0.9); opacity: 0; animation: fadeUp 1.4s 0.6s ease-out forwards; }
+    .hero-sub { font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: clamp(14px, 1.4vw, 17px); letter-spacing: 0.08em; color: var(--ink-80); margin-top: 24px; opacity: 0; animation: fadeUp 1.4s 1.0s ease-out forwards; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Highlight banner */
+    .highlight {
+      padding: 100px 48px 0;
+      background: var(--paper);
     }
-
-    body {
-      font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
-      color: var(--text-main);
-      background-color: var(--bg-cream);
-      line-height: 1.8;
-    }
-
-    /* ナビゲーション */
-    .nav {
-      background: rgba(253, 251, 247, 0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-soft);
-      padding: 16px 24px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-inner {
-      max-width: 960px;
+    .highlight-inner {
+      max-width: 900px;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .nav-back {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-back:hover {
-      color: var(--text-main);
-    }
-
-    /* ヒーローセクション */
-    .hero {
-      background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple), var(--pastel-pink));
-      padding: 60px 24px;
+      padding: 56px 48px;
+      background: linear-gradient(135deg, var(--sky-1) 0%, var(--sky-3) 100%);
       text-align: center;
     }
-
-    .hero h1 {
-      font-family: 'Quicksand', 'Zen Maru Gothic', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 8px;
-    }
-
-    .hero p {
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-
-    /* メインコンテンツ */
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
-
-    /* カードスタイル */
-    .card {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 2px 16px rgba(74, 74, 90, 0.06);
-      border: 1px solid var(--border-soft);
-      padding: 32px;
-      margin-bottom: 24px;
-      transition: box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      box-shadow: 0 4px 24px rgba(74, 74, 90, 0.1);
-    }
-
-    .card h2 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--pastel-blue);
-      color: var(--text-main);
-    }
-
-    .card p, .card li {
-      font-size: 0.95rem;
-      color: var(--text-main);
-      line-height: 1.9;
-    }
-
-    .card ul {
-      padding-left: 20px;
-      margin-top: 8px;
-    }
-
-    .card li {
-      margin-bottom: 6px;
-    }
-
-    /* ハイライトボックス（送料無料の強調） */
-    .highlight-box {
-      background: linear-gradient(135deg, var(--pastel-green), var(--pastel-blue));
-      border-radius: 16px;
-      padding: 24px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .highlight-box .label {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-bottom: 4px;
-    }
-
-    .highlight-box .value {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    /* 配送フローカード */
-    .flow-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .flow-item {
-      background: var(--bg-cream);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .flow-item .step {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-light);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-
-    .flow-item .detail {
-      font-size: 0.95rem;
+    .highlight-label {
+      font-family: 'Noto Sans JP', sans-serif;
       font-weight: 500;
-    }
-
-    /* 問い合わせ先カード */
-    .contact-card {
-      background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
-      text-align: center;
-    }
-
-    .contact-card h2 {
-      border-bottom-color: rgba(74, 74, 90, 0.15);
-    }
-
-    .contact-card a {
-      color: var(--text-main);
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 2px solid var(--pastel-purple);
-      transition: border-color 0.2s;
-    }
-
-    .contact-card a:hover {
-      border-color: var(--text-main);
-    }
-
-    /* フッター */
-    .footer {
-      background: var(--text-main);
-      color: rgba(255, 255, 255, 0.7);
-      text-align: center;
-      padding: 40px 24px;
-    }
-
-    .footer-logo {
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .footer p {
-      font-size: 0.8rem;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      color: var(--ink-60);
       margin-bottom: 16px;
     }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px 20px;
+    .highlight-value {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(24px, 3.2vw, 32px);
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .highlight-note {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--ink-80);
     }
 
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      font-size: 0.8rem;
-      transition: color 0.2s;
+    main { padding: 140px 48px 120px; background: var(--paper); }
+    .doc-wrap { max-width: 900px; margin: 0 auto; }
+
+    .article { margin-bottom: 70px; }
+    .article:last-child { margin-bottom: 0; }
+    .article-head { display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: baseline; margin-bottom: 28px; }
+    .article-num { font-family: 'Noto Sans JP', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.16em; color: var(--ink-60); min-width: 42px; }
+    .article-title { font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: clamp(22px, 2.8vw, 28px); letter-spacing: 0.03em; line-height: 1.55; }
+    .article-body { padding-left: 74px; }
+    .article-body p { font-size: 15px; line-height: 2.05; color: var(--ink-80); margin-bottom: 16px; }
+    .article-body p:last-child { margin-bottom: 0; }
+    .article-body strong { color: var(--ink); font-weight: 500; }
+    .article-body ul { list-style: none; margin: 16px 0; padding: 0; }
+    .article-body li { font-size: 15px; line-height: 2; color: var(--ink-80); padding: 6px 0 6px 22px; position: relative; }
+    .article-body li::before { content: ''; position: absolute; left: 0; top: 18px; width: 8px; height: 1px; background: var(--ink-60); }
+    .article-body .note { margin-top: 20px; padding: 20px 26px; background: var(--paper-warm); font-size: 13px; line-height: 2; color: var(--ink-60); border-left: 2px solid var(--ink); }
+
+    /* Shipping table */
+    .ship-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .ship-table tr { border-bottom: 1px solid var(--line); }
+    .ship-table tr:first-child { border-top: 1px solid var(--line); }
+    .ship-table th { font-family: 'Noto Sans JP', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.14em; color: var(--ink-60); text-align: left; padding: 24px 20px 24px 0; width: 60%; vertical-align: top; }
+    .ship-table th span { display: block; font-size: 11px; font-weight: 400; color: var(--ink-60); margin-top: 4px; letter-spacing: 0.02em; }
+    .ship-table td { font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 18px; text-align: right; padding: 24px 0; color: var(--ink); }
+
+    /* Flow cards */
+    .flow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 16px; }
+    .flow-card { padding: 32px 28px; background: var(--paper-warm); border-left: 2px solid var(--ink); }
+    .flow-label { font-family: 'Noto Sans JP', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.16em; color: var(--ink-60); margin-bottom: 12px; }
+    .flow-value { font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 20px; line-height: 1.6; }
+    .flow-value small { font-family: 'Noto Sans JP', sans-serif; font-weight: 400; font-size: 13px; color: var(--ink-80); display: block; margin-top: 4px; }
+
+    .contact { padding: 140px 48px; background: var(--paper-warm); text-align: center; }
+    .contact-label { font-family: 'Noto Sans JP', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.16em; color: var(--ink-60); margin-bottom: 22px; }
+    .contact-title { font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: clamp(22px, 3vw, 30px); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 28px; }
+    .contact-email { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); padding-bottom: 6px; border-bottom: 1px solid var(--ink); }
+
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.22s; }
+
+    @media (max-width: 900px) {
+      .hero { height: 380px; min-height: 340px; }
+      .hero-title { font-size: clamp(36px, 10vw, 68px); }
+      .cloud-a { width: 220px; } .cloud-b { width: 300px; } .cloud-c { width: 160px; } .cloud-d { width: 200px; } .cloud-e { width: 340px; }
+      .highlight { padding: 64px 24px 0; }
+      .highlight-inner { padding: 40px 24px; }
+      main { padding: 80px 24px 64px; }
+      .article { margin-bottom: 52px; }
+      .article-head { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
+      .article-body { padding-left: 0; }
+      .ship-table th { font-size: 12px; padding-right: 16px; width: 55%; }
+      .ship-table td { font-size: 16px; }
+      .flow-grid { grid-template-columns: 1fr; gap: 20px; }
+      .contact { padding: 80px 24px; }
     }
-
-    .footer-links a:hover {
-      color: #fff;
-    }
-
-    /* レスポンシブ */
-    @media (max-width: 600px) {
-      .hero {
-        padding: 40px 16px;
-      }
-
-      .hero h1 {
-        font-size: 1.5rem;
-      }
-
-      .content {
-        padding: 24px 16px 60px;
-      }
-
-      .card {
-        padding: 24px 20px;
-        border-radius: 16px;
-      }
-
-      .flow-card {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 500px) {
+      .hero { height: 340px; min-height: 300px; }
+      .hero-title { font-size: 44px; }
+      .hero-label { font-size: 11px; }
+      .hero-sub { font-size: 13px; }
+      main { padding: 64px 20px 56px; }
+      .article-title { font-size: 19px; }
+      .article-body p, .article-body li { font-size: 14px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ナビゲーション -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="https://minotel.jp" class="nav-logo">minotel</a>
-      <a href="https://minotel.jp" class="nav-back">ホームに戻る</a>
-    </div>
-  </nav>
-
-  <!-- ヒーローセクション -->
   <section class="hero">
-    <h1>配送ポリシー</h1>
-    <p>minotel cloud speakerのお届けについて</p>
+    <div class="cloud-layer">
+      <div class="cloud cloud-e"></div>
+      <div class="cloud cloud-a"></div>
+      <div class="cloud cloud-b"></div>
+      <div class="cloud cloud-c"></div>
+      <div class="cloud cloud-d"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-label">— Shipping</div>
+      <h1 class="hero-title">Shipping</h1>
+      <p class="hero-sub">配送ポリシー</p>
+    </div>
   </section>
 
-  <!-- メインコンテンツ -->
-  <main class="content">
-
-    <!-- 送料無料・ギフトラッピング無料の強調 -->
-    <div class="highlight-box">
-      <div class="label">公式サイト限定</div>
-      <div class="value">全国ほぼ送料無料<br>ギフトラッピング無料</div>
-      <p style="margin-top: 8px; font-size: 0.88rem; color: var(--text-light);">本州・四国・九州・北海道は送料無料。大切な人への贈り物にも、丁寧にお包みしてお届けします。</p>
+  <section class="highlight">
+    <div class="highlight-inner reveal">
+      <div class="highlight-label">— Official Site Exclusive</div>
+      <div class="highlight-value">本州・四国・九州・北海道 送料無料<br>ギフトラッピング無料</div>
+      <p class="highlight-note">大切な人への贈り物にも、丁寧にお包みしてお届けします。</p>
     </div>
+  </section>
 
-    <!-- 配送エリア -->
-    <div class="card">
-      <h2>配送エリア</h2>
-      <p>日本国内全域への配送に対応しております。</p>
-      <p style="margin-top: 8px; font-size: 0.88rem; color: var(--text-light);">
-        ※ 離島・一部地域はお届けまでに通常より日数がかかる場合があります。<br>
-        ※ 現在、海外発送には対応しておりません。今後の対応については検討中です。
-      </p>
-    </div>
+  <main>
+    <div class="doc-wrap">
 
-    <!-- 配送方法 -->
-    <div class="card">
-      <h2>配送方法</h2>
-      <p>
-        ヤマト運輸または佐川急便にて配送いたします。配送業者の指定はお受けしておりませんので、あらかじめご了承ください。
-      </p>
-    </div>
-
-    <!-- 送料一覧 -->
-    <div class="card">
-      <h2>送料について</h2>
-      <p>
-        配送先のエリアにより送料が異なります。minotel公式サイトでは、ギフトラッピング代を無料とし、代わりに配送実費に応じた地域別送料を設定しております。
-      </p>
-      <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.92rem;">
-        <thead>
-          <tr style="background: var(--pastel-blue);">
-            <th style="padding: 14px; text-align: left; border-radius: 12px 0 0 0;">エリア</th>
-            <th style="padding: 14px; text-align: right; border-radius: 0 12px 0 0;">送料（税込）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom: 1px solid var(--border-soft);">
-            <td style="padding: 16px;">
-              <strong>本州・四国・九州・北海道</strong><br>
-              <span style="color: var(--text-light); font-size: 0.85rem;">沖縄・離島以外のすべての都道府県</span>
-            </td>
-            <td style="padding: 16px; text-align: right;"><strong style="font-size: 1.1rem; color: #4A9E4A;">送料無料</strong></td>
-          </tr>
-          <tr>
-            <td style="padding: 16px;">
-              <strong>沖縄・離島</strong><br>
-              <span style="color: var(--text-light); font-size: 0.85rem;">沖縄県および一部離島</span>
-            </td>
-            <td style="padding: 16px; text-align: right;"><strong style="font-size: 1.1rem;">800円</strong></td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="note" style="margin-top: 16px; font-size: 0.85rem; color: var(--text-light);">
-        ※ 送料は税込価格です。minotelでは、より多くの方にお届けしたいという想いから、配送実費の大半を当方で負担しております。<br>
-        ※ 複数個のご注文の場合、サイズが大きくなるため送料が変動することがあります。
-      </p>
-    </div>
-
-    <!-- ギフトラッピング詳細 -->
-    <div class="card" style="background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-purple));">
-      <h2 style="border-bottom-color: rgba(74, 74, 90, 0.15);">ギフトラッピングについて</h2>
-      <p>
-        minotel公式サイトでご購入いただいた全ての商品は、<strong>無料でギフトラッピング</strong>してお届けします。プレゼントやお祝いにも安心してご利用ください。
-      </p>
-      <ul style="margin-top: 12px;">
-        <li>上質な包装紙でお包みします</li>
-        <li>リボン・シールで丁寧に仕上げます</li>
-        <li>メッセージカード添付をご希望の方はご注文時にお知らせください（無料）</li>
-        <li>納品書・価格のわかる書類は同梱いたしません</li>
-      </ul>
-      <p class="note" style="margin-top: 12px; font-size: 0.85rem;">
-        ※ ラッピングを希望されない場合は、ご注文時の備考欄にその旨ご記入ください。
-      </p>
-    </div>
-
-    <!-- 発送日とお届け日数 -->
-    <div class="card">
-      <h2>お届けまでの流れ</h2>
-      <div class="flow-card">
-        <div class="flow-item">
-          <div class="step">発送</div>
-          <div class="detail">ご注文確認後<br><strong>2〜5営業日</strong>以内</div>
+      <section class="article reveal">
+        <div class="article-head">
+          <div class="article-num">01</div>
+          <h2 class="article-title">配送エリア</h2>
         </div>
-        <div class="flow-item">
-          <div class="step">お届け</div>
-          <div class="detail">発送後<br><strong>1〜3日</strong>程度</div>
+        <div class="article-body">
+          <p>日本国内全域への配送に対応しております。</p>
+          <div class="note">
+            離島・一部地域はお届けまでに通常より日数がかかる場合があります。<br>
+            現在、海外発送には対応しておりません。今後の対応については検討中です。
+          </div>
         </div>
-      </div>
-      <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-light);">
-        ※ 離島・一部地域を除きます。年末年始・大型連休等は発送が遅れる場合があります。
-      </p>
-    </div>
+      </section>
 
-    <!-- 配送状況の確認 -->
-    <div class="card">
-      <h2>配送状況の確認</h2>
-      <p>
-        商品を発送いたしましたら、発送完了メールをお送りします。メールには配送業者の追跡番号を記載しておりますので、配送状況をご確認いただけます。
-      </p>
-    </div>
+      <section class="article reveal">
+        <div class="article-head">
+          <div class="article-num">02</div>
+          <h2 class="article-title">配送方法</h2>
+        </div>
+        <div class="article-body">
+          <p>ヤマト運輸または佐川急便にて配送いたします。配送業者の指定はお受けしておりませんので、あらかじめご了承ください。</p>
+        </div>
+      </section>
 
-    <!-- 不在時の対応 -->
-    <div class="card">
-      <h2>ご不在の場合</h2>
-      <p>
-        お届け時にご不在の場合、配送業者が不在票を投函いたします。不在票に記載の手順に従い、再配達をご依頼ください。
-      </p>
-      <p style="margin-top: 8px; font-size: 0.88rem; color: var(--text-light);">
-        ※ 保管期限を過ぎた場合、商品がminotelに返送されることがあります。その際は再配送の手配をいたしますので、お問い合わせください。
-      </p>
-    </div>
+      <section class="article reveal">
+        <div class="article-head">
+          <div class="article-num">03</div>
+          <h2 class="article-title">送料について</h2>
+        </div>
+        <div class="article-body">
+          <p>配送先のエリアにより送料が異なります。minotel 公式サイトでは、ギフトラッピング代を無料とし、代わりに配送実費に応じた地域別送料を設定しております。</p>
+          <table class="ship-table">
+            <tr>
+              <th>本州・四国・九州・北海道<span>沖縄・離島以外のすべての都道府県</span></th>
+              <td>送料無料</td>
+            </tr>
+            <tr>
+              <th>沖縄・離島<span>沖縄県および一部離島</span></th>
+              <td>¥800</td>
+            </tr>
+          </table>
+          <div class="note">
+            送料は税込価格です。minotel では、より多くの方にお届けしたいという想いから、配送実費の大半を当方で負担しております。複数個のご注文の場合、サイズが大きくなるため送料が変動することがあります。
+          </div>
+        </div>
+      </section>
 
-    <!-- 問い合わせ先 -->
-    <div class="card contact-card">
-      <h2>配送に関するお問い合わせ</h2>
-      <p>
-        配送について不明な点がございましたら、お気軽にご連絡ください。
-      </p>
-      <p style="margin-top: 16px; font-size: 1.1rem;">
-        <a href="mailto:info@minotel.jp">info@minotel.jp</a>
-      </p>
-    </div>
+      <section class="article reveal">
+        <div class="article-head">
+          <div class="article-num">04</div>
+          <h2 class="article-title">ギフトラッピングについて</h2>
+        </div>
+        <div class="article-body">
+          <p>minotel 公式サイトでご購入いただいた全ての商品は、<strong>無料でギフトラッピング</strong> してお届けします。プレゼントやお祝いにも安心してご利用ください。</p>
+          <ul>
+            <li>上質な包装紙でお包みします</li>
+            <li>リボン・シールで丁寧に仕上げます</li>
+            <li>メッセージカード添付をご希望の方はご注文時にお知らせください（無料）</li>
+            <li>納品書・価格のわかる書類は同梱いたしません</li>
+          </ul>
+          <div class="note">
+            ラッピングを希望されない場合は、ご注文時の備考欄にその旨ご記入ください。
+          </div>
+        </div>
+      </section>
 
+      <section class="article reveal">
+        <div class="article-head">
+          <div class="article-num">05</div>
+          <h2 class="article-title">お届けまでの流れ</h2>
+        </div>
+        <div class="article-body">
+          <div class="flow-grid">
+            <div class="flow-card">
+              <div class="flow-label">— Step 01 / Ship</div>
+              <div class="flow-value">2〜5 営業日 以内<small>ご注文確認後に発送いたします</small></div>
+            </div>
+            <div class="flow-card">
+              <div class="flow-label">— Step 02 / Deliver</div>
+              <div class="flow-value">発送後 1〜3 日程度<small>離島・一部地域を除きます</small></div>
+            </div>
+          </div>
+          <div class="note">
+            年末年始・大型連休等は発送が遅れる場合があります。あらかじめご了承ください。
+          </div>
+        </div>
+      </section>
+
+      <section class="article reveal">
+        <div class="article-head">
+          <div class="article-num">06</div>
+          <h2 class="article-title">配送状況の確認</h2>
+        </div>
+        <div class="article-body">
+          <p>商品を発送いたしましたら、発送完了メールをお送りします。メールには配送業者の追跡番号を記載しておりますので、配送状況をご確認いただけます。</p>
+        </div>
+      </section>
+
+      <section class="article reveal">
+        <div class="article-head">
+          <div class="article-num">07</div>
+          <h2 class="article-title">ご不在の場合</h2>
+        </div>
+        <div class="article-body">
+          <p>お届け時にご不在の場合、配送業者が不在票を投函いたします。不在票に記載の手順に従い、再配達をご依頼ください。</p>
+          <div class="note">
+            保管期限を過ぎた場合、商品が minotel に返送されることがあります。その際は再配送の手配をいたしますので、お問い合わせください。
+          </div>
+        </div>
+      </section>
+
+    </div>
   </main>
 
-  <!-- フッター -->
-  <footer class="footer">
-    <div class="footer-logo">minotel</div>
-    <p>&copy; 2026 minotel. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="https://minotel.jp">ホームページ</a>
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="shipping.html">配送ポリシー</a>
-      <a href="terms.html">利用規約</a>
-      <a href="refund.html">返金ポリシー</a>
-      <a href="https://minotel.jp/contact">お問い合わせ</a>
-    </div>
-  </footer>
+  <section class="contact">
+    <div class="contact-label reveal">— Contact</div>
+    <h2 class="contact-title reveal reveal-d1">配送に関する<br>お問い合わせ先</h2>
+    <a href="mailto:info@minotel.jp" class="contact-email reveal reveal-d2">info@minotel.jp</a>
+  </section>
 
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
