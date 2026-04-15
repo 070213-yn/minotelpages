@@ -7,18 +7,17 @@
   <meta name="description" content="minotel は、可愛くて妥協しないものづくりをコンセプトにしたデスクガジェットブランドです。cloud speaker ではじまる、あなたの「好き」に満たされたデスク。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #1a1a1f;
-      --ink-60: rgba(26, 26, 31, 0.60);
-      --ink-40: rgba(26, 26, 31, 0.40);
-      --ink-15: rgba(26, 26, 31, 0.15);
-      --ink-08: rgba(26, 26, 31, 0.08);
+      --ink: #2b2a33;
+      --ink-60: rgba(43, 42, 51, 0.62);
+      --ink-40: rgba(43, 42, 51, 0.42);
+      --ink-15: rgba(43, 42, 51, 0.15);
       --paper: #fbfaf7;
       --paper-warm: #f5f2ec;
       --sky: #9ec5e8;
-      --line: rgba(26, 26, 31, 0.12);
+      --line: rgba(43, 42, 51, 0.12);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,11 +32,13 @@
       overflow-x: hidden;
     }
 
-    .mincho { font-family: 'Shippori Mincho B1', serif; font-weight: 400; letter-spacing: 0.08em; }
+    /* タイトルは Klee One (少し可愛く・でも上品) */
+    .klee { font-family: 'Kiwi Maru', 'Klee One', serif; font-weight: 500; letter-spacing: 0.08em; }
     .en { font-family: 'Cormorant Garamond', serif; font-weight: 300; letter-spacing: 0.15em; }
 
     img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
+    button { border: none; background: none; cursor: pointer; color: inherit; font: inherit; }
 
     /* === ヒーロー === */
     .hero {
@@ -46,12 +47,9 @@
       min-height: 720px;
       width: 100%;
       overflow: hidden;
-      background: #f2f2f3;
+      background: #eceff2;
     }
-    .hero-slides {
-      position: absolute;
-      inset: 0;
-    }
+    .hero-slides { position: absolute; inset: 0; }
     .hero-slide {
       position: absolute;
       inset: 0;
@@ -93,11 +91,11 @@
       animation: fadeUp 1.2s 0.8s ease-out forwards;
     }
     .hero-title {
-      font-family: 'Shippori Mincho B1', serif;
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 500;
       font-size: clamp(32px, 5vw, 58px);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      line-height: 1.6;
+      letter-spacing: 0.1em;
+      line-height: 1.55;
       margin-bottom: 32px;
     }
     .hero-title span {
@@ -166,11 +164,11 @@
       background: var(--ink-40);
     }
     .section-title {
-      font-family: 'Shippori Mincho B1', serif;
+      font-family: 'Kiwi Maru', 'Klee One', serif;
       font-size: clamp(26px, 3.6vw, 42px);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      line-height: 1.6;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      line-height: 1.65;
       margin-bottom: 40px;
     }
 
@@ -200,10 +198,10 @@
       background: var(--ink-40);
     }
     .concept-quote {
-      font-family: 'Shippori Mincho B1', serif;
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 500;
       font-size: clamp(22px, 2.8vw, 32px);
-      font-weight: 400;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       line-height: 2;
       margin-bottom: 48px;
     }
@@ -216,7 +214,7 @@
       margin: 0 auto;
     }
 
-    /* === プロダクト === */
+    /* === プロダクト + スライドショー === */
     .product {
       position: relative;
       padding: 120px 0;
@@ -228,15 +226,70 @@
       gap: 0;
       align-items: center;
     }
-    .product-visual {
+    .product-slideshow {
       position: relative;
       aspect-ratio: 4 / 3;
       overflow: hidden;
+      background: #e8e8e8;
     }
-    .product-visual img {
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .slide.active { opacity: 1; }
+    .slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    .slide-nav {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+    .slide-dots {
+      display: flex;
+      gap: 10px;
+      pointer-events: auto;
+    }
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: background 0.3s ease, width 0.4s ease;
+    }
+    .slide-dot.active {
+      background: #fff;
+      width: 24px;
+      border-radius: 10px;
+    }
+    .slide-btns {
+      display: flex;
+      gap: 8px;
+      pointer-events: auto;
+    }
+    .slide-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .slide-btn:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: #fff;
     }
     .product-info { padding: 0 80px; }
     .product-name {
@@ -247,9 +300,10 @@
       margin-bottom: 16px;
     }
     .product-title {
-      font-family: 'Shippori Mincho B1', serif;
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 500;
       font-size: clamp(26px, 3vw, 36px);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       line-height: 1.7;
       margin-bottom: 32px;
     }
@@ -287,9 +341,10 @@
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      letter-spacing: 0.3em;
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.15em;
       padding: 14px 0;
       border-bottom: 1px solid var(--ink);
       transition: gap 0.4s ease;
@@ -297,97 +352,71 @@
     .btn-line:hover { gap: 28px; }
     .btn-line::after { content: '→'; font-family: sans-serif; }
 
-    /* === LED カラー === */
+    /* === LED カラー（テキストオーバーレイ） === */
     .led {
-      padding: 140px 48px;
+      position: relative;
+      padding: 0;
       background: #fff;
     }
-    .led-head {
+    .led-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2400 / 1686;
+      max-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .led-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/product/led-wide.jpg') no-repeat center center;
+      background-size: cover;
+    }
+    .led-overlay-white {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.22) 45%, rgba(255,255,255,0.08) 100%);
+    }
+    .led-text {
+      position: relative;
       text-align: center;
-      margin-bottom: 80px;
+      z-index: 2;
+      padding: 60px 32px;
     }
-    .led-head .section-label { justify-content: center; }
-    .led-head .section-label::after {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--ink-40);
-    }
-    .led-image-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .led-image-wrap img { width: 100%; }
-    .led-captions {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 24px;
-      max-width: 780px;
-      margin: 56px auto 0;
-      text-align: center;
-    }
-    .led-caption {
+    .led-label {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.4em;
       color: var(--ink-60);
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
     }
-
-    /* === サポート === */
-    .support {
-      padding: 140px 48px;
-      background: var(--paper-warm);
-    }
-    .support-head {
-      max-width: 1200px;
-      margin: 0 auto 80px;
-      text-align: center;
-    }
-    .support-head .section-label { justify-content: center; }
-    .support-head .section-label::after {
+    .led-label::before,
+    .led-label::after {
       content: '';
       width: 40px;
       height: 1px;
       background: var(--ink-40);
     }
-    .support-grid {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--line);
-      background: var(--paper);
+    .led-title {
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 500;
+      font-size: clamp(32px, 4.2vw, 52px);
+      letter-spacing: 0.12em;
+      line-height: 1.6;
+      color: var(--ink);
+      text-shadow: 0 2px 32px rgba(255,255,255,0.6);
     }
-    .support-item {
-      padding: 56px 32px;
-      border-bottom: 1px solid var(--line);
-      border-right: 1px solid var(--line);
-      text-align: center;
-      transition: background 0.6s ease;
-    }
-    .support-item:last-child { border-right: none; }
-    .support-item:hover { background: #fff; }
-    .support-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      letter-spacing: 0.3em;
-      color: var(--ink-40);
-      margin-bottom: 20px;
-    }
-    .support-title {
-      font-family: 'Shippori Mincho B1', serif;
-      font-size: 18px;
+    .led-sub {
+      font-size: 13px;
       letter-spacing: 0.1em;
-      margin-bottom: 16px;
-    }
-    .support-desc {
-      font-size: 12px;
+      color: var(--ink-60);
+      margin-top: 32px;
       line-height: 2;
-      letter-spacing: 0.1em;
-      color: var(--ink-60);
     }
 
     /* === レスポンシブ === */
@@ -398,11 +427,10 @@
       .product { padding: 80px 0; }
       .product-layout { grid-template-columns: 1fr; }
       .product-info { padding: 48px 24px; }
-      .led { padding: 80px 24px; }
-      .led-captions { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-      .support { padding: 80px 24px; }
-      .support-grid { grid-template-columns: 1fr; }
-      .support-item { border-right: none; }
+      .slide-nav { bottom: 16px; left: 16px; right: 16px; }
+      .slide-btn { width: 36px; height: 36px; }
+      .led-stage { aspect-ratio: 4 / 5; max-height: none; }
+      .led-text { padding: 40px 24px; }
     }
   </style>
 </head>
@@ -432,7 +460,7 @@
   <!-- コンセプト -->
   <section class="concept" id="concept">
     <div class="section-label reveal">— Concept</div>
-    <p class="concept-quote mincho reveal reveal-delay-1">
+    <p class="concept-quote reveal reveal-delay-1">
       自分だけの世界観を、<br>
       デスクに詰め込みたい。
     </p>
@@ -447,8 +475,23 @@
   <!-- プロダクト -->
   <section class="product" id="product">
     <div class="product-layout">
-      <div class="product-visual reveal">
-        <img src="images/product/floating-blue.png" alt="minotel cloud speaker Pastel Blue">
+      <div class="product-slideshow reveal" id="slideshow">
+        <div class="slide active"><img src="images/product/floating-blue.png" alt="minotel cloud speaker Blue floating"></div>
+        <div class="slide"><img src="images/product/desk-wood-01.png" alt="minotel cloud speaker on wooden desk"></div>
+        <div class="slide"><img src="images/product/desk-wood-02.png" alt="minotel cloud speaker on wooden desk"></div>
+        <div class="slide"><img src="images/product/dial-warm.png" alt="minotel cloud speaker dial detail"></div>
+        <div class="slide-nav">
+          <div class="slide-dots">
+            <button class="slide-dot active" data-idx="0" aria-label="スライド1"></button>
+            <button class="slide-dot" data-idx="1" aria-label="スライド2"></button>
+            <button class="slide-dot" data-idx="2" aria-label="スライド3"></button>
+            <button class="slide-dot" data-idx="3" aria-label="スライド4"></button>
+          </div>
+          <div class="slide-btns">
+            <button class="slide-btn" id="prev-btn" aria-label="前の画像">←</button>
+            <button class="slide-btn" id="next-btn" aria-label="次の画像">→</button>
+          </div>
+        </div>
       </div>
       <div class="product-info">
         <div class="product-name reveal">MCS01 — CLOUD SPEAKER</div>
@@ -471,47 +514,19 @@
     </div>
   </section>
 
-  <!-- LED カラー -->
+  <!-- LED カラー（オーバーレイ） -->
   <section class="led">
-    <div class="led-head">
-      <div class="section-label reveal">— Color Variation</div>
-      <h2 class="section-title reveal reveal-delay-1">推しカラーで、<br>あなたらしく。</h2>
-    </div>
-    <div class="led-image-wrap reveal reveal-delay-2">
-      <img src="images/product/led-circle.jpg" alt="6色のLEDカラー">
-    </div>
-    <div class="led-captions">
-      <div class="led-caption reveal">Blue</div>
-      <div class="led-caption reveal reveal-delay-1">Green</div>
-      <div class="led-caption reveal reveal-delay-1">Pink</div>
-      <div class="led-caption reveal reveal-delay-2">Purple</div>
-      <div class="led-caption reveal reveal-delay-2">Orange</div>
-      <div class="led-caption reveal reveal-delay-3">White</div>
-    </div>
-  </section>
-
-  <!-- サポート -->
-  <section class="support">
-    <div class="support-head">
-      <div class="section-label reveal">— Support</div>
-      <h2 class="section-title reveal reveal-delay-1">お困りの際は、<br>こちらから。</h2>
-    </div>
-    <div class="support-grid">
-      <a href="https://minotel.jp/contact" class="support-item reveal">
-        <div class="support-num">01</div>
-        <h3 class="support-title">お問い合わせ</h3>
-        <p class="support-desc">ご購入前のご相談から<br>サポートまで</p>
-      </a>
-      <a href="faq.html" class="support-item reveal reveal-delay-1">
-        <div class="support-num">02</div>
-        <h3 class="support-title">よくあるご質問</h3>
-        <p class="support-desc">ご注文・配送・商品について<br>よくいただくご質問</p>
-      </a>
-      <a href="support-cloudspeaker.html" class="support-item reveal reveal-delay-2">
-        <div class="support-num">03</div>
-        <h3 class="support-title">製品マニュアル</h3>
-        <p class="support-desc">使い方・お手入れ方法<br>仕様について</p>
-      </a>
+    <div class="led-stage">
+      <div class="led-bg"></div>
+      <div class="led-overlay-white"></div>
+      <div class="led-text">
+        <div class="led-label reveal">Color Variation</div>
+        <h2 class="led-title reveal reveal-delay-1">推しカラーで、<br>あなたらしく。</h2>
+        <p class="led-sub reveal reveal-delay-2">
+          6色のLEDで、あなたの世界観を自由に。<br>
+          Blue ・ Green ・ Pink ・ Purple ・ Orange ・ White
+        </p>
+      </div>
     </div>
   </section>
 
@@ -528,13 +543,44 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // ヒーロー画像クロスフェード
-    const slides = document.querySelectorAll('.hero-slide');
-    let idx = 0;
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let heroIdx = 0;
     setInterval(() => {
-      slides[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
+      heroSlides[heroIdx].classList.remove('active');
+      heroIdx = (heroIdx + 1) % heroSlides.length;
+      heroSlides[heroIdx].classList.add('active');
     }, 5000);
+
+    // プロダクトスライドショー
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let slideIdx = 0;
+    let slideTimer;
+
+    function goToSlide(idx) {
+      slides[slideIdx].classList.remove('active');
+      dots[slideIdx].classList.remove('active');
+      slideIdx = (idx + slides.length) % slides.length;
+      slides[slideIdx].classList.add('active');
+      dots[slideIdx].classList.add('active');
+    }
+
+    function startAutoSlide() {
+      clearInterval(slideTimer);
+      slideTimer = setInterval(() => goToSlide(slideIdx + 1), 5000);
+    }
+
+    prevBtn.addEventListener('click', () => { goToSlide(slideIdx - 1); startAutoSlide(); });
+    nextBtn.addEventListener('click', () => { goToSlide(slideIdx + 1); startAutoSlide(); });
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToSlide(parseInt(dot.dataset.idx));
+        startAutoSlide();
+      });
+    });
+    startAutoSlide();
   </script>
 </body>
 </html>
