@@ -96,7 +96,7 @@
       to   { transform: translateX(140vw) translateY(-3%); }
     }
 
-    /* 製品画像（雲クリップ + クロスフェード） */
+    /* 製品画像（クロスフェード、クリップなし） */
     .hero-product {
       position: absolute;
       inset: 0;
@@ -106,21 +106,13 @@
       justify-content: center;
       pointer-events: none;
     }
-    .hero-product-mask {
+    .hero-product-wrap {
       position: relative;
-      width: min(72vw, 920px);
-      aspect-ratio: 1280 / 822;
+      width: min(74vw, 920px);
+      aspect-ratio: 1280 / 860;
       animation: gentleFloat 7s ease-in-out infinite;
       will-change: transform;
-      -webkit-mask-image: url('images/svg/cloud.svg');
-      -webkit-mask-repeat: no-repeat;
-      -webkit-mask-position: center center;
-      -webkit-mask-size: contain;
-      mask-image: url('images/svg/cloud.svg');
-      mask-repeat: no-repeat;
-      mask-position: center center;
-      mask-size: contain;
-      filter: drop-shadow(0 30px 60px rgba(107, 140, 180, 0.25));
+      filter: drop-shadow(0 30px 60px rgba(107, 140, 180, 0.22));
     }
     .hero-slide {
       position: absolute;
@@ -155,29 +147,19 @@
       font-size: 13px;
       letter-spacing: 0.2em;
       color: var(--ink-80);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       opacity: 0;
       animation: fadeDown 1.2s 0.4s ease-out forwards;
     }
-    .hero-brand {
-      display: block;
-      font-family: 'Kiwi Maru', serif;
-      font-weight: 500;
-      font-size: clamp(18px, 1.8vw, 22px);
-      letter-spacing: 0.1em;
-      color: var(--ink-80);
-      margin-bottom: 8px;
-      opacity: 0;
-      animation: fadeDown 1.2s 0.7s ease-out forwards;
-    }
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 9vw, 120px);
+      font-size: clamp(30px, 6.2vw, 78px);
       font-weight: 300;
       letter-spacing: 0.04em;
-      line-height: 1;
+      line-height: 1.1;
       color: var(--ink);
       text-shadow: 0 6px 40px rgba(255,255,255,0.9);
+      white-space: nowrap;
     }
     .hero-name .letter {
       display: inline-block;
@@ -271,24 +253,28 @@
        ============================================ */
     .intro {
       position: relative;
-      padding: 180px 48px;
+      min-height: 95vh;
+      padding: 160px 48px;
       text-align: center;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .intro::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: url('images/hero/bg-pink-desk.png') no-repeat center center;
+      background: url('images/hero/bg-pink-desk.png') no-repeat center 75%;
       background-size: cover;
-      opacity: 0.18;
+      opacity: 0.55;
       z-index: 0;
     }
     .intro::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, var(--paper) 0%, rgba(251, 250, 247, 0.4) 20%, rgba(251, 250, 247, 0.4) 80%, var(--paper) 100%);
+      background: linear-gradient(180deg, var(--paper) 0%, rgba(251, 250, 247, 0.2) 15%, rgba(251, 250, 247, 0.08) 50%, rgba(251, 250, 247, 0.2) 85%, var(--paper) 100%);
       z-index: 1;
     }
     .intro-inner {
@@ -566,12 +552,16 @@
     }
 
     /* ============================================
-       購入
+       購入（公式 + Amazon）
        ============================================ */
     .buy {
       padding: 160px 48px;
-      text-align: center;
       background: var(--paper);
+    }
+    .buy-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
     }
     .buy-label {
       font-family: 'Noto Sans JP', sans-serif;
@@ -586,7 +576,7 @@
       font-weight: 500;
       font-size: clamp(22px, 2.6vw, 28px);
       letter-spacing: 0.04em;
-      margin-bottom: 44px;
+      margin-bottom: 32px;
       color: var(--ink);
     }
     .buy-price {
@@ -594,7 +584,7 @@
       justify-content: center;
       align-items: baseline;
       gap: 12px;
-      margin-bottom: 48px;
+      margin-bottom: 80px;
     }
     .buy-price-value {
       font-family: 'Cormorant Garamond', serif;
@@ -606,21 +596,104 @@
       color: var(--ink-60);
       letter-spacing: 0.04em;
     }
+
+    .buy-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      text-align: left;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .buy-card {
+      position: relative;
+      padding: 48px 40px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .buy-card-badge {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      padding: 8px 16px;
+      background: var(--ink);
+      color: #fff;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+    .buy-card-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      margin-top: 28px;
+      margin-bottom: 24px;
+    }
+    .buy-perks {
+      list-style: none;
+      margin-bottom: 36px;
+      flex: 1;
+    }
+    .buy-perks li {
+      font-size: 13px;
+      line-height: 1.9;
+      letter-spacing: 0.02em;
+      color: var(--ink-80);
+      padding: 10px 0 10px 24px;
+      border-bottom: 1px dashed var(--line);
+      position: relative;
+    }
+    .buy-perks li:last-child { border-bottom: none; }
+    .buy-perks li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+    }
+    .buy-perks small {
+      display: block;
+      font-size: 11px;
+      color: var(--ink-60);
+      margin-top: 2px;
+    }
     .buy-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 16px;
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
       font-size: 15px;
       letter-spacing: 0.06em;
-      padding: 20px 56px;
+      padding: 20px 32px;
       border: 1px solid var(--ink);
       background: var(--ink);
       color: #fff;
       transition: gap 0.4s ease, background 0.4s ease;
+      width: 100%;
     }
     .buy-btn:hover { gap: 28px; background: #000; }
+    .buy-btn-outline {
+      background: #fff;
+      color: var(--ink);
+    }
+    .buy-btn-outline:hover {
+      background: var(--ink);
+      color: #fff;
+    }
+    .buy-note {
+      margin-top: 40px;
+      font-size: 11px;
+      color: var(--ink-60);
+      letter-spacing: 0.05em;
+    }
 
     /* ============================================
        レスポンシブ
@@ -653,6 +726,10 @@
       .led-stage { aspect-ratio: 4 / 5; max-height: none; }
       .led-text { padding: 40px 24px; }
       .buy { padding: 80px 24px; }
+      .buy-options { grid-template-columns: 1fr; gap: 24px; }
+      .buy-card { padding: 36px 28px; }
+      .hero-name { white-space: normal; font-size: clamp(28px, 9vw, 56px); }
+      .intro { min-height: auto; padding: 100px 24px; }
     }
   </style>
 </head>
@@ -670,27 +747,34 @@
     <!-- タイトル -->
     <div class="hero-text">
       <div class="hero-mcs">MCS01</div>
-      <div class="hero-brand">minotel</div>
       <h1 class="hero-name">
-        <span class="letter" style="animation-delay: 0.6s">c</span>
-        <span class="letter" style="animation-delay: 0.72s">l</span>
+        <span class="letter" style="animation-delay: 0.6s">m</span>
+        <span class="letter" style="animation-delay: 0.68s">i</span>
+        <span class="letter" style="animation-delay: 0.76s">n</span>
         <span class="letter" style="animation-delay: 0.84s">o</span>
-        <span class="letter" style="animation-delay: 0.96s">u</span>
-        <span class="letter" style="animation-delay: 1.08s">d</span>
-        <span class="letter" style="animation-delay: 1.32s">&nbsp;</span>
-        <span class="letter" style="animation-delay: 1.44s">s</span>
-        <span class="letter" style="animation-delay: 1.56s">p</span>
-        <span class="letter" style="animation-delay: 1.68s">e</span>
-        <span class="letter" style="animation-delay: 1.8s">a</span>
-        <span class="letter" style="animation-delay: 1.92s">k</span>
+        <span class="letter" style="animation-delay: 0.92s">t</span>
+        <span class="letter" style="animation-delay: 1.00s">e</span>
+        <span class="letter" style="animation-delay: 1.08s">l</span>
+        <span class="letter" style="animation-delay: 1.24s">&nbsp;</span>
+        <span class="letter" style="animation-delay: 1.32s">c</span>
+        <span class="letter" style="animation-delay: 1.40s">l</span>
+        <span class="letter" style="animation-delay: 1.48s">o</span>
+        <span class="letter" style="animation-delay: 1.56s">u</span>
+        <span class="letter" style="animation-delay: 1.64s">d</span>
+        <span class="letter" style="animation-delay: 1.80s">&nbsp;</span>
+        <span class="letter" style="animation-delay: 1.88s">s</span>
+        <span class="letter" style="animation-delay: 1.96s">p</span>
         <span class="letter" style="animation-delay: 2.04s">e</span>
-        <span class="letter" style="animation-delay: 2.16s">r</span>
+        <span class="letter" style="animation-delay: 2.12s">a</span>
+        <span class="letter" style="animation-delay: 2.20s">k</span>
+        <span class="letter" style="animation-delay: 2.28s">e</span>
+        <span class="letter" style="animation-delay: 2.36s">r</span>
       </h1>
     </div>
 
-    <!-- 雲クリップされた製品画像（2枚クロスフェード） -->
+    <!-- 製品画像（クロスフェード） -->
     <div class="hero-product">
-      <div class="hero-product-mask">
+      <div class="hero-product-wrap">
         <div class="hero-slide active"><img src="images/hero/wrap-blue.jpg" alt="minotel cloud speaker Blue"></div>
         <div class="hero-slide"><img src="images/hero/wrap-white.jpg" alt="minotel cloud speaker White"></div>
       </div>
@@ -842,13 +926,68 @@
 
   <!-- 購入 -->
   <section class="buy">
-    <div class="buy-label reveal">MCS01</div>
-    <h2 class="buy-title reveal reveal-delay-1">minotel cloud speaker</h2>
-    <div class="buy-price reveal reveal-delay-2">
-      <span class="buy-price-value">¥15,200</span>
-      <span class="buy-price-tax">税込</span>
+    <div class="buy-inner">
+      <div class="buy-label reveal">MCS01</div>
+      <h2 class="buy-title reveal reveal-delay-1">minotel cloud speaker</h2>
+      <div class="buy-price reveal reveal-delay-2">
+        <span class="buy-price-value">¥15,200</span>
+        <span class="buy-price-tax">税込</span>
+      </div>
+
+      <div class="buy-options">
+        <!-- 公式サイト -->
+        <div class="buy-card reveal reveal-delay-2">
+          <span class="buy-card-badge">Official</span>
+          <h3 class="buy-card-title">公式サイトで購入</h3>
+          <ul class="buy-perks">
+            <li>
+              ギフトラッピング 無料
+              <small>大切な人への贈り物にも。</small>
+            </li>
+            <li>
+              全国送料無料
+              <small>本州・四国・九州・北海道 (沖縄・離島を除く)</small>
+            </li>
+            <li>
+              12ヶ月メーカー保証
+              <small>安心の公式保証付き。</small>
+            </li>
+            <li>
+              手書きメッセージカード対応
+              <small>ご希望時、無料でお付けします。</small>
+            </li>
+          </ul>
+          <a href="https://minotel.jp/shop" class="buy-btn">カートに追加 →</a>
+        </div>
+
+        <!-- Amazon -->
+        <div class="buy-card reveal reveal-delay-3">
+          <span class="buy-card-badge">Amazon</span>
+          <h3 class="buy-card-title">Amazon で購入</h3>
+          <ul class="buy-perks">
+            <li>
+              Prime 対応
+              <small>最短翌日でお届け。</small>
+            </li>
+            <li>
+              Amazon アカウント決済
+              <small>いつもの購入フローで手軽に。</small>
+            </li>
+            <li>
+              Amazon の返品ポリシー
+              <small>Amazon のサポートで対応。</small>
+            </li>
+            <li>
+              ラッピング・メッセージカード
+              <small>公式サイト限定のサービスです。</small>
+            </li>
+          </ul>
+          <a href="https://www.amazon.co.jp/" class="buy-btn buy-btn-outline" target="_blank" rel="noopener">Amazon で購入 →</a>
+        </div>
+      </div>
+
+      <p class="buy-note reveal">※ 配送・送料の詳細は <a href="shipping.html" style="border-bottom: 1px solid currentColor;">配送ポリシー</a> をご確認ください。</p>
     </div>
-    <a href="https://minotel.jp/shop" class="buy-btn reveal reveal-delay-3">カートに追加 →</a>
   </section>
 
   <script>
@@ -862,36 +1001,6 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
     document.querySelectorAll('.reveal, .feature-row').forEach(el => observer.observe(el));
-
-    // 雲のマウスパララックス
-    const hero = document.getElementById('hero');
-    const layerBack = document.getElementById('layer-back');
-    const layerMiddle = document.getElementById('layer-middle');
-    const layerFront = document.getElementById('layer-front');
-
-    let tBX=0, tBY=0, tMX=0, tMY=0, tFX=0, tFY=0;
-    let cBX=0, cBY=0, cMX=0, cMY=0, cFX=0, cFY=0;
-
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const mx = (e.clientX - rect.left) / rect.width - 0.5;
-      const my = (e.clientY - rect.top) / rect.height - 0.5;
-      tBX = mx * 12; tBY = my * 8;
-      tMX = mx * 24; tMY = my * 16;
-      tFX = mx * 40; tFY = my * 26;
-    });
-
-    function animate() {
-      const e = 0.08;
-      cBX += (tBX - cBX) * e;  cBY += (tBY - cBY) * e;
-      cMX += (tMX - cMX) * e;  cMY += (tMY - cMY) * e;
-      cFX += (tFX - cFX) * e;  cFY += (tFY - cFY) * e;
-      layerBack.style.transform = `translate(${cBX}px, ${cBY}px)`;
-      layerMiddle.style.transform = `translate(${cMX}px, ${cMY}px)`;
-      layerFront.style.transform = `translate(${cFX}px, ${cFY}px)`;
-      requestAnimationFrame(animate);
-    }
-    animate();
 
     // 製品画像クロスフェード
     const pSlides = document.querySelectorAll('.hero-slide');
