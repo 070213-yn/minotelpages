@@ -215,11 +215,12 @@
       border-bottom: 1px solid var(--line);
     }
     .section-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      letter-spacing: 0.22em;
-      color: var(--ink-40);
-      padding-top: 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.16em;
+      color: var(--ink-60);
+      padding-top: 16px;
       min-width: 56px;
     }
     .section-title-wrap {
@@ -234,12 +235,13 @@
       line-height: 1.5;
     }
     .section-title-en {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px;
-      letter-spacing: 0.22em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-60);
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .reveal {
@@ -271,7 +273,7 @@
     .cloud-edge-top { top: -1px; }
 
     /* ============================================
-       Box Contents — パララックスリスト
+       Box Contents
        ============================================ */
     .contents-grid {
       display: grid;
@@ -280,32 +282,33 @@
       border-top: 1px solid var(--line);
     }
     .content-item {
-      padding: 36px 0 32px;
-      padding-left: 32px;
-      padding-right: 24px;
+      padding: 44px 0 40px;
+      padding-left: 36px;
+      padding-right: 28px;
       border-bottom: 1px solid var(--line);
       border-right: 1px solid var(--line);
     }
     .content-item:nth-child(2n) { border-right: none; }
     .content-item:nth-last-child(-n+2) { border-bottom: none; }
     .content-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      color: var(--ink-40);
-      margin-bottom: 10px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      margin-bottom: 14px;
     }
     .content-name {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 18px;
+      font-size: 20px;
       letter-spacing: 0.03em;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
     .content-desc {
-      font-size: 13px;
-      color: var(--ink-60);
-      line-height: 1.9;
+      font-size: 14px;
+      color: var(--ink-80);
+      line-height: 1.95;
     }
 
     /* ============================================
@@ -316,48 +319,52 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 48px;
     }
+    .steps-grid.steps-grid-2 { grid-template-columns: 1fr 1fr; gap: 56px; }
     .step-card {
       display: flex;
       flex-direction: column;
     }
     .step-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      letter-spacing: 0.22em;
-      color: var(--ink-40);
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 24px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      color: var(--ink-60);
+      padding-bottom: 22px;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 28px;
+      max-width: 80px;
     }
     .step-title {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 19px;
+      font-size: 22px;
       letter-spacing: 0.03em;
       line-height: 1.6;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .step-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--ink-80);
-      line-height: 2;
+      line-height: 2.05;
     }
 
     .note {
-      margin-top: 40px;
-      padding: 20px 28px;
+      margin-top: 48px;
+      padding: 26px 32px;
       background: var(--paper-warm);
-      font-size: 13px;
+      font-size: 14px;
       color: var(--ink-80);
-      line-height: 1.9;
-      border-left: 2px solid var(--ink);
+      line-height: 1.95;
+      border-left: 3px solid var(--ink);
     }
     .note-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      letter-spacing: 0.22em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.16em;
       color: var(--ink-60);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     /* ============================================
@@ -365,98 +372,102 @@
        ============================================ */
     .led-modes {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 24px;
-      margin-top: 48px;
+      margin-top: 56px;
     }
     .led-mode {
-      padding: 24px 18px;
+      padding: 32px 20px 28px;
       background: #fff;
       border: 1px solid var(--line);
       text-align: center;
     }
     .led-mode-num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
       font-size: 13px;
-      letter-spacing: 0.22em;
-      color: var(--ink-40);
-      margin-bottom: 12px;
+      letter-spacing: 0.16em;
+      color: var(--ink-60);
+      margin-bottom: 14px;
     }
     .led-mode-name {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 17px;
       letter-spacing: 0.04em;
-      margin-bottom: 6px;
+      margin-bottom: 12px;
     }
     .led-mode-desc {
-      font-size: 11px;
-      color: var(--ink-60);
-      line-height: 1.7;
+      font-size: 12px;
+      color: var(--ink-80);
+      line-height: 1.85;
     }
 
     .led-colors-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 20px;
-      margin-top: 40px;
+      margin-top: 48px;
     }
     .led-color {
       text-align: center;
     }
     .led-swatch {
+      position: relative;
       width: 100%;
       aspect-ratio: 1;
       border-radius: 50%;
-      margin-bottom: 14px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .led-color-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--ink-80);
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.22);
     }
-    .led-color-code {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      color: var(--ink-40);
-      margin-top: 2px;
+    .led-color--light .led-color-name {
+      color: rgba(43, 42, 51, 0.78);
+      text-shadow: 0 2px 8px rgba(255,255,255,0.6);
     }
 
     .btn-control {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 40px;
-      padding-top: 40px;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 48px;
       border-top: 1px solid var(--line);
     }
     .btn-control-item {
-      padding-left: 28px;
-      border-left: 1px solid var(--line);
+      padding-left: 32px;
+      border-left: 2px solid var(--ink);
     }
     .btn-control-action {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
       font-size: 12px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-60);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .btn-control-label {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 17px;
+      font-size: 19px;
       letter-spacing: 0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     .btn-control-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--ink-80);
-      line-height: 1.95;
+      line-height: 2;
     }
 
     /* ============================================
@@ -473,31 +484,31 @@
       border-top: 1px solid var(--line);
     }
     .specs-table th {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 12px;
-      letter-spacing: 0.22em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-60);
       text-align: left;
-      padding: 22px 24px 22px 0;
+      padding: 24px 24px 24px 0;
       vertical-align: top;
       width: 32%;
     }
     .specs-table td {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 16px;
       letter-spacing: 0.02em;
-      padding: 22px 0;
+      padding: 24px 0;
     }
     .specs-table td small {
       display: block;
       font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 300;
-      font-size: 12px;
-      color: var(--ink-60);
-      margin-top: 4px;
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--ink-80);
+      margin-top: 6px;
       letter-spacing: 0.02em;
     }
 
@@ -517,24 +528,25 @@
     }
     .care-item:last-child { border-bottom: none; }
     .care-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      letter-spacing: 0.22em;
-      color: var(--ink-40);
-      padding-top: 4px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      color: var(--ink-60);
+      padding-top: 6px;
       min-width: 48px;
     }
     .care-title {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 17px;
+      font-size: 19px;
       letter-spacing: 0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .care-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--ink-80);
-      line-height: 1.95;
+      line-height: 2;
     }
 
     /* ============================================
@@ -547,26 +559,27 @@
       text-align: center;
     }
     .warranty-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      letter-spacing: 0.22em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.16em;
       color: var(--ink-60);
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
     .warranty-title {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: clamp(24px, 3vw, 32px);
+      font-size: clamp(26px, 3.2vw, 34px);
       letter-spacing: 0.02em;
       line-height: 1.7;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
     .warranty-desc {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--ink-80);
       line-height: 2.1;
-      max-width: 620px;
-      margin: 0 auto 40px;
+      max-width: 640px;
+      margin: 0 auto 44px;
     }
     .warranty-link {
       display: inline-flex;
@@ -574,7 +587,7 @@
       gap: 16px;
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 15px;
       letter-spacing: 0.04em;
       padding: 14px 0;
       border-bottom: 1px solid var(--ink);
@@ -592,25 +605,26 @@
       background: var(--paper-warm);
     }
     .contact-label {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
       font-size: 13px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.16em;
       color: var(--ink-60);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
     .contact-title {
       font-family: 'Kiwi Maru', serif;
       font-weight: 500;
-      font-size: clamp(24px, 3.2vw, 34px);
+      font-size: clamp(26px, 3.4vw, 36px);
       letter-spacing: 0.02em;
       line-height: 1.7;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
     .contact-desc {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--ink-80);
       line-height: 2.1;
-      margin-bottom: 48px;
+      margin-bottom: 52px;
     }
     .contact-btn {
       display: inline-flex;
@@ -743,23 +757,13 @@
       <div class="contents-grid reveal reveal-d1">
         <div class="content-item">
           <div class="content-num">01</div>
-          <div class="content-name">スピーカー本体</div>
-          <div class="content-desc">2台セット（左・右 / 雲型）</div>
+          <div class="content-name">cloud speaker 本体</div>
+          <div class="content-desc">2台セット（左・右）<br>USBケーブル一体型・左右はあらかじめ接続済み</div>
         </div>
         <div class="content-item">
           <div class="content-num">02</div>
-          <div class="content-name">USB ケーブル</div>
-          <div class="content-desc">1本（電源＆音声入力用 / PVCホワイト）</div>
-        </div>
-        <div class="content-item">
-          <div class="content-num">03</div>
-          <div class="content-name">スピーカー接続ケーブル</div>
-          <div class="content-desc">1本（3.5mm 4極 / 左右接続用）</div>
-        </div>
-        <div class="content-item">
-          <div class="content-num">04</div>
           <div class="content-name">保証書・かんたんガイド</div>
-          <div class="content-desc">1枚（QRコード付き）</div>
+          <div class="content-desc">1枚<br>製品マニュアルへのQRコード付き</div>
         </div>
       </div>
       <div class="note">
@@ -779,26 +783,19 @@
           <div class="section-title-en reveal reveal-d2">— Setup in 3 Steps</div>
         </div>
       </div>
-      <div class="steps-grid">
+      <div class="steps-grid steps-grid-2">
         <div class="step-card reveal">
           <div class="step-num">Step 01</div>
-          <h3 class="step-title">左右のスピーカーをつなぐ</h3>
+          <h3 class="step-title">USBをパソコンに差し込む</h3>
           <p class="step-desc">
-            付属のスピーカー接続ケーブル（3.5mm端子）で、2台のスピーカーを接続します。ケーブルの端子は同じ形状なので、どちらに差してもOKです。
+            cloud speaker 本体には、あらかじめUSBケーブルが接続されています。USB端子をパソコンのUSBポートに差し込むだけで、電源と音声の準備が完了します。
           </p>
         </div>
         <div class="step-card reveal reveal-d1">
           <div class="step-num">Step 02</div>
-          <h3 class="step-title">USBをパソコンへ</h3>
+          <h3 class="step-title">音声出力先を選ぶ</h3>
           <p class="step-desc">
-            メイン側のスピーカー（ボタンがある方）に付属のUSBケーブルを差し、反対側をパソコンのUSBポートに接続します。電源も音声もこの1本で完結です。
-          </p>
-        </div>
-        <div class="step-card reveal reveal-d2">
-          <div class="step-num">Step 03</div>
-          <h3 class="step-title">音を鳴らしてみる</h3>
-          <p class="step-desc">
-            パソコンの音声出力先を「MNC-CL01」に設定すれば準備完了。ドライバー不要、接続するだけですぐにお使いいただけます。
+            パソコンのサウンド設定で、音声出力先を<strong style="color: var(--ink); font-weight: 500;">「minotel cloud speaker」</strong>に設定してください。ドライバー不要、選ぶだけですぐにお使いいただけます。
           </p>
         </div>
       </div>
@@ -820,88 +817,85 @@
         </div>
       </div>
 
-      <p class="reveal" style="font-size: 14px; line-height: 2.1; color: var(--ink-80); max-width: 620px;">
+      <p class="reveal" style="font-size: 15px; line-height: 2.05; color: var(--ink-80); max-width: 640px;">
         minotel cloud speaker には、気分やお部屋の雰囲気に合わせて選べる<br>
-        6色のLEDと、5つのライティングモードが搭載されています。
+        <strong style="font-weight: 500; color: var(--ink);">6色のLEDと、4つのライティングモード</strong>が搭載されています。
       </p>
 
       <!-- 6 Colors -->
       <div class="led-colors-grid">
-        <div class="led-color reveal">
-          <div class="led-swatch" style="background: radial-gradient(circle, #BFECFF 30%, #8fc8e8 100%);"></div>
-          <div class="led-color-name">Blue</div>
-          <div class="led-color-code">#BFECFF</div>
+        <div class="led-color led-color--light reveal">
+          <div class="led-swatch" style="background: radial-gradient(circle, #BFECFF 30%, #8fc8e8 100%);">
+            <span class="led-color-name">Blue</span>
+          </div>
         </div>
         <div class="led-color reveal reveal-d1">
-          <div class="led-swatch" style="background: radial-gradient(circle, #71FFA2 30%, #4ec77c 100%);"></div>
-          <div class="led-color-name">Green</div>
-          <div class="led-color-code">#71FFA2</div>
+          <div class="led-swatch" style="background: radial-gradient(circle, #71FFA2 30%, #4ec77c 100%);">
+            <span class="led-color-name">Green</span>
+          </div>
         </div>
         <div class="led-color reveal reveal-d1">
-          <div class="led-swatch" style="background: radial-gradient(circle, #FF6BAE 30%, #c8508a 100%);"></div>
-          <div class="led-color-name">Pink</div>
-          <div class="led-color-code">#FF6BAE</div>
+          <div class="led-swatch" style="background: radial-gradient(circle, #FF6BAE 30%, #c8508a 100%);">
+            <span class="led-color-name">Pink</span>
+          </div>
         </div>
         <div class="led-color reveal reveal-d2">
-          <div class="led-swatch" style="background: radial-gradient(circle, #E68EFF 30%, #b568cc 100%);"></div>
-          <div class="led-color-name">Purple</div>
-          <div class="led-color-code">#E68EFF</div>
+          <div class="led-swatch" style="background: radial-gradient(circle, #E68EFF 30%, #b568cc 100%);">
+            <span class="led-color-name">Purple</span>
+          </div>
         </div>
         <div class="led-color reveal reveal-d2">
-          <div class="led-swatch" style="background: radial-gradient(circle, #FFC465 30%, #cd994d 100%);"></div>
-          <div class="led-color-name">Orange</div>
-          <div class="led-color-code">#FFC465</div>
+          <div class="led-swatch" style="background: radial-gradient(circle, #FFC465 30%, #cd994d 100%);">
+            <span class="led-color-name">Orange</span>
+          </div>
         </div>
-        <div class="led-color reveal reveal-d3">
-          <div class="led-swatch" style="background: radial-gradient(circle, #FFFFFF 30%, #d8d8d8 100%);"></div>
-          <div class="led-color-name">White</div>
-          <div class="led-color-code">#FFFFFF</div>
+        <div class="led-color led-color--light reveal reveal-d3">
+          <div class="led-swatch" style="background: radial-gradient(circle, #EAF3FB 30%, #C6D8E8 100%);">
+            <span class="led-color-name">White</span>
+          </div>
         </div>
       </div>
 
-      <!-- 5 Modes -->
+      <!-- 4 Modes -->
       <div class="led-modes">
         <div class="led-mode reveal">
           <div class="led-mode-num">Mode 01</div>
           <div class="led-mode-name">常時点灯</div>
-          <div class="led-mode-desc">選んだ色で<br>ずっと点灯</div>
+          <div class="led-mode-desc">選んだ色で<br>ずっと優しく点灯</div>
         </div>
         <div class="led-mode reveal reveal-d1">
           <div class="led-mode-num">Mode 02</div>
           <div class="led-mode-name">ブレス</div>
-          <div class="led-mode-desc">ゆっくりと<br>呼吸のように光る</div>
+          <div class="led-mode-desc">呼吸のように<br>ゆっくりと明るさが変化</div>
         </div>
         <div class="led-mode reveal reveal-d1">
           <div class="led-mode-num">Mode 03</div>
           <div class="led-mode-name">グラデーション 1</div>
-          <div class="led-mode-desc">色がゆるやかに<br>移ろう</div>
+          <div class="led-mode-desc">色がゆるやかに<br>流れるように移ろう</div>
         </div>
         <div class="led-mode reveal reveal-d2">
           <div class="led-mode-num">Mode 04</div>
           <div class="led-mode-name">グラデーション 2</div>
-          <div class="led-mode-desc">色が彩りよく<br>流れるように変化</div>
-        </div>
-        <div class="led-mode reveal reveal-d2">
-          <div class="led-mode-num">Mode 05</div>
-          <div class="led-mode-name">消灯</div>
-          <div class="led-mode-desc">LEDオフ<br>音声は継続</div>
+          <div class="led-mode-desc">ピクセル画のように<br>パッパッと切り替わる<br>淡いグラデーション</div>
         </div>
       </div>
 
       <!-- Button Controls -->
       <div class="btn-control">
         <div class="btn-control-item reveal">
-          <div class="btn-control-action">Press</div>
-          <div class="btn-control-label">ボタンを短く押す</div>
+          <div class="btn-control-action">Left Button</div>
+          <div class="btn-control-label">左のボタン <span style="color: var(--ink-60); font-size: 0.72em; font-weight: 400;">モード切替</span></div>
           <div class="btn-control-desc">
-            カラー / モードが順番に切り替わります。押すたびに次の色・モードへ。
+            押すたびに次のライティングモードへ切り替わります。<br>
+            常時点灯 → ブレス → グラデーション1 → グラデーション2 の順です。
           </div>
         </div>
         <div class="btn-control-item reveal reveal-d1">
-          <div class="btn-control-action">Long press</div>
-          <div class="btn-control-label">ボタンを長押し</div>
+          <div class="btn-control-action">Right Button</div>
+          <div class="btn-control-label">右のボタン <span style="color: var(--ink-60); font-size: 0.72em; font-weight: 400;">カラー切替</span></div>
           <div class="btn-control-desc">
-            LEDの オン / オフ を切り替えます。電源を切っても設定は自動保存されます。
+            常時点灯 / ブレスモード中に押すと、6色が順に切り替わります。<br>
+            グラデーションモード中は機能しません。
           </div>
         </div>
       </div>
@@ -1017,7 +1011,7 @@
           お客様の過失・改造・水濡れ・落下等による故障は保証対象外となります。
           返品・交換の詳細条件については、返金ポリシーをご確認ください。
         </p>
-        <a href="refund.html" target="_top" class="warranty-link">返金ポリシーを見る</a>
+        <a href="https://www.minotel.jp/blank-4" target="_top" class="warranty-link">返金ポリシーを見る</a>
       </div>
     </div>
   </section>
@@ -1030,7 +1024,7 @@
       マニュアルで解決しないご質問・不明点は、<br>
       お問い合わせフォームまたはメールにてお気軽にご連絡ください。
     </p>
-    <a href="https://minotel.jp/contact" target="_top" class="contact-btn reveal reveal-d3">Contact Us →</a>
+    <a href="https://www.minotel.jp/%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B" target="_top" class="contact-btn reveal reveal-d3">Contact Us →</a>
     <a href="mailto:info@minotel.jp" class="contact-email reveal reveal-d3">info@minotel.jp</a>
   </section>
 
