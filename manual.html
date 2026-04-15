@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual | minotel</title>
+  <meta name="description" content="minotel 製品の取扱説明書一覧。minotel cloud speaker の詳しい使い方をご確認いただけます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { scrollbar-width: none !important; -ms-overflow-style: none !important; overflow-x: hidden !important; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+    * { scrollbar-width: none; -ms-overflow-style: none; }
+    :root {
+      --ink: #2b2a33;
+      --ink-60: rgba(43, 42, 51, 0.72);
+      --ink-80: rgba(43, 42, 51, 0.85);
+      --ink-40: rgba(43, 42, 51, 0.42);
+      --paper: #fbfaf7;
+      --paper-warm: #f5f2ec;
+      --sky-1: #e8f2fb;
+      --sky-2: #d6e8f6;
+      --sky-3: #f5e6ee;
+      --line: rgba(43, 42, 51, 0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.9;
+      letter-spacing: 0.02em;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      min-height: 480px;
+      max-height: 640px;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 50%, var(--sky-3) 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 40%),
+                  radial-gradient(circle at 75% 65%, rgba(255,255,220,0.3) 0%, transparent 45%);
+    }
+    .cloud-layer { position: absolute; inset: 0; pointer-events: none; }
+    .cloud {
+      position: absolute;
+      left: 0;
+      aspect-ratio: 1280 / 822;
+      background-image: url('images/svg/cloud.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      filter: brightness(0) invert(1) drop-shadow(0 20px 40px rgba(107, 140, 180, 0.15));
+    }
+    .cloud-a { top: 12%; width: 380px; opacity: 0.5; animation: drift 70s linear infinite -10s; }
+    .cloud-b { top: 60%; width: 480px; opacity: 0.38; animation: drift 90s linear infinite -50s; }
+    .cloud-c { top: 30%; width: 260px; opacity: 0.85; animation: drift 52s linear infinite -25s; }
+    .cloud-d { top: 76%; width: 320px; opacity: 0.6; animation: drift 64s linear infinite -38s; }
+    .cloud-e { top: 6%;  width: 560px; opacity: 0.28; animation: drift 100s linear infinite -70s; }
+    @keyframes drift {
+      from { transform: translateX(-110%); }
+      to   { transform: translateX(calc(100vw + 10%)); }
+    }
+    .hero-inner {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      color: var(--ink-80);
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.3s ease-out forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(54px, 10vw, 140px);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: var(--ink);
+      text-shadow: 0 4px 30px rgba(255,255,255,0.9);
+      opacity: 0;
+      animation: fadeUp 1.4s 0.6s ease-out forwards;
+    }
+    .hero-sub {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(14px, 1.4vw, 17px);
+      letter-spacing: 0.08em;
+      color: var(--ink-80);
+      margin-top: 28px;
+      opacity: 0;
+      animation: fadeUp 1.4s 1.0s ease-out forwards;
+      max-width: 520px;
+      line-height: 2;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Product Grid ===== */
+    .products {
+      padding: 160px 48px 180px;
+      background: var(--paper);
+    }
+    .products-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .products-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: end;
+      padding-bottom: 40px;
+      margin-bottom: 80px;
+      border-bottom: 1px solid var(--line);
+    }
+    .products-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      color: var(--ink-60);
+      padding-bottom: 8px;
+    }
+    .products-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(26px, 3.4vw, 38px);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 48px;
+    }
+
+    .product-card {
+      display: block;
+      background: #fff;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(43, 42, 51, 0.12);
+    }
+    .product-card-visual {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--paper-warm);
+    }
+    .product-card-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .product-card:hover .product-card-visual img {
+      transform: scale(1.04);
+    }
+    .product-card-body {
+      padding: 36px 32px 40px;
+    }
+    .product-card-model {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: var(--ink-60);
+      margin-bottom: 12px;
+    }
+    .product-card-name {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .product-card-desc {
+      font-size: 13px;
+      line-height: 1.95;
+      color: var(--ink-80);
+      margin-bottom: 28px;
+    }
+    .product-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--ink);
+      color: var(--ink);
+      transition: gap 0.4s ease;
+    }
+    .product-card:hover .product-card-cta { gap: 24px; }
+    .product-card-cta::after {
+      content: '→';
+      font-family: sans-serif;
+    }
+
+    /* Coming soon placeholder card */
+    .product-card-coming {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--paper-warm);
+      border: 1px dashed var(--ink-40);
+      aspect-ratio: auto;
+      min-height: 420px;
+      padding: 40px 32px;
+      cursor: default;
+    }
+    .product-card-coming:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .product-card-coming-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--ink-60);
+      margin-bottom: 16px;
+    }
+    .product-card-coming-text {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--ink-80);
+    }
+
+    /* ===== Contact ===== */
+    .contact {
+      padding: 140px 48px;
+      background: var(--paper-warm);
+      text-align: center;
+    }
+    .contact-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      color: var(--ink-60);
+      margin-bottom: 22px;
+    }
+    .contact-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .contact-desc {
+      font-size: 14px;
+      color: var(--ink-80);
+      line-height: 2.05;
+      margin-bottom: 44px;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      padding: 20px 52px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      transition: gap 0.4s ease, background 0.4s ease;
+    }
+    .contact-btn:hover { gap: 28px; background: #000; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.22s; }
+    .reveal-d3 { transition-delay: 0.34s; }
+
+    @media (max-width: 900px) {
+      .hero { height: 440px; min-height: 400px; }
+      .hero-title { font-size: clamp(46px, 12vw, 80px); }
+      .cloud-a { width: 240px; } .cloud-b { width: 320px; } .cloud-c { width: 180px; } .cloud-d { width: 220px; } .cloud-e { width: 360px; }
+
+      .products { padding: 80px 24px 100px; }
+      .products-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 56px; padding-bottom: 28px; }
+      .product-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact { padding: 80px 24px; }
+    }
+    @media (max-width: 500px) {
+      .hero { height: 380px; min-height: 340px; }
+      .hero-title { font-size: 52px; }
+      .hero-label { font-size: 11px; }
+      .hero-sub { font-size: 13px; }
+      .products { padding: 64px 20px 80px; }
+      .products-title { font-size: 24px; }
+      .product-card-body { padding: 28px 24px 32px; }
+      .product-card-name { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="cloud-layer">
+      <div class="cloud cloud-e"></div>
+      <div class="cloud cloud-a"></div>
+      <div class="cloud cloud-b"></div>
+      <div class="cloud cloud-c"></div>
+      <div class="cloud cloud-d"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-label">— Manual</div>
+      <h1 class="hero-title">Manual</h1>
+      <p class="hero-sub">
+        minotel 製品の取扱説明書一覧<br>
+        お探しの製品をお選びください
+      </p>
+    </div>
+  </section>
+
+  <section class="products">
+    <div class="products-inner">
+
+      <div class="products-head">
+        <div class="products-label reveal">— Products</div>
+        <h2 class="products-title reveal reveal-d1">minotel の取扱説明書</h2>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- cloud speaker -->
+        <a href="https://www.minotel.jp/manual/minotel-cloud-speaker" target="_top" class="product-card reveal">
+          <div class="product-card-visual">
+            <img src="images/product/floating-blue.png" alt="minotel cloud speaker">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-model">MCS01</div>
+            <h3 class="product-card-name">minotel cloud speaker</h3>
+            <p class="product-card-desc">
+              雲型のデスクトップ USB スピーカー。接続方法・LED操作・仕様など、詳しい使い方をご案内しています。
+            </p>
+            <span class="product-card-cta">マニュアルを見る</span>
+          </div>
+        </a>
+
+        <!-- Coming Soon placeholder -->
+        <div class="product-card product-card-coming reveal reveal-d1">
+          <div class="product-card-coming-label">— Coming Soon</div>
+          <p class="product-card-coming-text">
+            次の製品を<br>
+            お楽しみに。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="contact-label reveal">— Need Help?</div>
+    <h2 class="contact-title reveal reveal-d1">マニュアルで<br>解決しないときは</h2>
+    <p class="contact-desc reveal reveal-d2">
+      ご不明な点はお気軽に、お問い合わせフォームまたは<br>
+      メールにてご連絡ください。
+    </p>
+    <a href="https://www.minotel.jp/contact" target="_top" class="contact-btn reveal reveal-d3">Contact Us →</a>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
