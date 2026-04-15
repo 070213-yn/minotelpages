@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>minotel — 毎日のデスクを、もっと可愛く彩る</title>
+  <meta name="description" content="minotel は、可愛くて妥協しないものづくりをコンセプトにしたデスクガジェットブランドです。cloud speaker ではじまる、あなたの「好き」に満たされたデスク。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a1f;
+      --ink-60: rgba(26, 26, 31, 0.60);
+      --ink-40: rgba(26, 26, 31, 0.40);
+      --ink-15: rgba(26, 26, 31, 0.15);
+      --ink-08: rgba(26, 26, 31, 0.08);
+      --paper: #fbfaf7;
+      --paper-warm: #f5f2ec;
+      --sky: #9ec5e8;
+      --sky-deep: #6a9fc8;
+      --gold: #c9a86a;
+      --line: rgba(26, 26, 31, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+      overflow-x: hidden;
+    }
+
+    /* 明朝体はブランド見出しに */
+    .mincho { font-family: 'Shippori Mincho B1', serif; font-weight: 400; letter-spacing: 0.08em; }
+    .en { font-family: 'Cormorant Garamond', serif; font-weight: 300; letter-spacing: 0.15em; }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* === ヘッダー === */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+    .site-header .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+    }
+    .site-header nav {
+      display: flex;
+      gap: 40px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .site-header nav a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .site-header nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+    }
+    .site-header nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* === ヒーロー === */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 720px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero/hero-blue.png');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.08);
+      animation: slowZoom 14s ease-out forwards;
+    }
+    @keyframes slowZoom {
+      to { transform: scale(1); }
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.45) 100%);
+    }
+    .hero-inner {
+      position: relative;
+      height: 100%;
+      padding: 0 48px 96px;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+    }
+    .hero-copy {
+      max-width: 680px;
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.4em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 1.2s 0.8s ease-out forwards;
+    }
+    .hero-title {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .hero-title span {
+      display: block;
+      opacity: 0;
+      transform: translateY(32px);
+      animation: fadeUp 1.4s ease-out forwards;
+    }
+    .hero-title span:nth-child(1) { animation-delay: 1.0s; }
+    .hero-title span:nth-child(2) { animation-delay: 1.2s; }
+    .hero-title span:nth-child(3) { animation-delay: 1.4s; }
+    .hero-desc {
+      font-size: 13px;
+      line-height: 2.2;
+      letter-spacing: 0.1em;
+      max-width: 440px;
+      opacity: 0;
+      animation: fadeUp 1.4s 1.6s ease-out forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      right: 48px;
+      writing-mode: vertical-rl;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: #fff;
+      padding-bottom: 60px;
+    }
+    .hero-scroll::after {
+      content: '';
+      position: absolute;
+      right: 50%;
+      bottom: 0;
+      width: 1px;
+      height: 48px;
+      background: #fff;
+      animation: scrollLine 2.4s infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* === セクション共通 === */
+    section { position: relative; }
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.4em;
+      color: var(--ink-60);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .section-label::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--ink-40);
+    }
+    .section-title {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: clamp(26px, 3.6vw, 42px);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* === スクロールアニメ === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* === コンセプト === */
+    .concept {
+      padding: 160px 48px;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .concept .section-label { justify-content: center; }
+    .concept .section-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--ink-40);
+    }
+    .concept-quote {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      line-height: 2;
+      margin-bottom: 48px;
+    }
+    .concept-body {
+      font-size: 13px;
+      line-height: 2.4;
+      letter-spacing: 0.12em;
+      color: var(--ink-60);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* === プロダクト大セクション === */
+    .product {
+      position: relative;
+      padding: 120px 0;
+      background: var(--paper-warm);
+    }
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 0;
+      align-items: center;
+    }
+    .product-visual {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+    .product-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 0 80px;
+    }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.4em;
+      color: var(--ink-60);
+      margin-bottom: 16px;
+    }
+    .product-title {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: clamp(26px, 3vw, 36px);
+      letter-spacing: 0.1em;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .product-desc {
+      font-size: 13px;
+      line-height: 2.3;
+      letter-spacing: 0.1em;
+      color: var(--ink-60);
+      margin-bottom: 48px;
+    }
+    .product-price {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .product-price-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--ink-60);
+    }
+    .product-price-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+    }
+    .product-price-tax {
+      font-size: 11px;
+      color: var(--ink-60);
+      letter-spacing: 0.1em;
+    }
+    .btn-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--ink);
+      transition: gap 0.4s ease;
+    }
+    .btn-line:hover { gap: 28px; }
+    .btn-line::after {
+      content: '→';
+      font-family: sans-serif;
+    }
+
+    /* === 仕様テーブル === */
+    .specs {
+      padding: 120px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .specs-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 80px;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+    .spec-item {
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding-left: 32px;
+      padding-right: 24px;
+    }
+    .spec-item:nth-child(4n) { border-right: none; }
+    .spec-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 12px;
+    }
+    .spec-value {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+    }
+    .spec-value small {
+      display: block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      color: var(--ink-60);
+      margin-top: 4px;
+      letter-spacing: 0.1em;
+    }
+
+    /* === フィーチャー（写真並列） === */
+    .features {
+      padding: 120px 0;
+      background: #fff;
+    }
+    .features-head {
+      padding: 0 48px;
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+    .features-desc {
+      font-size: 13px;
+      line-height: 2.3;
+      letter-spacing: 0.1em;
+      color: var(--ink-60);
+    }
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: 80vh;
+    }
+    .feature-row:nth-child(even) .feature-img-wrap { order: 2; }
+    .feature-row:nth-child(even) .feature-text-wrap { order: 1; }
+    .feature-img-wrap {
+      aspect-ratio: 5 / 4;
+      overflow: hidden;
+    }
+    .feature-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 2s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .feature-row.in .feature-img-wrap img {
+      transform: scale(1.02);
+    }
+    .feature-text-wrap {
+      padding: 0 80px;
+    }
+    .feature-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--ink-40);
+      margin-bottom: 24px;
+    }
+    .feature-title {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: clamp(22px, 2.6vw, 30px);
+      letter-spacing: 0.1em;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .feature-desc {
+      font-size: 13px;
+      line-height: 2.3;
+      letter-spacing: 0.1em;
+      color: var(--ink-60);
+    }
+
+    /* === LED カラーショーケース === */
+    .led {
+      padding: 140px 48px;
+      background: var(--paper-warm);
+    }
+    .led-head {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .led-head .section-label { justify-content: center; }
+    .led-head .section-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--ink-40);
+    }
+    .led-image-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .led-image-wrap img {
+      width: 100%;
+    }
+    .led-captions {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+      max-width: 780px;
+      margin: 48px auto 0;
+      text-align: center;
+    }
+    .led-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* === サポート === */
+    .support {
+      padding: 140px 48px;
+      background: #fff;
+    }
+    .support-head {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+    .support-head .section-label { justify-content: center; }
+    .support-head .section-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--ink-40);
+    }
+    .support-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .support-item {
+      padding: 56px 32px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      text-align: center;
+      transition: background 0.6s ease;
+    }
+    .support-item:last-child { border-right: none; }
+    .support-item:hover { background: var(--paper-warm); }
+    .support-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--ink-40);
+      margin-bottom: 20px;
+    }
+    .support-title {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .support-desc {
+      font-size: 12px;
+      line-height: 2;
+      letter-spacing: 0.1em;
+      color: var(--ink-60);
+      margin-bottom: 24px;
+    }
+
+    /* === フッター === */
+    .site-footer {
+      padding: 120px 48px 48px;
+      background: var(--ink);
+      color: #fff;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+    }
+    .footer-tagline {
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      line-height: 2;
+      color: rgba(255,255,255,0.7);
+    }
+    .footer-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 24px;
+    }
+    .footer-links-col h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+    }
+    .footer-links-col a {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      line-height: 2.4;
+      color: rgba(255,255,255,0.8);
+      transition: color 0.3s ease;
+    }
+    .footer-links-col a:hover { color: #fff; }
+    .footer-bottom {
+      padding-top: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-sns {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-sns a {
+      color: rgba(255,255,255,0.6);
+      transition: color 0.3s;
+    }
+    .footer-sns a:hover { color: #fff; }
+
+    /* === レスポンシブ === */
+    @media (max-width: 900px) {
+      .site-header { padding: 20px 24px; }
+      .site-header nav { gap: 20px; font-size: 10px; }
+      .hero-inner { padding: 0 24px 60px; }
+      .hero-scroll { right: 24px; bottom: 24px; }
+      .concept { padding: 100px 24px; }
+      .product { padding: 80px 0; }
+      .product-layout { grid-template-columns: 1fr; }
+      .product-info { padding: 48px 24px; }
+      .specs { padding: 80px 24px; }
+      .specs-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+      .spec-item:nth-child(4n) { border-right: 1px solid var(--line); }
+      .spec-item:nth-child(2n) { border-right: none; }
+      .features-head { grid-template-columns: 1fr; padding: 0 24px; gap: 24px; }
+      .feature-row { grid-template-columns: 1fr; min-height: auto; }
+      .feature-row:nth-child(even) .feature-img-wrap { order: 0; }
+      .feature-row:nth-child(even) .feature-text-wrap { order: 1; }
+      .feature-text-wrap { padding: 48px 24px; }
+      .led { padding: 80px 24px; }
+      .led-captions { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .support { padding: 80px 24px; }
+      .support-grid { grid-template-columns: 1fr; }
+      .support-item { border-right: none; }
+      .site-footer { padding: 80px 24px 32px; }
+      .footer-top { grid-template-columns: 1fr; padding-bottom: 48px; gap: 32px; }
+      .footer-brand-name { font-size: 36px; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <a href="index.html" class="logo">minotel</a>
+    <nav>
+      <a href="#product">Product</a>
+      <a href="#concept">Concept</a>
+      <a href="support.html">Support</a>
+      <a href="https://minotel.jp/contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-sub">— minotel cloud speaker</div>
+        <h1 class="hero-title">
+          <span>もっと自由に、</span>
+          <span>もっと自分らしく。</span>
+          <span>デスクに、私の空を。</span>
+        </h1>
+        <p class="hero-desc">毎日のデスクに、小さなときめきを。<br>あなたの「好き」で満たされたデスクを、minotelから。</p>
+      </div>
+    </div>
+    <div class="hero-scroll">SCROLL</div>
+  </section>
+
+  <!-- コンセプト -->
+  <section class="concept" id="concept">
+    <div class="section-label reveal">— Concept</div>
+    <p class="concept-quote mincho reveal reveal-delay-1">
+      自分だけの世界観を、<br>
+      デスクに詰め込みたい。
+    </p>
+    <p class="concept-body reveal reveal-delay-2">
+      ゲーミングデスクからテレワーク机まで、<br>
+      「好き」を集めた自分空間が増えています。<br>
+      minotel は、可愛いガジェットやデスクアクセサリーを通じて、<br>
+      毎日の「好き」をもっと深く、もっと豊かに。
+    </p>
+  </section>
+
+  <!-- プロダクト -->
+  <section class="product" id="product">
+    <div class="product-layout">
+      <div class="product-visual reveal">
+        <img src="images/product/floating-blue.png" alt="minotel cloud speaker Pastel Blue">
+      </div>
+      <div class="product-info">
+        <div class="product-name reveal">MCS01 — CLOUD SPEAKER</div>
+        <h2 class="product-title reveal reveal-delay-1">
+          デスクに浮かべる、<br>
+          "私の好き"。
+        </h2>
+        <p class="product-desc reveal reveal-delay-2">
+          雲をモチーフにした、ふたつの雲型スピーカー。<br>
+          可愛いシルエットとLEDの光で、あなたのデスクを優しく彩ります。<br>
+          コンパクトながらUSB給電で手軽に使える、cloud speaker。
+        </p>
+        <div class="product-price reveal reveal-delay-2">
+          <span class="product-price-label">Price</span>
+          <span class="product-price-value">¥15,200</span>
+          <span class="product-price-tax">税込</span>
+        </div>
+        <a href="support-cloudspeaker.html" class="btn-line reveal reveal-delay-3">View Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 仕様 -->
+  <section class="specs">
+    <div class="specs-head">
+      <div>
+        <div class="section-label reveal">— Specifications</div>
+        <h2 class="section-title reveal reveal-delay-1">数字で知る、<br>cloud speaker。</h2>
+      </div>
+      <p class="features-desc reveal reveal-delay-2">
+        52mmスピーカーユニットを採用。<br>
+        USB給電でドライバー不要、<br>
+        パソコンに繋ぐだけで使い始められます。
+      </p>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-item reveal">
+        <div class="spec-label">Driver</div>
+        <div class="spec-value">Φ 52<small>mm ダイナミック型</small></div>
+      </div>
+      <div class="spec-item reveal reveal-delay-1">
+        <div class="spec-label">Output</div>
+        <div class="spec-value">3 W<small>最大 5W / ch</small></div>
+      </div>
+      <div class="spec-item reveal reveal-delay-2">
+        <div class="spec-label">Frequency</div>
+        <div class="spec-value">140 Hz<small>〜 20 kHz</small></div>
+      </div>
+      <div class="spec-item reveal reveal-delay-3">
+        <div class="spec-label">Input</div>
+        <div class="spec-value">USB<small>デジタル音声入力</small></div>
+      </div>
+      <div class="spec-item reveal">
+        <div class="spec-label">LED</div>
+        <div class="spec-value">6 Colors<small>× 5 lighting modes</small></div>
+      </div>
+      <div class="spec-item reveal reveal-delay-1">
+        <div class="spec-label">Voltage</div>
+        <div class="spec-value">DC 5 V<small>4.75 〜 5.25V</small></div>
+      </div>
+      <div class="spec-item reveal reveal-delay-2">
+        <div class="spec-label">Material</div>
+        <div class="spec-value">ABS<small>ラバー塗装</small></div>
+      </div>
+      <div class="spec-item reveal reveal-delay-3">
+        <div class="spec-label">Color</div>
+        <div class="spec-value">2 Tones<small>White / Pastel Blue</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フィーチャー -->
+  <section class="features">
+    <div class="features-head">
+      <div>
+        <div class="section-label reveal">— Features</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          細部まで、<br>
+          デザインしました。
+        </h2>
+      </div>
+      <p class="features-desc reveal reveal-delay-2">
+        見た目の可愛さだけではない、<br>
+        毎日触れるものだからこそのこだわり。
+      </p>
+    </div>
+
+    <div class="feature-list">
+      <div class="feature-row reveal">
+        <div class="feature-img-wrap">
+          <img src="images/lifestyle/dial-01.png" alt="ダイヤルのディテール">
+        </div>
+        <div class="feature-text-wrap">
+          <div class="feature-number">01 / Dial</div>
+          <h3 class="feature-title">触り心地まで、<br>デザインしました。</h3>
+          <p class="feature-desc">
+            ラバー塗装のさらさらとした手触り。<br>
+            適度な抵抗を感じるしっとりとした回し心地。<br>
+            ダイヤルの凹みで、ボリューム位置も分かりやすく。
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-img-wrap">
+          <img src="images/lifestyle/button-01.png" alt="6色LED">
+        </div>
+        <div class="feature-text-wrap">
+          <div class="feature-number">02 / LED</div>
+          <h3 class="feature-title">6色のLEDで、<br>世界観を演出。</h3>
+          <p class="feature-desc">
+            ライトブルー、グリーン、ピンク、パープル、オレンジ、ホワイト。<br>
+            常時点灯からグラデーションまで、5つのライティングモード。<br>
+            電源を切っても設定は自動で保存されます。
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-img-wrap">
+          <img src="images/lifestyle/touch-01.png" alt="後傾設計">
+        </div>
+        <div class="feature-text-wrap">
+          <div class="feature-number">03 / Posture</div>
+          <h3 class="feature-title">約10°の後傾で、<br>音とシルエットを両立。</h3>
+          <p class="feature-desc">
+            約10°後ろに傾いた設計で、音をクリアに届けながら、<br>
+            デスクから見上げたときに雲のシルエットを美しく魅せる。<br>
+            機能と見た目、どちらも妥協しない。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LED カラー -->
+  <section class="led">
+    <div class="led-head">
+      <div class="section-label reveal">— Color Variation</div>
+      <h2 class="section-title reveal reveal-delay-1">推しカラーで、<br>あなたらしく。</h2>
+    </div>
+    <div class="led-image-wrap reveal reveal-delay-2">
+      <img src="images/product/led-colors.png" alt="6色のLEDカラー">
+    </div>
+    <div class="led-captions">
+      <div class="led-caption reveal">Blue</div>
+      <div class="led-caption reveal reveal-delay-1">Green</div>
+      <div class="led-caption reveal reveal-delay-1">Pink</div>
+      <div class="led-caption reveal reveal-delay-2">Purple</div>
+      <div class="led-caption reveal reveal-delay-2">Orange</div>
+      <div class="led-caption reveal reveal-delay-3">White</div>
+    </div>
+  </section>
+
+  <!-- サポート -->
+  <section class="support">
+    <div class="support-head">
+      <div class="section-label reveal">— Support</div>
+      <h2 class="section-title reveal reveal-delay-1">お困りの際は、<br>こちらから。</h2>
+    </div>
+    <div class="support-grid">
+      <a href="https://minotel.jp/contact" class="support-item reveal">
+        <div class="support-num">01</div>
+        <h3 class="support-title">お問い合わせ</h3>
+        <p class="support-desc">ご購入前のご相談から<br>サポートまで</p>
+      </a>
+      <a href="https://minotel.jp/faq" class="support-item reveal reveal-delay-1">
+        <div class="support-num">02</div>
+        <h3 class="support-title">よくあるご質問</h3>
+        <p class="support-desc">ご注文・配送・商品について<br>よくいただくご質問</p>
+      </a>
+      <a href="support.html" class="support-item reveal reveal-delay-2">
+        <div class="support-num">03</div>
+        <h3 class="support-title">製品マニュアル</h3>
+        <p class="support-desc">使い方・お手入れ方法<br>仕様について</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">minotel</div>
+          <p class="footer-tagline">
+            毎日のデスクを、<br>
+            もっと可愛く彩る。
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-col">
+            <h4>— Shop</h4>
+            <a href="https://minotel.jp">Home</a>
+            <a href="https://minotel.jp/shop">Shop</a>
+            <a href="support.html">Support</a>
+          </div>
+          <div class="footer-links-col">
+            <h4>— About</h4>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="shipping.html">配送ポリシー</a>
+            <a href="terms.html">利用規約</a>
+            <a href="refund.html">返金ポリシー</a>
+            <a href="https://minotel.jp/contact">お問い合わせ</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 minotel. All rights reserved.</div>
+        <div class="footer-sns">
+          <a href="#">Instagram</a>
+          <a href="#">X</a>
+          <a href="#">YouTube</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // スクロール連動リビール
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+    document.querySelectorAll('.reveal, .feature-row').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
