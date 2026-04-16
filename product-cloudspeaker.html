@@ -791,23 +791,29 @@
       .intro { min-height: 520px; max-height: 680px; padding: 80px 24px 100px; }
       .intro-quote { font-size: clamp(22px, 6vw, 32px); line-height: 1.8; }
 
-      .specs-wrap { padding: 80px 24px 70px; }
-      .specs-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
-      .specs-title { font-size: clamp(20px, 5.4vw, 28px) !important; white-space: normal; }
+      .specs-wrap { padding: 56px 16px 48px; }
+      .specs-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+      .specs-title { font-size: clamp(20px, 5.4vw, 28px) !important; white-space: normal; margin-bottom: 16px !important; }
+      .specs-desc { font-size: 13px; }
       .specs-grid { grid-template-columns: 1fr 1fr; }
-      .spec-item { padding: 24px 16px 20px; }
+      .spec-item { padding: 16px 12px 14px; }
       .spec-item:nth-child(4n) { border-right: 1px solid var(--line); }
       .spec-item:nth-child(2n) { border-right: none; }
-      .spec-value { font-size: 17px; }
+      .spec-label { font-size: 10px; margin-bottom: 6px; }
+      .spec-value { font-size: 15px; }
+      .spec-value small { font-size: 10px; margin-top: 2px; }
+      .specs-more { margin-top: 28px !important; }
 
-      .features { padding: 80px 0; }
-      .features-head { padding: 0 24px; margin-bottom: 60px; }
-      .features-head-title { font-size: clamp(24px, 6vw, 32px); }
-      .feature-row { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; margin-bottom: 64px; }
+      .features { padding: 56px 0 48px; }
+      .features-head { padding: 0 20px; margin-bottom: 36px; }
+      .features-head-title { font-size: clamp(22px, 5.8vw, 28px); margin-bottom: 16px; }
+      .features-head-desc { font-size: 12px; }
+      .feature-row { grid-template-columns: 1fr; gap: 20px; padding: 0 20px; margin-bottom: 48px; }
       .feature-row:nth-child(odd) .feature-img-wrap { order: 0; }
       .feature-row:nth-child(odd) .feature-text-wrap { order: 1; }
-      .feature-title { font-size: clamp(22px, 5.6vw, 28px); }
-      .feature-desc { font-size: 13px; }
+      .feature-number { font-size: 11px; margin-bottom: 12px; }
+      .feature-title { font-size: clamp(20px, 5.2vw, 26px); margin-bottom: 12px; }
+      .feature-desc { font-size: 12px; line-height: 1.9; }
 
       .led-stage { aspect-ratio: 3 / 4; max-height: none; }
       .led-text { padding: 28px 16px; }
@@ -817,12 +823,19 @@
       .led-sub { font-size: 12px; margin-top: 16px; }
       .led-sub-en { font-size: 10px; letter-spacing: 0.08em; }
 
-      .buy { padding: 80px 20px; }
-      .buy-title { font-size: clamp(20px, 5.4vw, 26px); }
-      .buy-price-value { font-size: clamp(42px, 11vw, 56px); }
-      .buy-options { grid-template-columns: 1fr; gap: 20px; }
-      .buy-card { padding: 32px 24px; }
-      .buy-card-title { font-size: 18px; }
+      .buy { padding: 56px 16px 48px; }
+      .buy-label { font-size: 11px; }
+      .buy-title { font-size: clamp(18px, 5vw, 24px); margin-bottom: 24px; }
+      .buy-price { margin-bottom: 40px; }
+      .buy-price-value { font-size: clamp(38px, 10vw, 50px); }
+      .buy-options { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .buy-card { padding: 20px 16px; }
+      .buy-card-badge { padding: 5px 10px; font-size: 9px; }
+      .buy-card-title { font-size: 14px; margin-top: 20px; margin-bottom: 16px; }
+      .buy-perks li { font-size: 11px; padding: 6px 0 6px 18px; line-height: 1.7; }
+      .buy-perks small { font-size: 9px; }
+      .buy-btn { padding: 14px 16px; font-size: 12px; gap: 8px; }
+      .buy-note { font-size: 10px; margin-top: 24px; }
     }
     @media (max-width: 500px) {
       .hero { height: 540px; min-height: 480px; }
@@ -837,34 +850,40 @@
       .intro { min-height: 440px; max-height: 560px; padding: 56px 20px 64px; }
       .intro-quote { font-size: 20px; line-height: 1.8; }
 
-      .specs-wrap { padding: 60px 16px 52px; }
-      .specs-title { font-size: 20px !important; }
-      .specs-grid { grid-template-columns: 1fr; }
-      .spec-item:nth-child(2n) { border-right: none; }
-      .spec-item { padding: 20px 12px 16px; }
-      .spec-value { font-size: 16px; }
+      .specs-wrap { padding: 48px 14px 40px; }
+      .specs-title { font-size: 18px !important; }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+      .spec-item { padding: 14px 10px 12px; }
+      .spec-label { font-size: 9px; letter-spacing: 0.12em; margin-bottom: 4px; }
+      .spec-value { font-size: 14px; }
+      .spec-value small { font-size: 9px; }
 
-      .features { padding: 56px 0; }
-      .features-head { margin-bottom: 40px; }
-      .features-head-title { font-size: 22px; }
-      .features-head-desc { font-size: 12px; }
-      .feature-row { gap: 24px; padding: 0 20px; margin-bottom: 48px; }
-      .feature-title { font-size: 20px; }
-      .feature-desc { font-size: 12px; }
+      .features { padding: 48px 0; }
+      .features-head { margin-bottom: 28px; padding: 0 16px; }
+      .features-head-title { font-size: 20px; margin-bottom: 12px; }
+      .features-head-desc { font-size: 11px; }
+      .feature-row { gap: 16px; padding: 0 16px; margin-bottom: 36px; }
+      .feature-title { font-size: 18px; margin-bottom: 8px; }
+      .feature-desc { font-size: 11px; line-height: 1.85; }
 
       .led-stage { aspect-ratio: 3 / 5; }
-      .led-text { padding: 24px 14px; }
-      .led-title { font-size: 20px; line-height: 1.55; }
-      .led-sub { font-size: 11px; line-height: 1.85; margin-top: 14px; }
-      .led-sub-en { font-size: 9px; letter-spacing: 0.05em; line-height: 1.6; }
+      .led-text { padding: 20px 12px; }
+      .led-title { font-size: 18px; line-height: 1.55; }
+      .led-sub { font-size: 10px; line-height: 1.8; margin-top: 12px; }
+      .led-sub-en { font-size: 8px; letter-spacing: 0.04em; line-height: 1.5; }
 
-      .buy { padding: 56px 16px; }
-      .buy-title { font-size: 18px; }
-      .buy-price-value { font-size: 40px; }
-      .buy-btn { padding: 16px 24px; font-size: 14px; }
-      .buy-card { padding: 28px 20px; }
-      .buy-perks li { font-size: 12px; padding: 8px 0 8px 20px; }
-      .buy-perks small { font-size: 10px; }
+      .buy { padding: 48px 12px 40px; }
+      .buy-title { font-size: 16px; margin-bottom: 20px; }
+      .buy-price { margin-bottom: 32px; }
+      .buy-price-value { font-size: 36px; }
+      .buy-options { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .buy-card { padding: 16px 12px; }
+      .buy-card-badge { padding: 4px 8px; font-size: 8px; }
+      .buy-card-title { font-size: 13px; margin-top: 16px; margin-bottom: 12px; }
+      .buy-btn { padding: 12px 12px; font-size: 11px; gap: 6px; }
+      .buy-perks li { font-size: 10px; padding: 4px 0 4px 16px; line-height: 1.65; }
+      .buy-perks small { font-size: 8px; line-height: 1.5; }
+      .buy-note { font-size: 9px; margin-top: 20px; }
     }
   </style>
 </head>
