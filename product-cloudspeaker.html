@@ -831,9 +831,9 @@
       .buy-options { grid-template-columns: 1fr 1fr; gap: 12px; }
       .buy-card { padding: 20px 16px; }
       .buy-card-badge { padding: 5px 10px; font-size: 9px; }
-      .buy-card-title { font-size: 14px; margin-top: 20px; margin-bottom: 16px; }
-      .buy-perks li { font-size: 11px; padding: 6px 0 6px 18px; line-height: 1.7; }
-      .buy-perks small { font-size: 9px; }
+      .buy-card-title { font-size: 14px; margin-top: 20px; margin-bottom: 14px; }
+      .buy-perks li { font-size: 12px; padding: 5px 0 5px 18px; line-height: 1.65; }
+      .buy-perks small { font-size: 9px; display: block; }
       .buy-btn { padding: 14px 16px; font-size: 12px; gap: 8px; }
       .buy-note { font-size: 10px; margin-top: 24px; }
     }
@@ -877,13 +877,15 @@
       .buy-price { margin-bottom: 32px; }
       .buy-price-value { font-size: 36px; }
       .buy-options { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .buy-card { padding: 16px 12px; }
-      .buy-card-badge { padding: 4px 8px; font-size: 8px; }
-      .buy-card-title { font-size: 13px; margin-top: 16px; margin-bottom: 12px; }
-      .buy-btn { padding: 12px 12px; font-size: 11px; gap: 6px; }
-      .buy-perks li { font-size: 10px; padding: 4px 0 4px 16px; line-height: 1.65; }
-      .buy-perks small { font-size: 8px; line-height: 1.5; }
-      .buy-note { font-size: 9px; margin-top: 20px; }
+      .buy-card { padding: 14px 10px; }
+      .buy-card-badge { padding: 3px 8px; font-size: 8px; }
+      .buy-card-title { font-size: 12px; margin-top: 14px; margin-bottom: 10px; }
+      .buy-btn { padding: 10px 10px; font-size: 10px; gap: 4px; }
+      .buy-perks { margin-bottom: 20px; }
+      .buy-perks li { font-size: 11px; padding: 4px 0 4px 14px; line-height: 1.6; white-space: nowrap; border-bottom: none; }
+      .buy-perks li::before { top: 12px; }
+      .buy-perks small { display: none; }
+      .buy-note { font-size: 9px; margin-top: 16px; }
     }
   </style>
 </head>
