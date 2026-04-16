@@ -273,7 +273,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('images/hero/bg-pink-desk.png') no-repeat center 80%;
+      background: url('images/hero/bg-pink-desk.png') no-repeat center 72%;
       background-size: cover;
       opacity: 0.45;
       z-index: 0;
@@ -534,10 +534,10 @@
     .led-stage {
       position: relative;
       width: 100%;
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
       aspect-ratio: 2400 / 1686;
-      max-height: 600px;
+      max-height: 760px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -714,6 +714,12 @@
       font-size: 11px;
       color: var(--ink-60);
       margin-top: 2px;
+    }
+    .perk-highlight {
+      font-weight: 500;
+      color: var(--ink);
+      background: linear-gradient(180deg, transparent 60%, rgba(191, 236, 255, 0.4) 60%);
+      padding: 0 2px;
     }
     .buy-btn {
       display: inline-flex;
@@ -902,8 +908,8 @@
     <div class="intro-inner">
       <div class="section-label reveal">— Product</div>
       <p class="intro-quote reveal reveal-delay-1">
-        毎日のデスクを<br>
-        もっと可愛く彩る
+        「毎日のデスクを<br>
+        もっと可愛く彩る」
       </p>
     </div>
   </section>
@@ -1055,11 +1061,11 @@
           <h3 class="buy-card-title">公式サイトで購入</h3>
           <ul class="buy-perks">
             <li>
-              ギフトラッピング 無料
+              <span class="perk-highlight">ギフトラッピング 無料</span>
               <small>大切な人への贈り物にも。</small>
             </li>
             <li>
-              全国送料無料
+              <span class="perk-highlight">全国送料無料</span>
               <small>本州・四国・九州・北海道 (沖縄・離島を除く)</small>
             </li>
             <li>
