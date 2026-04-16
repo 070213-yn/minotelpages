@@ -534,8 +534,6 @@
     .led-stage {
       position: relative;
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
       aspect-ratio: 2400 / 1686;
       max-height: 760px;
       display: flex;
@@ -618,35 +616,48 @@
     .buy-label {
       font-family: 'Noto Sans JP', sans-serif;
       font-weight: 500;
-      font-size: 12px;
-      letter-spacing: 0.22em;
+      font-size: 11px;
+      letter-spacing: 0.24em;
       color: var(--ink-60);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    .buy-divider {
+      width: 48px;
+      height: 1px;
+      background: var(--ink-40);
+      margin: 0 auto 20px;
     }
     .buy-title {
-      font-family: 'Kiwi Maru', serif;
-      font-weight: 500;
-      font-size: clamp(22px, 2.6vw, 28px);
-      letter-spacing: 0.04em;
-      margin-bottom: 32px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(22px, 2.8vw, 32px);
+      letter-spacing: 0.06em;
+      margin-bottom: 36px;
       color: var(--ink);
     }
     .buy-price {
       display: flex;
       justify-content: center;
       align-items: baseline;
-      gap: 12px;
-      margin-bottom: 80px;
+      gap: 14px;
+      margin-bottom: 16px;
     }
     .buy-price-value {
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: clamp(48px, 6vw, 64px);
-      font-weight: 300;
+      font-size: clamp(48px, 6vw, 68px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
     }
     .buy-price-tax {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--ink-60);
       letter-spacing: 0.04em;
+    }
+    .buy-shipping-note {
+      font-size: 12px;
+      color: var(--ink-60);
+      letter-spacing: 0.06em;
+      margin-bottom: 64px;
     }
 
     .buy-options {
@@ -1030,7 +1041,7 @@
       <div class="led-bg"></div>
       <div class="led-overlay-white"></div>
       <div class="led-text">
-        <div class="led-label reveal">Color Variation</div>
+        <!-- Color Variation ラベル削除 -->
         <h2 class="led-title reveal reveal-delay-1">推しカラーで、<br>あなたらしく。</h2>
         <p class="led-sub reveal reveal-delay-2">
           6色のLEDで、あなたの世界観を自由に。
@@ -1048,11 +1059,13 @@
     </svg>
     <div class="buy-inner">
       <div class="buy-label reveal">MCS01</div>
+      <div class="buy-divider reveal"></div>
       <h2 class="buy-title reveal reveal-delay-1">minotel cloud speaker</h2>
       <div class="buy-price reveal reveal-delay-2">
         <span class="buy-price-value">¥15,200</span>
         <span class="buy-price-tax">税込</span>
       </div>
+      <div class="buy-shipping-note reveal reveal-delay-2">全国送料無料 ・ ギフトラッピング無料</div>
 
       <div class="buy-options">
         <!-- 公式サイト -->
@@ -1086,7 +1099,7 @@
           <h3 class="buy-card-title">Amazon で購入</h3>
           <ul class="buy-perks">
             <li>
-              Prime 対応
+              <span class="perk-highlight">Prime 対応</span>
               <small>最短翌日でお届け。</small>
             </li>
             <li>
