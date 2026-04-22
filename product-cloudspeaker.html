@@ -74,8 +74,8 @@
     .hero {
       position: relative;
       width: 100%;
-      min-height: 820px;
-      max-height: 1000px;
+      min-height: 580px;
+      max-height: 720px;
       overflow: hidden;
       background:
         radial-gradient(ellipse 80% 60% at 50% 35%, #fdfcfa 0%, transparent 55%),
@@ -83,7 +83,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 130px 24px 80px;
+      justify-content: center;
+      padding: 90px 24px 50px;
+      gap: 18px;
     }
     /* 背景のソフトな光 */
     .hero-glow {
@@ -129,10 +131,10 @@
     .hero-visual {
       position: relative;
       z-index: 4;
-      flex: 1;
+      flex: 0 1 auto;
       width: 100%;
-      max-width: 980px;
-      margin: 28px auto 0;
+      max-width: 560px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -140,10 +142,12 @@
     }
     .hero-visual img {
       width: 100%;
+      max-height: 360px;
       height: auto;
+      object-fit: contain;
       display: block;
-      border-radius: 28px;
-      filter: drop-shadow(0 30px 60px rgba(120, 140, 175, 0.28));
+      border-radius: 24px;
+      filter: drop-shadow(0 24px 48px rgba(120, 140, 175, 0.25));
     }
     @keyframes heroFloat {
       0%, 100% { transform: translateY(0); }
@@ -167,17 +171,17 @@
     .hero-mcs {
       font-family: 'Noto Sans JP', sans-serif;
       font-weight: 500;
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.28em;
       color: var(--ink-60);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
     .hero-name {
       font-family: 'Klee One', 'Kiwi Maru', serif;
-      font-size: clamp(26px, 4.6vw, 46px);
+      font-size: clamp(22px, 3.6vw, 36px);
       font-weight: 600;
       letter-spacing: 0.04em;
-      line-height: 1.3;
+      line-height: 1.25;
       color: var(--ink);
     }
     .hero-catch {
@@ -185,12 +189,11 @@
       z-index: 5;
       text-align: center;
       flex-shrink: 0;
-      margin-top: 32px;
       font-family: 'Kiwi Maru', 'Klee One', serif;
       font-weight: 500;
-      font-size: clamp(17px, 2.2vw, 22px);
+      font-size: clamp(15px, 1.8vw, 19px);
       letter-spacing: 0.08em;
-      line-height: 1.85;
+      line-height: 1.75;
       color: var(--ink);
     }
 
@@ -737,12 +740,12 @@
        レスポンシブ
        ============================================ */
     @media (max-width: 900px) {
-      .hero { min-height: 660px; max-height: 820px; padding: 100px 16px 60px; }
-      .hero-visual { margin-top: 20px; max-width: 92vw; }
-      .hero-visual img { border-radius: 20px; }
-      .hero-mcs { font-size: 10px; margin-bottom: 10px; letter-spacing: 0.24em; }
-      .hero-name { font-size: clamp(22px, 5.4vw, 36px); }
-      .hero-catch { margin-top: 22px; font-size: clamp(15px, 3.8vw, 18px); line-height: 1.8; }
+      .hero { min-height: 520px; max-height: 640px; padding: 70px 16px 40px; gap: 14px; }
+      .hero-visual { max-width: 88vw; }
+      .hero-visual img { border-radius: 18px; max-height: 280px; }
+      .hero-mcs { font-size: 10px; margin-bottom: 8px; letter-spacing: 0.24em; }
+      .hero-name { font-size: clamp(20px, 4.8vw, 30px); }
+      .hero-catch { font-size: clamp(14px, 3.4vw, 17px); line-height: 1.7; }
       .hero-scroll { display: none; }
 
       /* 雲エッジをモバイルで縮小（三角スパイク防止） */
@@ -796,12 +799,12 @@
       .buy-note { font-size: 10px; margin-top: 24px; }
     }
     @media (max-width: 500px) {
-      .hero { min-height: 560px; max-height: 700px; padding: 80px 12px 50px; }
-      .hero-visual { margin-top: 14px; max-width: 96vw; }
-      .hero-visual img { border-radius: 16px; }
-      .hero-mcs { font-size: 9px; margin-bottom: 8px; letter-spacing: 0.22em; }
-      .hero-name { font-size: 22px; }
-      .hero-catch { margin-top: 16px; font-size: 14px; line-height: 1.75; padding: 0 12px; }
+      .hero { min-height: 460px; max-height: 580px; padding: 60px 12px 32px; gap: 12px; }
+      .hero-visual { max-width: 94vw; }
+      .hero-visual img { border-radius: 14px; max-height: 230px; }
+      .hero-mcs { font-size: 9px; margin-bottom: 6px; letter-spacing: 0.22em; }
+      .hero-name { font-size: 20px; }
+      .hero-catch { font-size: 13px; line-height: 1.7; padding: 0 12px; }
 
       .cloud-edge { height: 40px !important; }
       .cloud-edge-rise { height: 40px !important; }
