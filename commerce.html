@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>特定商取引法に基づく表記 | minotel</title>
+  <meta name="description" content="minotel 特定商取引法に基づく表記。販売業者の情報、支払方法、返品条件等をご案内します。">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    html { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+    body { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+    * { scrollbar-width: none; -ms-overflow-style: none; }
+    :root {
+      --ink: #2b2a33;
+      --ink-60: rgba(43, 42, 51, 0.72);
+      --ink-80: rgba(43, 42, 51, 0.85);
+      --ink-40: rgba(43, 42, 51, 0.42);
+      --paper: #fbfaf7;
+      --paper-warm: #f5f2ec;
+      --sky-1: #e8f2fb;
+      --sky-2: #d6e8f6;
+      --sky-3: #f5e6ee;
+      --line: rgba(43, 42, 51, 0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: var(--ink); background: var(--paper); line-height: 1.9; letter-spacing: 0.02em; }
+    a { color: inherit; text-decoration: none; }
+
+    .hero { position: relative; width: 100%; height: 480px; min-height: 420px; max-height: 560px; overflow: hidden; background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 50%, var(--sky-3) 100%); }
+    .hero::before { content: ''; position: absolute; inset: -20%; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.7) 0%, transparent 40%), radial-gradient(circle at 75% 65%, rgba(255,255,220,0.3) 0%, transparent 45%); }
+    .cloud-layer { position: absolute; inset: 0; pointer-events: none; }
+    .cloud { position: absolute; left: 0; aspect-ratio: 1280 / 822; background-image: url('images/svg/cloud-white.svg'); background-repeat: no-repeat; background-size: contain; filter: drop-shadow(0 20px 40px rgba(107, 140, 180, 0.2)); }
+    .cloud-a { top: 14%; width: 360px; opacity: 0.5; animation: drift 70s linear infinite -10s; }
+    .cloud-b { top: 60%; width: 460px; opacity: 0.38; animation: drift 90s linear infinite -50s; }
+    .cloud-c { top: 32%; width: 240px; opacity: 0.82; animation: drift 52s linear infinite -25s; }
+    .cloud-d { top: 78%; width: 300px; opacity: 0.58; animation: drift 64s linear infinite -38s; }
+    .cloud-e { top: 8%;  width: 540px; opacity: 0.28; animation: drift 100s linear infinite -70s; }
+    @keyframes drift { from { transform: translateX(-110%); } to { transform: translateX(calc(100vw + 10%)); } }
+
+    .hero-inner { position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 24px; text-align: center; }
+    .hero-label { font-family: 'Noto Sans JP', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.22em; color: var(--ink-80); margin-bottom: 22px; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 6vw, 80px); font-weight: 300; letter-spacing: 0.06em; line-height: 1.1; color: var(--ink); text-shadow: 0 4px 30px rgba(255,255,255,0.9); }
+    .hero-sub { font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: clamp(14px, 1.6vw, 18px); letter-spacing: 0.08em; color: var(--ink-80); margin-top: 24px; }
+
+    main { padding: 140px 48px 120px; background: var(--paper); }
+    .doc-wrap { max-width: 900px; margin: 0 auto; }
+    .doc-intro { padding-bottom: 40px; margin-bottom: 56px; border-bottom: 1px solid var(--line); }
+    .doc-lead { font-size: 15px; line-height: 2.05; color: var(--ink-80); }
+    .doc-lead strong { color: var(--ink); font-weight: 500; }
+
+    /* Specified Commercial Transactions Table */
+    .sctl-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-top: 1px solid var(--line);
+    }
+    .sctl-table tr {
+      border-bottom: 1px solid var(--line);
+    }
+    .sctl-table th {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      color: var(--ink-60);
+      text-align: left;
+      padding: 24px 32px 24px 0;
+      vertical-align: top;
+      width: 30%;
+      min-width: 180px;
+    }
+    .sctl-table td {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--ink);
+      padding: 24px 0;
+      vertical-align: top;
+    }
+    .sctl-table td strong { font-weight: 500; color: var(--ink); }
+    .sctl-table td small {
+      display: block;
+      font-size: 12px;
+      color: var(--ink-60);
+      margin-top: 6px;
+      line-height: 1.8;
+    }
+    .sctl-table td a {
+      color: var(--ink);
+      border-bottom: 1px solid var(--ink-40);
+    }
+    .sctl-table ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sctl-table li {
+      padding: 2px 0 2px 14px;
+      position: relative;
+    }
+    .sctl-table li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 14px;
+      width: 6px;
+      height: 1px;
+      background: var(--ink-60);
+    }
+
+    .contact { padding: 120px 48px; background: var(--paper-warm); text-align: center; }
+    .contact-label { font-family: 'Noto Sans JP', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.16em; color: var(--ink-60); margin-bottom: 22px; }
+    .contact-title { font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: clamp(22px, 3vw, 30px); letter-spacing: 0.02em; line-height: 1.7; margin-bottom: 28px; }
+    .contact-email { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.12em; color: var(--ink); padding-bottom: 6px; border-bottom: 1px solid var(--ink); }
+
+    @media (max-width: 900px) {
+      .hero { height: 380px; min-height: 340px; }
+      .hero-title { font-size: clamp(32px, 9vw, 56px); }
+      .cloud-a { width: 220px; } .cloud-b { width: 300px; } .cloud-c { width: 160px; } .cloud-d { width: 200px; } .cloud-e { width: 340px; }
+      main { padding: 72px 24px 60px; }
+      .doc-intro { padding-bottom: 32px; margin-bottom: 40px; }
+      .sctl-table th { font-size: 13px; padding: 18px 16px 18px 0; min-width: 120px; }
+      .sctl-table td { font-size: 13px; padding: 18px 0; }
+      .contact { padding: 64px 24px; }
+    }
+    @media (max-width: 600px) {
+      .hero { height: 320px; min-height: 280px; }
+      .hero-title { font-size: 32px; }
+      .hero-sub { font-size: 12px; }
+      main { padding: 56px 20px 48px; }
+      .sctl-table { display: block; border-top: none; }
+      .sctl-table tbody, .sctl-table tr { display: block; }
+      .sctl-table tr { padding: 20px 0; border-bottom: 1px solid var(--line); }
+      .sctl-table th, .sctl-table td { display: block; width: auto; padding: 0; }
+      .sctl-table th { font-size: 11px; letter-spacing: 0.12em; color: var(--ink-60); margin-bottom: 8px; min-width: 0; }
+      .sctl-table td { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="cloud-layer">
+      <div class="cloud cloud-e"></div>
+      <div class="cloud cloud-a"></div>
+      <div class="cloud cloud-b"></div>
+      <div class="cloud cloud-c"></div>
+      <div class="cloud cloud-d"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-label">— Commerce Disclosure</div>
+      <h1 class="hero-title">特定商取引法に<br>基づく表記</h1>
+      <p class="hero-sub">Act on Specified Commercial Transactions</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="doc-wrap">
+      <div class="doc-intro">
+        <p class="doc-lead">
+          minotel は、<strong>特定商取引法第11条</strong>に基づき、以下の内容を表示いたします。<br>
+          ご不明な点は、下記お問い合わせ先までご連絡ください。
+        </p>
+      </div>
+
+      <table class="sctl-table">
+        <tr>
+          <th>販売業者の名称</th>
+          <td>minotel</td>
+        </tr>
+        <tr>
+          <th>運営統括責任者</th>
+          <td>[お名前をここに記入]<small>※ 個人事業主として運営。代表者の本名をご記入ください。</small></td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>〒251-0042<br>神奈川県藤沢市辻堂新町1丁目16番11号<br>パークハウス湘南辻堂104号室</td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>070-4488-2326<small>※ 営業時間: 平日 10:00 〜 17:00（土日祝休）</small></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><a href="mailto:info@minotel.jp">info@minotel.jp</a></td>
+        </tr>
+        <tr>
+          <th>ウェブサイトURL</th>
+          <td><a href="https://www.minotel.jp">https://www.minotel.jp</a></td>
+        </tr>
+        <tr>
+          <th>販売価格</th>
+          <td>各商品ページに税込価格で表示しております。<small>minotel cloud speaker (MCS01): ¥15,200（税込）</small></td>
+        </tr>
+        <tr>
+          <th>商品代金以外の必要料金</th>
+          <td>
+            <ul>
+              <li>消費税: 販売価格に含まれています</li>
+              <li>送料: 本州・四国・九州・北海道は無料 / 沖縄・離島は 800円（税込）</li>
+              <li>振込手数料: お客様のご負担となります（銀行振込をご利用の場合）</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>お支払い方法</th>
+          <td>
+            <ul>
+              <li>クレジットカード決済（Visa / Mastercard / JCB / American Express）</li>
+              <li>PayPay</li>
+              <li>Apple Pay / Google Pay</li>
+              <li>銀行振込</li>
+              <li>コンビニ決済</li>
+            </ul>
+            <small>※ 実際にご利用いただける決済方法は、ご注文画面にてご確認ください。</small>
+          </td>
+        </tr>
+        <tr>
+          <th>お支払い時期</th>
+          <td>
+            <ul>
+              <li>クレジットカード決済: ご注文確定時に即時決済</li>
+              <li>PayPay / Apple Pay / Google Pay: ご注文確定時に即時決済</li>
+              <li>銀行振込: ご注文後7日以内にお振込みください</li>
+              <li>コンビニ決済: ご注文後7日以内にお支払いください</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>商品の引渡時期</th>
+          <td>
+            ご注文確認後（銀行振込・コンビニ決済の場合は入金確認後）、<strong>2〜5営業日以内</strong>に発送いたします。<br>
+            発送後、お届けまでに地域により1〜3日程度かかります（離島・一部地域を除く）。
+            <small>※ 年末年始・大型連休等は発送が遅れる場合があります。</small>
+          </td>
+        </tr>
+        <tr>
+          <th>返品・交換について</th>
+          <td>
+            <strong>初期不良・商品の瑕疵（開封後も対象）</strong><br>
+            商品到着後14日以内にご連絡いただいた場合、送料当方負担にて返品・交換または返金を承ります。
+            <br><br>
+            <strong>お客様都合による返品</strong><br>
+            商品到着後8日以内かつ未開封・未使用の場合に限り、送料お客様負担にてお受けいたします。
+            <br><br>
+            <strong>返品をお受けできない場合</strong>
+            <ul>
+              <li>商品到着後14日を超えた初期不良のご連絡</li>
+              <li>商品到着後8日を超えたお客様都合の返品</li>
+              <li>お客様の使用による傷・汚れ・破損</li>
+              <li>お客様による改造・分解後の商品</li>
+              <li>開封後のお客様都合による返品</li>
+            </ul>
+            <small>※ 詳細は <a href="https://www.minotel.jp/refund">返金ポリシー</a> をご確認ください。</small>
+          </td>
+        </tr>
+        <tr>
+          <th>メーカー保証</th>
+          <td>
+            ご購入日から<strong>12ヶ月間</strong>のメーカー保証付き。
+            保証期間内に通常使用において故障が発生した場合、無償修理または交換にて対応いたします。
+            <small>※ お客様の過失による破損、改造・分解、水濡れ、落下による故障は対象外。</small>
+          </td>
+        </tr>
+        <tr>
+          <th>動作環境</th>
+          <td>
+            <strong>minotel cloud speaker (MCS01)</strong>
+            <ul>
+              <li>USB Type-A ポートを搭載した Windows / Mac / Linux</li>
+              <li>動作電圧: DC 5V (4.75 〜 5.25V)</li>
+              <li>USB 3.2 以上、または独立給電のUSBハブを推奨</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </main>
+
+  <section class="contact">
+    <div class="contact-label">— Contact</div>
+    <h2 class="contact-title">ご不明な点はお気軽に<br>お問い合わせください</h2>
+    <a href="mailto:info@minotel.jp" class="contact-email">info@minotel.jp</a>
+  </section>
+
+</body>
+</html>
