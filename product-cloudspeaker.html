@@ -164,17 +164,23 @@
       pointer-events: none;
     }
 
-    /* ===== 中央メイン（pink） ===== */
+    /* ===== 中央メイン（pink）：中央付近でゆっくり左右に揺れる ===== */
     .cs-main {
       top: 50%;
       left: 50%;
       width: 28%;
-      transform: translate(calc(-50% + var(--px) * 16px), calc(-50% + var(--py) * 12px));
       z-index: 8;
       filter: drop-shadow(0 20px 30px rgba(120, 130, 160, 0.35)) drop-shadow(0 0 28px rgba(255, 150, 190, 0.55));
+      animation: driftMain 28s ease-in-out infinite;
     }
     .cs-main .cs-inner {
       animation: floatMain 11s ease-in-out infinite;
+    }
+    /* メイン専用：中央でゆらゆら */
+    @keyframes driftMain {
+      0%   { transform: translate(-58%, -50%); }
+      50%  { transform: translate(-42%, -50%); }
+      100% { transform: translate(-58%, -50%); }
     }
     /* ===== サブ群（左→右に流れる：transformでGPU処理） ===== */
     .cs-white {
