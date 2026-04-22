@@ -114,28 +114,28 @@
     }
     .hero-bg-clouds .bg-cloud {
       position: absolute;
-      opacity: 0.55;
-      filter: blur(1px);
-      animation: drift linear infinite;
+      opacity: 0.5;
+      animation: bgDrift linear infinite;
     }
-    .hero-bg-clouds .bg-cloud:nth-child(1) { top: 14%; left: -10%; width: 320px; animation-duration: 70s; opacity: 0.45; }
-    .hero-bg-clouds .bg-cloud:nth-child(2) { top: 38%; left: -16%; width: 220px; animation-duration: 95s; animation-delay: -30s; opacity: 0.32; }
-    .hero-bg-clouds .bg-cloud:nth-child(3) { top: 68%; left: -8%;  width: 380px; animation-duration: 85s; animation-delay: -55s; opacity: 0.4; }
-    @keyframes drift {
-      from { transform: translateX(0); }
-      to   { transform: translateX(140vw); }
+    .hero-bg-clouds .bg-cloud:nth-child(1) { top: 14%; width: 280px; animation-duration: 90s; }
+    .hero-bg-clouds .bg-cloud:nth-child(2) { top: 42%; width: 200px; animation-duration: 120s; animation-delay: -38s; opacity: 0.3; }
+    .hero-bg-clouds .bg-cloud:nth-child(3) { top: 70%; width: 340px; animation-duration: 105s; animation-delay: -65s; opacity: 0.36; }
+    @keyframes bgDrift {
+      from { transform: translateX(-30vw); }
+      to   { transform: translateX(130vw); }
     }
 
     /* ====== 浮遊シーン本体 ====== */
     .hero-stage {
       position: relative;
-      width: min(96vw, 1180px);
-      aspect-ratio: 16 / 10;
-      margin: 18px auto 8px;
+      width: 100%;
+      max-width: 1400px;
+      aspect-ratio: 16 / 9;
+      margin: 16px auto 8px;
       z-index: 4;
-      perspective: 1200px;
       --px: 0;
       --py: 0;
+      overflow: visible;
     }
     .cloud-speaker {
       position: absolute;
@@ -144,7 +144,7 @@
     .cs-inner {
       position: relative;
       width: 100%;
-      will-change: transform, filter;
+      transform: translateZ(0);
     }
     .cs-inner img {
       width: 100%;
@@ -155,12 +155,11 @@
     .cs-shadow {
       position: absolute;
       left: 50%;
-      bottom: -8%;
-      width: 78%;
-      height: 14%;
+      bottom: -6%;
+      width: 70%;
+      height: 12%;
       transform: translateX(-50%);
-      background: radial-gradient(ellipse at center, rgba(80, 110, 150, 0.32) 0%, rgba(80, 110, 150, 0.14) 40%, transparent 72%);
-      filter: blur(10px);
+      background: radial-gradient(ellipse at center, rgba(80, 110, 150, 0.28) 0%, rgba(80, 110, 150, 0.12) 40%, transparent 72%);
       z-index: -1;
       pointer-events: none;
     }
@@ -169,96 +168,77 @@
     .cs-main {
       top: 50%;
       left: 50%;
-      width: 44%;
-      transform: translate(calc(-50% + var(--px) * 24px), calc(-50% + var(--py) * 18px));
+      width: 28%;
+      transform: translate(calc(-50% + var(--px) * 16px), calc(-50% + var(--py) * 12px));
       z-index: 8;
+      filter: drop-shadow(0 20px 30px rgba(120, 130, 160, 0.35)) drop-shadow(0 0 28px rgba(255, 150, 190, 0.55));
     }
     .cs-main .cs-inner {
-      animation: floatMain 9s ease-in-out infinite, glowPink 4.5s ease-in-out infinite;
+      animation: floatMain 11s ease-in-out infinite;
     }
-    /* ===== サブ群 ===== */
+    /* ===== サブ群（左→右に流れる：transformでGPU処理） ===== */
     .cs-white {
-      top: 6%; left: 4%; width: 18%; z-index: 5;
-      transform: translate(calc(var(--px) * 36px), calc(var(--py) * 28px));
+      top: 18%; left: 0; width: 21%; z-index: 5;
+      animation: drift 75s linear infinite -10s;
+      filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.28)) drop-shadow(0 0 18px rgba(220, 240, 255, 0.7));
     }
-    .cs-white .cs-inner {
-      animation: floatA 8s ease-in-out infinite, glowWhite 5.5s ease-in-out infinite;
-    }
+    .cs-white .cs-inner { animation: floatA 10s ease-in-out infinite; }
+
     .cs-purple {
-      top: 4%; left: 58%; width: 16%; z-index: 6;
-      transform: translate(calc(var(--px) * 30px), calc(var(--py) * 22px));
+      top: 6%; left: 0; width: 19%; z-index: 6;
+      animation: drift 88s linear infinite -32s;
+      filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.28)) drop-shadow(0 0 20px rgba(190, 160, 255, 0.65));
     }
-    .cs-purple .cs-inner {
-      animation: floatB 7.5s ease-in-out infinite -1.2s, glowPurple 5s ease-in-out infinite -0.8s;
-    }
+    .cs-purple .cs-inner { animation: floatB 12s ease-in-out infinite -1.2s; }
+
     .cs-blue {
-      top: 56%; left: 76%; width: 21%; z-index: 7;
-      transform: translate(calc(var(--px) * 40px), calc(var(--py) * 32px));
+      top: 60%; left: 0; width: 23%; z-index: 7;
+      animation: drift 70s linear infinite -22s;
+      filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.28)) drop-shadow(0 0 22px rgba(110, 180, 255, 0.7));
     }
-    .cs-blue .cs-inner {
-      animation: floatC 8.5s ease-in-out infinite -2.4s, glowBlue 5.2s ease-in-out infinite -1.5s;
-    }
+    .cs-blue .cs-inner { animation: floatC 11s ease-in-out infinite -2.4s; }
+
     .cs-green {
-      top: 62%; left: 2%; width: 19%; z-index: 6;
-      transform: translate(calc(var(--px) * 34px), calc(var(--py) * 26px));
+      top: 68%; left: 0; width: 21%; z-index: 6;
+      animation: drift 95s linear infinite -55s;
+      filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.28)) drop-shadow(0 0 20px rgba(140, 230, 170, 0.65));
     }
-    .cs-green .cs-inner {
-      animation: floatA 9s ease-in-out infinite -3s, glowGreen 5.8s ease-in-out infinite -2s;
-    }
+    .cs-green .cs-inner { animation: floatA 13s ease-in-out infinite -3s; }
+
     .cs-orange {
-      top: 24%; left: 80%; width: 15%; z-index: 5;
-      transform: translate(calc(var(--px) * 28px), calc(var(--py) * 20px));
+      top: 36%; left: 0; width: 18%; z-index: 5;
+      animation: drift 80s linear infinite -45s;
+      filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.28)) drop-shadow(0 0 18px rgba(255, 180, 110, 0.65));
     }
-    .cs-orange .cs-inner {
-      animation: floatB 8.2s ease-in-out infinite -1.8s, glowOrange 5.4s ease-in-out infinite -3.2s;
+    .cs-orange .cs-inner { animation: floatB 12s ease-in-out infinite -1.8s; }
+
+    /* ===== 雲のように左から右へ流れる（transformでGPU合成） ===== */
+    @keyframes drift {
+      0%   { transform: translateX(-30vw); }
+      100% { transform: translateX(110vw); }
     }
 
-    /* ===== Floating motion (ふわふわ) ===== */
+    /* ===== Floating motion (ふわふわ上下) ===== */
     @keyframes floatMain {
       0%, 100% { transform: translateY(0)    rotate(0deg);  }
-      50%      { transform: translateY(-18px) rotate(-1.2deg); }
+      50%      { transform: translateY(-14px) rotate(-1deg); }
     }
     @keyframes floatA {
       0%, 100% { transform: translateY(0)    rotate(0deg);  }
-      50%      { transform: translateY(-14px) rotate(2deg);  }
+      50%      { transform: translateY(-10px) rotate(1.6deg);  }
     }
     @keyframes floatB {
       0%, 100% { transform: translateY(0)    rotate(0deg);  }
-      50%      { transform: translateY(-11px) rotate(-1.8deg); }
+      50%      { transform: translateY(-8px) rotate(-1.4deg); }
     }
     @keyframes floatC {
       0%, 100% { transform: translateY(0)    rotate(0deg);  }
-      50%      { transform: translateY(-16px) rotate(1.4deg); }
+      50%      { transform: translateY(-12px) rotate(1.2deg); }
     }
 
-    /* ===== Glow（各色LEDの光） ===== */
-    @keyframes glowPink {
-      0%, 100% { filter: drop-shadow(0 18px 28px rgba(120, 130, 160, 0.32)) drop-shadow(0 0 22px rgba(255, 150, 190, 0.45)); }
-      50%      { filter: drop-shadow(0 22px 38px rgba(120, 130, 160, 0.42)) drop-shadow(0 0 38px rgba(255, 150, 190, 0.85)); }
-    }
-    @keyframes glowBlue {
-      0%, 100% { filter: drop-shadow(0 14px 24px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 18px rgba(110, 180, 255, 0.5)); }
-      50%      { filter: drop-shadow(0 18px 32px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 32px rgba(110, 180, 255, 0.85)); }
-    }
-    @keyframes glowGreen {
-      0%, 100% { filter: drop-shadow(0 14px 24px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 18px rgba(140, 230, 170, 0.45)); }
-      50%      { filter: drop-shadow(0 18px 32px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 32px rgba(140, 230, 170, 0.8)); }
-    }
-    @keyframes glowOrange {
-      0%, 100% { filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 16px rgba(255, 180, 110, 0.5)); }
-      50%      { filter: drop-shadow(0 18px 30px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 28px rgba(255, 180, 110, 0.85)); }
-    }
-    @keyframes glowPurple {
-      0%, 100% { filter: drop-shadow(0 14px 24px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 16px rgba(190, 160, 255, 0.45)); }
-      50%      { filter: drop-shadow(0 18px 32px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 28px rgba(190, 160, 255, 0.8)); }
-    }
-    @keyframes glowWhite {
-      0%, 100% { filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 14px rgba(220, 240, 255, 0.6)); }
-      50%      { filter: drop-shadow(0 18px 30px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 26px rgba(220, 240, 255, 0.95)); }
-    }
     /* prefers-reduced-motion で動きを抑制 */
     @media (prefers-reduced-motion: reduce) {
-      .cs-inner,
+      .cloud-speaker, .cs-inner,
       .hero-bg-clouds .bg-cloud,
       .hero-glow { animation: none !important; }
     }
@@ -280,23 +260,27 @@
       margin-bottom: 16px;
     }
     .hero-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 5.8vw, 64px);
-      font-weight: 300;
+      font-family: 'Klee One', 'Kiwi Maru', serif;
+      font-size: clamp(26px, 5vw, 50px);
+      font-weight: 600;
       letter-spacing: 0.04em;
-      line-height: 1.15;
+      line-height: 1.3;
       color: var(--ink);
     }
-    .hero-sub-text {
+    .hero-catch {
       position: relative;
       z-index: 3;
       text-align: center;
-      margin-top: 36px;
-      font-family: 'Kiwi Maru', serif;
+      margin-top: 28px;
+      font-family: 'Kiwi Maru', 'Klee One', serif;
       font-weight: 500;
-      font-size: clamp(13px, 1.4vw, 16px);
-      letter-spacing: 0.06em;
-      color: var(--ink-80);
+      font-size: clamp(18px, 2.6vw, 26px);
+      letter-spacing: 0.08em;
+      line-height: 1.85;
+      color: var(--ink);
+      text-shadow:
+        0 2px 16px rgba(255,255,255,0.85),
+        0 0 32px rgba(255,255,255,0.6);
     }
 
     /* スクロールインジケータ */
@@ -372,72 +356,30 @@
     .reveal-delay-3 { transition-delay: 0.45s; }
 
     /* ============================================
-       イントロ（薄いピンクデスク背景）
-       ============================================ */
-    .intro {
-      position: relative;
-      min-height: 560px;
-      max-height: 720px;
-      padding: 100px 48px 120px;
-      text-align: center;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .intro::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('images/hero/bg-pink-desk.png') no-repeat center 72%;
-      background-size: cover;
-      opacity: 0.45;
-      z-index: 0;
-    }
-    .intro::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, var(--paper) 0%, rgba(251, 250, 247, 0.3) 15%, rgba(251, 250, 247, 0.1) 50%, rgba(251, 250, 247, 0.3) 85%, var(--paper) 100%);
-      z-index: 1;
-    }
-    .intro-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 860px;
-      margin: 0 auto;
-      padding-top: 5vh;
-    }
-    .intro .section-label { justify-content: center; color: var(--ink); }
-    .intro .section-label::before,
-    .intro .section-label::after {
-      background: var(--ink);
-    }
-    .intro .section-label::after {
-      content: '';
-      width: 40px;
-      height: 1px;
-    }
-    .intro-quote {
-      font-family: 'Kiwi Maru', 'Klee One', serif;
-      font-weight: 500;
-      font-size: clamp(30px, 4.2vw, 48px);
-      letter-spacing: 0.04em;
-      line-height: 1.8;
-      color: var(--ink);
-      text-shadow:
-        0 2px 20px rgba(255,255,255,0.9),
-        0 0 40px rgba(255,255,255,0.7),
-        0 0 80px rgba(255,255,255,0.5);
-    }
-
-    /* ============================================
-       仕様
+       仕様（背景にデスク画像）
        ============================================ */
     .specs-wrap {
       position: relative;
       padding: 140px 48px 100px;
       background: var(--paper-warm);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .specs-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('images/hero/bg-pink-desk.png') no-repeat center 60%;
+      background-size: cover;
+      opacity: 0.32;
+      z-index: -2;
+    }
+    .specs-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--paper-warm) 0%, rgba(245, 242, 236, 0.7) 12%, rgba(245, 242, 236, 0.55) 50%, rgba(245, 242, 236, 0.78) 88%, var(--paper-warm) 100%);
+      z-index: -1;
     }
     .specs-head { margin-bottom: 56px !important; }
     .specs-title {
@@ -903,9 +845,6 @@
       .cloud-edge { height: 60px !important; }
       .cloud-edge-rise { height: 60px !important; }
 
-      .intro { min-height: 520px; max-height: 680px; padding: 80px 24px 100px; }
-      .intro-quote { font-size: clamp(22px, 6vw, 32px); line-height: 1.8; }
-
       .specs-wrap { padding: 56px 16px 48px; }
       .specs-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
       .specs-title { font-size: clamp(20px, 5.4vw, 28px) !important; white-space: normal; margin-bottom: 16px !important; }
@@ -969,9 +908,6 @@
 
       .cloud-edge { height: 40px !important; }
       .cloud-edge-rise { height: 40px !important; }
-
-      .intro { min-height: 440px; max-height: 560px; padding: 56px 20px 64px; }
-      .intro-quote { font-size: 20px; line-height: 1.8; }
 
       .specs-wrap { padding: 48px 14px 40px; }
       .specs-title { font-size: 18px !important; }
@@ -1099,21 +1035,10 @@
       </div>
     </div>
 
-    <!-- テキスト下部 -->
-    <div class="hero-sub-text">雲をモチーフにした、デスクトップスピーカー</div>
+    <!-- キャッチコピー -->
+    <div class="hero-catch">「毎日のデスクを<br>もっと可愛く彩る」</div>
 
     <div class="hero-scroll">SCROLL</div>
-  </section>
-
-  <!-- イントロ（ピンクデスク背景） -->
-  <section class="intro">
-    <div class="intro-inner">
-      <div class="section-label reveal">— Product</div>
-      <p class="intro-quote reveal reveal-delay-1">
-        「毎日のデスクを<br>
-        もっと可愛く彩る」
-      </p>
-    </div>
   </section>
 
   <!-- 仕様 -->
