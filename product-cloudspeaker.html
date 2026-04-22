@@ -270,30 +270,12 @@
     .reveal-delay-3 { transition-delay: 0.45s; }
 
     /* ============================================
-       仕様（背景にデスク画像）
+       仕様
        ============================================ */
     .specs-wrap {
       position: relative;
       padding: 140px 48px 100px;
       background: var(--paper-warm);
-      overflow: hidden;
-      isolation: isolate;
-    }
-    .specs-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('images/hero/bg-pink-desk.png') no-repeat center bottom;
-      background-size: cover;
-      opacity: 0.38;
-      z-index: -2;
-    }
-    .specs-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, var(--paper-warm) 0%, rgba(245, 242, 236, 0.7) 12%, rgba(245, 242, 236, 0.55) 50%, rgba(245, 242, 236, 0.78) 88%, var(--paper-warm) 100%);
-      z-index: -1;
     }
     .specs-head { margin-bottom: 56px !important; }
     .specs-title {
