@@ -68,15 +68,17 @@
     }
 
     /* ============================================
-       HERO — クリーン・プロダクトフォーカス
+       HERO — 浮遊する雲スピーカー（6色LED）
        ============================================ */
     .hero {
       position: relative;
       width: 100%;
-      min-height: 720px;
-      max-height: 900px;
+      min-height: 760px;
+      max-height: 940px;
       overflow: hidden;
-      background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 45%, var(--sky-3) 100%);
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 35%, #fdfcfa 0%, transparent 55%),
+        linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 45%, var(--sky-3) 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -102,49 +104,163 @@
       100% { transform: translate(2%, -1%) scale(1.05); opacity: 1; }
     }
 
-    /* 製品画像 */
-    .hero-product {
-      position: relative;
-      width: min(78vw, 680px);
-      margin: 0 auto;
-      z-index: 2;
-    }
-    .hero-product-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 3 / 2;
-      border-radius: 24px;
-      overflow: hidden;
-      filter: drop-shadow(0 24px 64px rgba(107, 140, 180, 0.3));
-      animation: breathe 8s ease-in-out infinite;
-    }
-    .hero-slide {
+    /* 背景に薄く流れる雲（深さを出す） */
+    .hero-bg-clouds {
       position: absolute;
       inset: 0;
-      opacity: 0;
-      transition: opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .hero-slide.active { opacity: 1; }
-    .hero-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 24px 64px rgba(107, 140, 180, 0.3)); }
-      50%      { transform: scale(1.015); filter: drop-shadow(0 32px 80px rgba(107, 140, 180, 0.4)); }
-    }
-    /* 画像下のリフレクション */
-    .hero-product::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      left: 10%;
-      right: 10%;
-      height: 40px;
-      background: radial-gradient(ellipse at center, rgba(107, 140, 180, 0.15) 0%, transparent 70%);
-      filter: blur(8px);
       pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .hero-bg-clouds .bg-cloud {
+      position: absolute;
+      opacity: 0.55;
+      filter: blur(1px);
+      animation: drift linear infinite;
+    }
+    .hero-bg-clouds .bg-cloud:nth-child(1) { top: 14%; left: -10%; width: 320px; animation-duration: 70s; opacity: 0.45; }
+    .hero-bg-clouds .bg-cloud:nth-child(2) { top: 38%; left: -16%; width: 220px; animation-duration: 95s; animation-delay: -30s; opacity: 0.32; }
+    .hero-bg-clouds .bg-cloud:nth-child(3) { top: 68%; left: -8%;  width: 380px; animation-duration: 85s; animation-delay: -55s; opacity: 0.4; }
+    @keyframes drift {
+      from { transform: translateX(0); }
+      to   { transform: translateX(140vw); }
+    }
+
+    /* ====== 浮遊シーン本体 ====== */
+    .hero-stage {
+      position: relative;
+      width: min(96vw, 1180px);
+      aspect-ratio: 16 / 10;
+      margin: 18px auto 8px;
+      z-index: 4;
+      perspective: 1200px;
+      --px: 0;
+      --py: 0;
+    }
+    .cloud-speaker {
+      position: absolute;
+      will-change: transform;
+    }
+    .cs-inner {
+      position: relative;
+      width: 100%;
+      will-change: transform, filter;
+    }
+    .cs-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* 地面に落ちる影 */
+    .cs-shadow {
+      position: absolute;
+      left: 50%;
+      bottom: -8%;
+      width: 78%;
+      height: 14%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(80, 110, 150, 0.32) 0%, rgba(80, 110, 150, 0.14) 40%, transparent 72%);
+      filter: blur(10px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ===== 中央メイン（pink） ===== */
+    .cs-main {
+      top: 50%;
+      left: 50%;
+      width: 44%;
+      transform: translate(calc(-50% + var(--px) * 24px), calc(-50% + var(--py) * 18px));
+      z-index: 8;
+    }
+    .cs-main .cs-inner {
+      animation: floatMain 9s ease-in-out infinite, glowPink 4.5s ease-in-out infinite;
+    }
+    /* ===== サブ群 ===== */
+    .cs-white {
+      top: 6%; left: 4%; width: 18%; z-index: 5;
+      transform: translate(calc(var(--px) * 36px), calc(var(--py) * 28px));
+    }
+    .cs-white .cs-inner {
+      animation: floatA 8s ease-in-out infinite, glowWhite 5.5s ease-in-out infinite;
+    }
+    .cs-purple {
+      top: 4%; left: 58%; width: 16%; z-index: 6;
+      transform: translate(calc(var(--px) * 30px), calc(var(--py) * 22px));
+    }
+    .cs-purple .cs-inner {
+      animation: floatB 7.5s ease-in-out infinite -1.2s, glowPurple 5s ease-in-out infinite -0.8s;
+    }
+    .cs-blue {
+      top: 56%; left: 76%; width: 21%; z-index: 7;
+      transform: translate(calc(var(--px) * 40px), calc(var(--py) * 32px));
+    }
+    .cs-blue .cs-inner {
+      animation: floatC 8.5s ease-in-out infinite -2.4s, glowBlue 5.2s ease-in-out infinite -1.5s;
+    }
+    .cs-green {
+      top: 62%; left: 2%; width: 19%; z-index: 6;
+      transform: translate(calc(var(--px) * 34px), calc(var(--py) * 26px));
+    }
+    .cs-green .cs-inner {
+      animation: floatA 9s ease-in-out infinite -3s, glowGreen 5.8s ease-in-out infinite -2s;
+    }
+    .cs-orange {
+      top: 24%; left: 80%; width: 15%; z-index: 5;
+      transform: translate(calc(var(--px) * 28px), calc(var(--py) * 20px));
+    }
+    .cs-orange .cs-inner {
+      animation: floatB 8.2s ease-in-out infinite -1.8s, glowOrange 5.4s ease-in-out infinite -3.2s;
+    }
+
+    /* ===== Floating motion (ふわふわ) ===== */
+    @keyframes floatMain {
+      0%, 100% { transform: translateY(0)    rotate(0deg);  }
+      50%      { transform: translateY(-18px) rotate(-1.2deg); }
+    }
+    @keyframes floatA {
+      0%, 100% { transform: translateY(0)    rotate(0deg);  }
+      50%      { transform: translateY(-14px) rotate(2deg);  }
+    }
+    @keyframes floatB {
+      0%, 100% { transform: translateY(0)    rotate(0deg);  }
+      50%      { transform: translateY(-11px) rotate(-1.8deg); }
+    }
+    @keyframes floatC {
+      0%, 100% { transform: translateY(0)    rotate(0deg);  }
+      50%      { transform: translateY(-16px) rotate(1.4deg); }
+    }
+
+    /* ===== Glow（各色LEDの光） ===== */
+    @keyframes glowPink {
+      0%, 100% { filter: drop-shadow(0 18px 28px rgba(120, 130, 160, 0.32)) drop-shadow(0 0 22px rgba(255, 150, 190, 0.45)); }
+      50%      { filter: drop-shadow(0 22px 38px rgba(120, 130, 160, 0.42)) drop-shadow(0 0 38px rgba(255, 150, 190, 0.85)); }
+    }
+    @keyframes glowBlue {
+      0%, 100% { filter: drop-shadow(0 14px 24px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 18px rgba(110, 180, 255, 0.5)); }
+      50%      { filter: drop-shadow(0 18px 32px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 32px rgba(110, 180, 255, 0.85)); }
+    }
+    @keyframes glowGreen {
+      0%, 100% { filter: drop-shadow(0 14px 24px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 18px rgba(140, 230, 170, 0.45)); }
+      50%      { filter: drop-shadow(0 18px 32px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 32px rgba(140, 230, 170, 0.8)); }
+    }
+    @keyframes glowOrange {
+      0%, 100% { filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 16px rgba(255, 180, 110, 0.5)); }
+      50%      { filter: drop-shadow(0 18px 30px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 28px rgba(255, 180, 110, 0.85)); }
+    }
+    @keyframes glowPurple {
+      0%, 100% { filter: drop-shadow(0 14px 24px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 16px rgba(190, 160, 255, 0.45)); }
+      50%      { filter: drop-shadow(0 18px 32px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 28px rgba(190, 160, 255, 0.8)); }
+    }
+    @keyframes glowWhite {
+      0%, 100% { filter: drop-shadow(0 14px 22px rgba(120, 130, 160, 0.3)) drop-shadow(0 0 14px rgba(220, 240, 255, 0.6)); }
+      50%      { filter: drop-shadow(0 18px 30px rgba(120, 130, 160, 0.4)) drop-shadow(0 0 26px rgba(220, 240, 255, 0.95)); }
+    }
+    /* prefers-reduced-motion で動きを抑制 */
+    @media (prefers-reduced-motion: reduce) {
+      .cs-inner,
+      .hero-bg-clouds .bg-cloud,
+      .hero-glow { animation: none !important; }
     }
 
     /* タイトル */
@@ -768,14 +884,20 @@
        レスポンシブ
        ============================================ */
     @media (max-width: 900px) {
-      .hero { min-height: auto; max-height: none; padding: 60px 20px 48px; }
-      .hero-product { width: min(88vw, 520px); }
-      .hero-product-wrap { border-radius: 20px; }
-      .hero-text { margin-bottom: 24px; }
+      .hero { min-height: 640px; max-height: 820px; padding: 56px 16px 44px; }
+      .hero-stage { width: 100vw; aspect-ratio: 4 / 3; margin: 8px auto 0; }
+      .hero-text { margin-bottom: 16px; }
       .hero-mcs { font-size: 10px; margin-bottom: 12px; }
       .hero-name { font-size: clamp(24px, 6vw, 40px); }
-      .hero-sub-text { margin-top: 24px; font-size: 13px; }
+      .hero-sub-text { margin-top: 16px; font-size: 12px; }
       .hero-scroll { display: none; }
+      /* メインを少し小さく / サブの位置を調整して見切れ防止 */
+      .cs-main   { width: 50%; }
+      .cs-white  { top: 8%;  left: -2%;  width: 22%; }
+      .cs-purple { top: 4%;  left: 60%;  width: 19%; }
+      .cs-orange { top: 20%; left: 80%;  width: 18%; }
+      .cs-green  { top: 64%; left: -4%;  width: 22%; }
+      .cs-blue   { top: 62%; left: 76%;  width: 24%; }
 
       /* 雲エッジをモバイルで縮小（三角スパイク防止） */
       .cloud-edge { height: 60px !important; }
@@ -831,13 +953,19 @@
       .buy-note { font-size: 10px; margin-top: 24px; }
     }
     @media (max-width: 500px) {
-      .hero { padding: 48px 16px 36px; }
-      .hero-product { width: 92vw; }
-      .hero-product-wrap { border-radius: 16px; }
-      .hero-text { margin-bottom: 20px; }
-      .hero-mcs { font-size: 9px; margin-bottom: 10px; }
+      .hero { min-height: 560px; max-height: 720px; padding: 44px 12px 32px; }
+      .hero-stage { width: 100vw; aspect-ratio: 1 / 1; margin: 4px auto 0; }
+      .hero-text { margin-bottom: 12px; }
+      .hero-mcs { font-size: 9px; margin-bottom: 8px; }
       .hero-name { font-size: 22px; }
-      .hero-sub-text { margin-top: 20px; font-size: 12px; }
+      .hero-sub-text { margin-top: 12px; font-size: 11px; padding: 0 24px; }
+      /* 5個に見せて軽快に: orangeは隠す */
+      .cs-orange { display: none; }
+      .cs-main   { width: 56%; }
+      .cs-white  { top: 6%;  left: -4%;  width: 26%; }
+      .cs-purple { top: 3%;  left: 64%;  width: 22%; }
+      .cs-green  { top: 66%; left: -6%;  width: 26%; }
+      .cs-blue   { top: 64%; left: 70%;  width: 28%; }
 
       .cloud-edge { height: 40px !important; }
       .cloud-edge-rise { height: 40px !important; }
@@ -886,7 +1014,7 @@
 </head>
 <body>
 
-  <!-- HERO：クリーン・プロダクトフォーカス -->
+  <!-- HERO：浮遊する雲スピーカー（6色LED） -->
   <section class="hero" id="hero">
     <!-- 上部の白もくもく -->
     <svg class="cloud-edge cloud-edge-top" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;top:-1px;left:0;width:100%;height:80px;z-index:10;">
@@ -894,17 +1022,80 @@
     </svg>
     <div class="hero-glow"></div>
 
+    <!-- 背景に薄く流れる雲 -->
+    <div class="hero-bg-clouds" aria-hidden="true">
+      <img class="bg-cloud" src="images/svg/cloud-white.svg" alt="">
+      <img class="bg-cloud" src="images/svg/cloud-white.svg" alt="">
+      <img class="bg-cloud" src="images/svg/cloud-white.svg" alt="">
+    </div>
+
     <!-- テキスト上部 -->
     <div class="hero-text">
       <div class="hero-mcs">MCS01</div>
       <h1 class="hero-name">minotel cloud speaker</h1>
     </div>
 
-    <!-- 製品画像（呼吸アニメーション + クロスフェード） -->
-    <div class="hero-product">
-      <div class="hero-product-wrap">
-        <div class="hero-slide active"><img loading="eager" fetchpriority="high" decoding="async" src="images/hero/hero-floating-blue.png" alt="minotel cloud speaker Blue"></div>
-        <div class="hero-slide"><img loading="eager" decoding="async" src="images/hero/hero-floating-white.png" alt="minotel cloud speaker White"></div>
+    <!-- 浮遊シーン：6色のLEDスピーカーが雲のように浮かぶ -->
+    <div class="hero-stage" id="heroStage">
+      <!-- サブ（White 左上） -->
+      <div class="cloud-speaker cs-white">
+        <div class="cs-inner">
+          <picture>
+            <source srcset="images/product/led/white.webp" type="image/webp">
+            <img loading="eager" decoding="async" src="images/product/led/white.png" alt="minotel cloud speaker White LED">
+          </picture>
+          <div class="cs-shadow"></div>
+        </div>
+      </div>
+      <!-- サブ（Purple 右上） -->
+      <div class="cloud-speaker cs-purple">
+        <div class="cs-inner">
+          <picture>
+            <source srcset="images/product/led/purple.webp" type="image/webp">
+            <img loading="eager" decoding="async" src="images/product/led/purple.png" alt="minotel cloud speaker Purple LED">
+          </picture>
+          <div class="cs-shadow"></div>
+        </div>
+      </div>
+      <!-- サブ（Orange 右） -->
+      <div class="cloud-speaker cs-orange">
+        <div class="cs-inner">
+          <picture>
+            <source srcset="images/product/led/orange.webp" type="image/webp">
+            <img loading="eager" decoding="async" src="images/product/led/orange.png" alt="minotel cloud speaker Orange LED">
+          </picture>
+          <div class="cs-shadow"></div>
+        </div>
+      </div>
+      <!-- サブ（Green 左下） -->
+      <div class="cloud-speaker cs-green">
+        <div class="cs-inner">
+          <picture>
+            <source srcset="images/product/led/green.webp" type="image/webp">
+            <img loading="eager" decoding="async" src="images/product/led/green.png" alt="minotel cloud speaker Green LED">
+          </picture>
+          <div class="cs-shadow"></div>
+        </div>
+      </div>
+      <!-- サブ（Blue 右下） -->
+      <div class="cloud-speaker cs-blue">
+        <div class="cs-inner">
+          <picture>
+            <source srcset="images/product/led/blue.webp" type="image/webp">
+            <img loading="eager" decoding="async" src="images/product/led/blue.png" alt="minotel cloud speaker Blue LED">
+          </picture>
+          <div class="cs-shadow"></div>
+        </div>
+      </div>
+      <!-- メイン（Pink 中央最大） -->
+      <div class="cloud-speaker cs-main">
+        <div class="cs-inner">
+          <picture>
+            <source srcset="images/product/led/pink.webp" type="image/webp">
+            <img loading="eager" fetchpriority="high" decoding="async" src="images/product/led/pink.png" alt="minotel cloud speaker Pink LED">
+          </picture>
+          <div class="cs-shadow"></div>
+        </div>
       </div>
     </div>
 
@@ -1131,14 +1322,42 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
     document.querySelectorAll('.reveal, .feature-row').forEach(el => observer.observe(el));
 
-    // 製品画像クロスフェード
-    const pSlides = document.querySelectorAll('.hero-slide');
-    let pIdx = 0;
-    setInterval(() => {
-      pSlides[pIdx].classList.remove('active');
-      pIdx = (pIdx + 1) % pSlides.length;
-      pSlides[pIdx].classList.add('active');
-    }, 5000);
+    // ===== ヒーロー: マウス/指の動きに合わせて雲スピーカーが追従 (parallax) =====
+    (function() {
+      const stage = document.getElementById('heroStage');
+      if (!stage) return;
+      // 細かなデバイスでは parallax 無効（重さ回避）
+      const fine = window.matchMedia('(pointer: fine)').matches;
+      if (!fine) return;
+
+      let targetX = 0, targetY = 0;
+      let curX = 0, curY = 0;
+      let raf = null;
+
+      function tick() {
+        // damping (滑らかに追従)
+        curX += (targetX - curX) * 0.08;
+        curY += (targetY - curY) * 0.08;
+        stage.style.setProperty('--px', curX.toFixed(3));
+        stage.style.setProperty('--py', curY.toFixed(3));
+        if (Math.abs(targetX - curX) > 0.001 || Math.abs(targetY - curY) > 0.001) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          raf = null;
+        }
+      }
+
+      stage.addEventListener('pointermove', (e) => {
+        const r = stage.getBoundingClientRect();
+        targetX = ((e.clientX - r.left) / r.width  - 0.5) * 2; // -1 〜 +1
+        targetY = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+      stage.addEventListener('pointerleave', () => {
+        targetX = 0; targetY = 0;
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+    })();
   </script>
 </body>
 </html>
