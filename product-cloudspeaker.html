@@ -118,13 +118,14 @@
       margin-bottom: 28px;
     }
     .hero-headline {
-      font-family: 'Klee One', 'Kiwi Maru', serif;
-      font-weight: 600;
-      font-size: clamp(34px, 4.6vw, 60px);
-      letter-spacing: 0.04em;
-      line-height: 1.45;
-      color: var(--ink);
-      margin-bottom: 36px;
+      margin: 0 0 36px;
+      line-height: 0;
+    }
+    .hero-headline-svg {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      height: auto;
     }
     .hero-desc {
       font-family: 'Noto Sans JP', sans-serif;
@@ -760,7 +761,8 @@
       }
       .hero-text { max-width: 100%; text-align: left; }
       .hero-eyebrow { font-size: 12px; margin-bottom: 18px; letter-spacing: 0.16em; }
-      .hero-headline { font-size: clamp(26px, 6vw, 36px); line-height: 1.45; margin-bottom: 22px; }
+      .hero-headline { margin-bottom: 22px; }
+      .hero-headline-svg { max-width: 320px; }
       .hero-desc { font-size: 12px; line-height: 1.95; margin-bottom: 26px; }
       .hero-cta { padding: 13px 28px; font-size: 13px; }
 
@@ -828,7 +830,8 @@
       .hero { min-height: 640px; padding: 60px 0 0; }
       .hero-content { padding: 0 18px; gap: 12px; }
       .hero-eyebrow { font-size: 11px; margin-bottom: 14px; }
-      .hero-headline { font-size: 24px; line-height: 1.5; margin-bottom: 18px; }
+      .hero-headline { margin-bottom: 18px; }
+      .hero-headline-svg { max-width: 260px; }
       .hero-desc { font-size: 11px; line-height: 1.95; margin-bottom: 20px; }
       .hero-cta { padding: 11px 22px; font-size: 12px; }
       .hero-features { padding: 14px 16px 18px; gap: 12px; }
@@ -882,16 +885,15 @@
 
   <!-- HERO：左テキスト + 右商品（背景画像） -->
   <section class="hero" id="hero">
-    <!-- 上部の白もくもく -->
-    <svg class="cloud-edge cloud-edge-top" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;top:-1px;left:0;width:100%;height:60px;z-index:10;">
-      <path d="M 0 0 L 0 42 C 42 98, 98 98, 140 42 C 182 75, 238 75, 280 42 C 328 98, 392 98, 440 42 C 482 80, 538 80, 580 42 C 628 105, 692 105, 740 42 C 782 70, 838 70, 880 42 C 922 110, 978 110, 1020 42 C 1062 85, 1118 85, 1160 42 C 1202 92, 1258 92, 1300 42 C 1342 76, 1398 76, 1440 42 L 1440 0 Z" fill="#fff"/>
-    </svg>
-
     <!-- 左: テキスト -->
     <div class="hero-content">
       <div class="hero-text">
         <div class="hero-eyebrow">minotel cloud speaker</div>
-        <h1 class="hero-headline">毎日のデスクを<br>もっと可愛く彩る</h1>
+        <h1 class="hero-headline">
+          <img src="images/svg/catch-handwritten.svg"
+               alt="毎日のデスクをもっと可愛く彩る"
+               class="hero-headline-svg">
+        </h1>
         <p class="hero-desc">
           雲のかたちのUSBスピーカー。<br>
           やさしい音と光で、デスクに癒しを。<br>
