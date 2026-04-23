@@ -117,14 +117,18 @@
       color: var(--ink-80);
       margin-bottom: 28px;
     }
+    /* キャッチコピーは右上に絶対配置 */
     .hero-headline {
-      margin: 0 0 36px;
+      position: absolute;
+      top: 100px;
+      right: 64px;
+      z-index: 5;
+      margin: 0;
       line-height: 0;
     }
     .hero-headline-svg {
       display: block;
-      width: 100%;
-      max-width: 480px;
+      width: clamp(280px, 30vw, 440px);
       height: auto;
     }
     .hero-desc {
@@ -761,8 +765,9 @@
       }
       .hero-text { max-width: 100%; text-align: left; }
       .hero-eyebrow { font-size: 12px; margin-bottom: 18px; letter-spacing: 0.16em; }
-      .hero-headline { margin-bottom: 22px; }
-      .hero-headline-svg { max-width: 320px; }
+      /* mobile: キャッチを通常配置(テキストの上)に戻す */
+      .hero-headline { position: static; margin-bottom: 18px; right: auto; top: auto; }
+      .hero-headline-svg { width: 280px; max-width: 80vw; }
       .hero-desc { font-size: 12px; line-height: 1.95; margin-bottom: 26px; }
       .hero-cta { padding: 13px 28px; font-size: 13px; }
 
@@ -885,15 +890,17 @@
 
   <!-- HERO：左テキスト + 右商品（背景画像） -->
   <section class="hero" id="hero">
+    <!-- 右上: キャッチコピー（手書きSVG） -->
+    <h1 class="hero-headline">
+      <img src="images/svg/catch-handwritten.svg"
+           alt="毎日のデスクをもっと可愛く彩る"
+           class="hero-headline-svg">
+    </h1>
+
     <!-- 左: テキスト -->
     <div class="hero-content">
       <div class="hero-text">
         <div class="hero-eyebrow">minotel cloud speaker</div>
-        <h1 class="hero-headline">
-          <img src="images/svg/catch-handwritten.svg"
-               alt="毎日のデスクをもっと可愛く彩る"
-               class="hero-headline-svg">
-        </h1>
         <p class="hero-desc">
           雲のかたちのUSBスピーカー。<br>
           やさしい音と光で、デスクに癒しを。<br>
