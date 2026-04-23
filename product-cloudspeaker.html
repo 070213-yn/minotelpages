@@ -68,12 +68,13 @@
     }
 
     /* ============================================
-       HERO — 商品(背景画像) + 右上キャッチ + 右下CTA
+       HERO — 商品(背景画像 16:9 クロップなし) + キャッチ + CTA
        ============================================ */
     .hero {
       position: relative;
       width: 100%;
-      min-height: 720px;
+      aspect-ratio: 16 / 9;
+      min-height: 540px;
       max-height: 900px;
       overflow: hidden;
       background:
@@ -81,10 +82,10 @@
         linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 45%, var(--sky-3) 100%);
     }
 
-    /* キャッチコピー（手書きSVG） — 右側、もう少し左下に大きく */
+    /* キャッチコピー（手書きSVG） — 右上寄り、少しだけ上に */
     .hero-headline {
       position: absolute;
-      top: 140px;
+      top: 100px;
       right: 80px;
       z-index: 5;
       margin: 0;
@@ -96,7 +97,7 @@
       height: auto;
     }
 
-    /* 左下: タグライン (雲形USBスピーカー / minotel cloud speaker / 好評発売中) */
+    /* 左下: タグライン (やわらかい手書き寄りフォント) */
     .hero-tagline {
       position: absolute;
       bottom: 70px;
@@ -109,28 +110,28 @@
     }
     .hero-tagline-jp {
       font-family: 'Kiwi Maru', 'Klee One', serif;
-      font-weight: 500;
+      font-weight: 400;
       font-size: 13px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       color: var(--ink-80);
     }
     .hero-tagline-en {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Klee One', 'Kiwi Maru', serif;
       font-weight: 400;
-      font-size: 26px;
-      letter-spacing: 0.06em;
-      line-height: 1.2;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
       color: var(--ink);
     }
     .hero-tagline-status {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-top: 6px;
-      font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 500;
+      margin-top: 4px;
+      font-family: 'Kiwi Maru', 'Klee One', serif;
+      font-weight: 400;
       font-size: 11px;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.22em;
       color: var(--ink-60);
     }
     .hero-tagline-status::before {
@@ -177,12 +178,12 @@
     }
 
     /* ============================================
-       LIFESTYLE — 横並び2画像 + SVGテキスト中央オーバーレイ
+       LIFESTYLE — 横並び2画像 + 中央ブラー帯 + 上下雲もくもく
        ============================================ */
     .lifestyle {
       position: relative;
       width: 100%;
-      min-height: 760px;
+      min-height: 720px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
@@ -192,7 +193,7 @@
     .lifestyle-pane {
       position: relative;
       overflow: hidden;
-      min-height: 760px;
+      min-height: 720px;
     }
     .lifestyle-pane picture,
     .lifestyle-pane img {
@@ -201,6 +202,24 @@
       display: block;
       object-fit: cover;
       object-position: center 55%;
+    }
+    /* 中央のブラー帯（左右画像の境目を柔らかく繋ぐ） */
+    .lifestyle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      z-index: 4;
+      backdrop-filter: blur(20px) saturate(120%);
+      -webkit-backdrop-filter: blur(20px) saturate(120%);
+      background: linear-gradient(90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.18) 50%,
+        rgba(255,255,255,0) 100%);
+      pointer-events: none;
     }
     /* SVGテキストオーバーレイ */
     .lifestyle-overlay {
@@ -218,12 +237,20 @@
       width: 100%;
       max-width: 620px;
       height: auto;
-      /* 白いハロー＋やわらかい影で背景画像の上でも読みやすく */
-      filter:
-        drop-shadow(0 0 12px rgba(255, 255, 255, 0.95))
-        drop-shadow(0 0 28px rgba(255, 255, 255, 0.85))
-        drop-shadow(0 4px 16px rgba(0, 0, 0, 0.18));
+      /* 軽量化: drop-shadow 1重に */
+      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.28));
     }
+    /* 上下の雲もくもく */
+    .lifestyle-cloud-edge {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      z-index: 6;
+      pointer-events: none;
+    }
+    .lifestyle-cloud-top    { top: -1px; }
+    .lifestyle-cloud-bottom { bottom: -1px; transform: scaleY(-1); }
 
     /* スクロールインジケータ */
     .hero-scroll {
@@ -650,6 +677,7 @@
       max-width: 900px;
       margin: 0 auto;
     }
+    .buy-swipe-hint { display: none; } /* PC は非表示 */
     .buy-card {
       position: relative;
       padding: 48px 40px;
@@ -768,6 +796,8 @@
 
       .lifestyle { min-height: 0; grid-template-columns: 1fr; }
       .lifestyle-pane { min-height: 380px; }
+      .lifestyle::before { display: none; }
+      .lifestyle-cloud-edge { height: 50px; }
       .lifestyle-text-svg { max-width: 80vw; }
 
       /* 雲エッジをモバイルで縮小（三角スパイク防止） */
@@ -856,20 +886,56 @@
       .led-sub { font-size: 10px; line-height: 1.8; margin-top: 12px; }
       .led-sub-en { font-size: 8px; letter-spacing: 0.04em; line-height: 1.5; }
 
-      .buy { padding: 48px 12px 40px; }
+      .buy { padding: 48px 16px 40px; }
       .buy-title { font-size: 16px; margin-bottom: 20px; }
-      .buy-price { margin-bottom: 32px; }
+      .buy-price { margin-bottom: 16px; }
       .buy-price-value { font-size: 36px; }
-      .buy-options { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .buy-card { padding: 14px 10px; }
-      .buy-card-badge { padding: 3px 8px; font-size: 8px; }
-      .buy-card-title { font-size: 12px; margin-top: 14px; margin-bottom: 10px; }
-      .buy-btn { padding: 10px 10px; font-size: 10px; gap: 4px; }
-      .buy-perks { margin-bottom: 20px; }
-      .buy-perks li { font-size: 11px; padding: 4px 0 4px 14px; line-height: 1.6; white-space: nowrap; border-bottom: none; }
+      .buy-shipping-note { margin-bottom: 28px; font-size: 11px; }
+
+      /* スマホで横スクロール対応 */
+      .buy-swipe-hint {
+        display: block;
+        text-align: center;
+        font-family: 'Kiwi Maru', 'Klee One', serif;
+        font-weight: 400;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--ink-60);
+        margin-bottom: 14px;
+        animation: hintPulse 2.4s ease-in-out infinite;
+      }
+      @keyframes hintPulse {
+        0%, 100% { transform: translateX(0); opacity: 0.7; }
+        50%      { transform: translateX(4px); opacity: 1; }
+      }
+      .buy-options {
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 16px;
+        gap: 12px;
+        padding: 4px 16px 12px;
+        margin: 0 -16px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .buy-options::-webkit-scrollbar { display: none; }
+      .buy-card {
+        flex: 0 0 84%;
+        max-width: 84%;
+        scroll-snap-align: start;
+        padding: 22px 18px;
+      }
+
+      .buy-card-badge { padding: 5px 10px; font-size: 9px; }
+      .buy-card-title { font-size: 14px; margin-top: 18px; margin-bottom: 14px; }
+      .buy-btn { padding: 12px 14px; font-size: 11px; gap: 6px; }
+      .buy-perks { margin-bottom: 22px; }
+      .buy-perks li { font-size: 12px; padding: 5px 0 5px 16px; line-height: 1.65; }
       .buy-perks li::before { top: 12px; }
-      .buy-perks small { display: none; }
-      .buy-note { font-size: 9px; margin-top: 16px; }
+      .buy-perks small { font-size: 10px; display: block; margin-top: 2px; }
+      .buy-note { font-size: 10px; margin-top: 18px; }
     }
   </style>
 </head>
@@ -895,8 +961,13 @@
     <a href="https://www.minotel.jp/category/all-products" target="_top" class="hero-cta">ショップへ</a>
   </section>
 
-  <!-- LIFESTYLE: 横並び2画像 + SVGテキスト中央オーバーレイ -->
+  <!-- LIFESTYLE: 横並び2画像 + 中央ブラー帯 + 上下雲もくもく -->
   <section class="lifestyle">
+    <!-- 上の雲もくもく（白） -->
+    <svg class="lifestyle-cloud-edge lifestyle-cloud-top" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 0 0 L 0 42 C 42 98, 98 98, 140 42 C 182 75, 238 75, 280 42 C 328 98, 392 98, 440 42 C 482 80, 538 80, 580 42 C 628 105, 692 105, 740 42 C 782 70, 838 70, 880 42 C 922 110, 978 110, 1020 42 C 1062 85, 1118 85, 1160 42 C 1202 92, 1258 92, 1300 42 C 1342 76, 1398 76, 1440 42 L 1440 0 Z" fill="#fff"/>
+    </svg>
+
     <div class="lifestyle-pane lifestyle-pane-blue">
       <picture>
         <source srcset="images/lifestyle/desk-blue.webp" type="image/webp">
@@ -914,6 +985,11 @@
            alt="雲のかたちのUSBスピーカー。やさしい音と光で、デスクに癒しを。あなたの毎日を、そっと彩ります。"
            class="lifestyle-text-svg">
     </div>
+
+    <!-- 下の雲もくもく（次セクションの色と合わせる: paper-warm） -->
+    <svg class="lifestyle-cloud-edge lifestyle-cloud-bottom" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M 0 0 L 0 42 C 42 98, 98 98, 140 42 C 182 75, 238 75, 280 42 C 328 98, 392 98, 440 42 C 482 80, 538 80, 580 42 C 628 105, 692 105, 740 42 C 782 70, 838 70, 880 42 C 922 110, 978 110, 1020 42 C 1062 85, 1118 85, 1160 42 C 1202 92, 1258 92, 1300 42 C 1342 76, 1398 76, 1440 42 L 1440 0 Z" fill="#f5f2ec"/>
+    </svg>
   </section>
 
   <!-- 仕様 -->
@@ -1058,6 +1134,7 @@
       </div>
       <div class="buy-shipping-note reveal reveal-delay-2">全国送料無料 ・ ギフトラッピング近日開始</div>
 
+      <p class="buy-swipe-hint" aria-hidden="true">← スワイプして比較 →</p>
       <div class="buy-options">
         <!-- 公式サイト -->
         <div class="buy-card reveal reveal-delay-2">
