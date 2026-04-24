@@ -77,6 +77,8 @@
       min-height: 540px;
       max-height: 900px;
       overflow: hidden;
+      /* スクロール最適化: 子要素の描画をこのボックス内に閉じる */
+      contain: layout paint;
       background:
         url('images/hero/hero-product-bg.jpg') no-repeat center center / cover,
         linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 45%, var(--sky-3) 100%);
@@ -95,6 +97,8 @@
       display: block;
       width: clamp(360px, 36vw, 540px);
       height: auto;
+      /* やわらかい青みのドロップシャドウで雲の上に浮かせる */
+      filter: drop-shadow(0 6px 20px rgba(120, 150, 200, 0.38));
     }
 
     /* 左下: タグライン (やわらかい手書き寄りフォント) */
@@ -189,6 +193,8 @@
       gap: 0;
       overflow: hidden;
       background: #f0eee8;
+      /* スクロール最適化: 子要素の描画をこのボックス内に閉じる */
+      contain: layout paint;
     }
     .lifestyle-pane {
       position: relative;
@@ -202,24 +208,6 @@
       display: block;
       object-fit: cover;
       object-position: center 55%;
-    }
-    /* 中央のブラー帯（左右画像の境目を柔らかく繋ぐ） */
-    .lifestyle::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 160px;
-      z-index: 4;
-      backdrop-filter: blur(20px) saturate(120%);
-      -webkit-backdrop-filter: blur(20px) saturate(120%);
-      background: linear-gradient(90deg,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.18) 50%,
-        rgba(255,255,255,0) 100%);
-      pointer-events: none;
     }
     /* SVGテキストオーバーレイ */
     .lifestyle-overlay {
