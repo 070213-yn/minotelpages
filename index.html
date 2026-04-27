@@ -171,6 +171,13 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
     }
+    /* 販売開始前: Coming Mid-May 表示（押せない） */
+    .hero-btn-soon {
+      cursor: default;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.55);
+    }
 
     .hero-scroll {
       position: absolute;
@@ -421,6 +428,14 @@
     }
     .btn-line:hover { gap: 28px; }
     .btn-line::after { content: '→'; font-family: sans-serif; }
+    /* 販売開始前: 5月中旬の準備中表示（押せない、矢印なし） */
+    .btn-line-soon {
+      color: var(--ink-60, #777);
+      border-bottom-color: var(--ink-40, #bbb);
+      cursor: default;
+      pointer-events: none;
+    }
+    .btn-line-soon::after { content: ''; }
 
     /* === LED カラー（テキストオーバーレイ） === */
     .led {
@@ -564,10 +579,15 @@
           <span>デスクに、私の空を。</span>
         </h1>
         <p class="hero-desc">毎日のデスクに、小さなときめきを。<br>あなたの「好き」で満たされたデスクを、minotelから。</p>
+        <!-- 販売開始後はこちらに戻す:
         <a href="https://www.minotel.jp/category/all-products" target="_top" class="hero-btn">
           <span class="hero-btn-label">Shop Now</span>
           <span class="hero-btn-arrow">→</span>
         </a>
+        -->
+        <span class="hero-btn hero-btn-soon" aria-disabled="true">
+          <span class="hero-btn-label">Coming Mid-May</span>
+        </span>
       </div>
     </div>
     <div class="hero-scroll">SCROLL</div>
@@ -625,7 +645,10 @@
           <span class="product-price-value">¥15,200</span>
           <span class="product-price-tax">税込</span>
         </div>
+        <!-- 販売開始後はこちらに戻す:
         <a href="https://www.minotel.jp/category/all-products" target="_top" class="btn-line reveal reveal-delay-3">ショップへ</a>
+        -->
+        <span class="btn-line btn-line-soon reveal reveal-delay-3" aria-disabled="true">5月中旬 販売開始</span>
       </div>
     </div>
   </section>

@@ -176,6 +176,16 @@
       font-size: 16px;
     }
 
+    /* 販売開始前: 5月中旬の準備中表示（押せないラベル） */
+    .hero-cta-soon {
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink-60);
+      cursor: default;
+      pointer-events: none;
+      box-shadow: 0 6px 18px rgba(110, 140, 180, 0.14);
+    }
+    .hero-cta-soon::after { content: ''; }
+
     /* prefers-reduced-motion で動きを抑制 */
     @media (prefers-reduced-motion: reduce) {
       .hero-cta { transition: none !important; }
@@ -755,6 +765,15 @@
       background: var(--ink);
       color: #fff;
     }
+    /* 販売開始前の準備中ボタン (5月中旬まで) */
+    .buy-btn-soon {
+      background: #f5f2ec;
+      color: var(--ink-60);
+      border-color: var(--ink-40);
+      cursor: default;
+      pointer-events: none;
+    }
+    .buy-btn-soon:hover { gap: 16px; background: #f5f2ec; }
     .buy-note {
       margin-top: 40px;
       font-size: 11px;
@@ -946,7 +965,10 @@
     </div>
 
     <!-- 右下: ショップへCTA -->
+    <!-- 販売開始後はこちらに戻す:
     <a href="https://www.minotel.jp/category/all-products" target="_top" class="hero-cta">ショップへ</a>
+    -->
+    <span class="hero-cta hero-cta-soon" aria-disabled="true">5月中旬 販売開始</span>
   </section>
 
   <!-- LIFESTYLE: 横並び2画像 + 中央ブラー帯 + 上下雲もくもく -->
@@ -1120,7 +1142,7 @@
         <span class="buy-price-value">¥15,200</span>
         <span class="buy-price-tax">税込</span>
       </div>
-      <div class="buy-shipping-note reveal reveal-delay-2">全国送料無料 ・ ギフトラッピング近日開始</div>
+      <div class="buy-shipping-note reveal reveal-delay-2">全国送料無料 ・ ギフトラッピング 5月中旬より対応開始</div>
 
       <p class="buy-swipe-hint" aria-hidden="true">← スワイプして比較 →</p>
       <div class="buy-options">
@@ -1130,7 +1152,7 @@
           <h3 class="buy-card-title">公式サイトで購入</h3>
           <ul class="buy-perks">
             <li>
-              <span class="perk-highlight">ギフトラッピング（近日開始）</span>
+              <span class="perk-highlight">ギフトラッピング（5月中旬より対応開始）</span>
               <small>準備が整い次第ご案内します。</small>
             </li>
             <li>
@@ -1146,7 +1168,10 @@
               <small>ご希望の方に、書き損じに備えて2枚お入れしています。</small>
             </li>
           </ul>
+          <!-- 販売開始後はこちらに戻す:
           <a href="https://www.minotel.jp/category/all-products" target="_top" class="buy-btn">ショップへ →</a>
+          -->
+          <span class="buy-btn buy-btn-soon" aria-disabled="true">5月中旬 販売開始</span>
         </div>
 
         <!-- Amazon -->
@@ -1155,7 +1180,7 @@
           <h3 class="buy-card-title">Amazon で購入</h3>
           <ul class="buy-perks">
             <li>
-              <span class="perk-highlight">Prime対応（近日開始）</span>
+              <span class="perk-highlight">Prime対応（5月中旬より対応開始）</span>
               <small>準備が整い次第ご案内します。</small>
             </li>
             <li>
