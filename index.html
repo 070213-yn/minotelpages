@@ -45,7 +45,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html { -webkit-font-smoothing: antialiased; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
       font-weight: 300;
@@ -53,6 +53,9 @@
       background: var(--paper);
       line-height: 1.9;
       letter-spacing: 0.02em;
+      /* モバイルでのスクロール改善 */
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: auto;
     }
 
     /* タイトルは Klee One (少し可愛く・でも上品) */
@@ -171,12 +174,13 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
     }
-    /* 販売開始前: Coming Mid-May 表示（押せない） */
-    .hero-btn-soon {
-      cursor: default;
-      pointer-events: none;
-      background: rgba(255, 255, 255, 0.18);
-      border-color: rgba(255, 255, 255, 0.55);
+    .hero-btn-note {
+      margin-top: 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.78);
+      opacity: 0;
+      animation: fadeUp 1.4s 2.2s ease-out forwards;
     }
 
     .hero-scroll {
@@ -428,14 +432,13 @@
     }
     .btn-line:hover { gap: 28px; }
     .btn-line::after { content: '→'; font-family: sans-serif; }
-    /* 販売開始前: 5月中旬の準備中表示（押せない、矢印なし） */
-    .btn-line-soon {
-      color: var(--ink-60, #777);
-      border-bottom-color: var(--ink-40, #bbb);
-      cursor: default;
-      pointer-events: none;
+    .product-launch-note {
+      margin-top: 18px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--ink-60);
+      line-height: 1.7;
     }
-    .btn-line-soon::after { content: ''; }
 
     /* === LED カラー（テキストオーバーレイ） === */
     .led {
@@ -519,8 +522,9 @@
       .hero-title { font-size: clamp(24px, 6.8vw, 36px); line-height: 1.55; margin-bottom: 24px; }
       .hero-sub { font-size: 12px; letter-spacing: 0.24em; margin-bottom: 20px; }
       .hero-desc { font-size: 13px; line-height: 1.9; }
-      .hero-btn { padding: 14px 24px 14px 28px; margin-top: 28px; }
+      .hero-btn { padding: 14px 24px 14px 28px; margin-top: 28px; backdrop-filter: none; -webkit-backdrop-filter: none; }
       .hero-btn-label { font-size: 13px; }
+      .hero-btn-note { font-size: 10px; margin-top: 10px; }
       .hero-scroll { display: none; }
       .concept { padding: 80px 24px; }
       .product { padding: 72px 20px; }
@@ -529,8 +533,24 @@
       .product-title { font-size: clamp(22px, 6vw, 30px); }
       .slide-nav { bottom: 16px; left: 16px; right: 16px; }
       .slide-btn { width: 36px; height: 36px; }
-      .led-stage { aspect-ratio: 3 / 4; max-height: none; }
-      .led-text { padding: 32px 16px; }
+
+      /* LEDセクション: モバイルでは画像とテキストを縦積み（aspect-ratio使わない） */
+      .led-stage {
+        aspect-ratio: auto;
+        max-height: none;
+        display: block;
+        height: auto;
+        overflow: visible;
+      }
+      .led-bg {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 0;
+        padding-bottom: 70.25%;
+      }
+      .led-overlay-white { display: none; }
+      .led-text { position: relative; padding: 36px 20px 56px; background: #fff; }
       .led-title { font-size: clamp(22px, 6vw, 32px); line-height: 1.5; }
       .led-sub { font-size: 12px; margin-top: 16px; }
       .led-sub-en { font-size: 10px; letter-spacing: 0.08em; }
@@ -551,13 +571,19 @@
       .product-info { padding: 0; }
       .product-name { font-size: 11px; letter-spacing: 0.14em; }
       .product-desc { font-size: 12px; }
-      .led-stage { aspect-ratio: 3 / 5; }
-      .led-text { padding: 24px 14px; }
+      .product-launch-note { font-size: 10px; margin-top: 14px; }
+      .led-text { padding: 28px 16px 44px; }
       .led-label { font-size: 10px; letter-spacing: 0.14em; gap: 8px; }
       .led-label::before, .led-label::after { width: 20px; }
       .led-title { font-size: 20px; line-height: 1.55; }
       .led-sub { font-size: 11px; margin-top: 14px; line-height: 1.85; }
       .led-sub-en { font-size: 9px; letter-spacing: 0.05em; }
+    }
+
+    /* モバイル全般: 重いアニメーション/フィルタを抑制してスクロールを軽く */
+    @media (max-width: 900px) {
+      .hero-slide img { animation: none; transform: none; }
+      .slide-btn { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(0,0,0,0.35); }
     }
   </style>
 </head>
@@ -585,9 +611,11 @@
           <span class="hero-btn-arrow">→</span>
         </a>
         -->
-        <span class="hero-btn hero-btn-soon" aria-disabled="true">
-          <span class="hero-btn-label">Coming Mid-May</span>
-        </span>
+        <a href="https://amzn.asia/d/0djdsSeo" target="_blank" rel="noopener" class="hero-btn">
+          <span class="hero-btn-label">Amazon で購入</span>
+          <span class="hero-btn-arrow">→</span>
+        </a>
+        <p class="hero-btn-note">公式サイトは 2026年5月中旬 より販売開始</p>
       </div>
     </div>
     <div class="hero-scroll">SCROLL</div>
@@ -640,15 +668,11 @@
           可愛いシルエットとLEDの光で、あなたのデスクを優しく彩ります。<br>
           コンパクトながらUSB給電で手軽に使える、cloud speaker。
         </p>
-        <div class="product-price reveal reveal-delay-2">
-          <span class="product-price-label">Price</span>
-          <span class="product-price-value">¥15,200</span>
-          <span class="product-price-tax">税込</span>
-        </div>
         <!-- 販売開始後はこちらに戻す:
-        <a href="https://www.minotel.jp/category/all-products" target="_top" class="btn-line reveal reveal-delay-3">ショップへ</a>
+        <a href="https://www.minotel.jp/category/all-products" target="_top" class="btn-line reveal reveal-delay-3">公式サイトで購入</a>
         -->
-        <span class="btn-line btn-line-soon reveal reveal-delay-3" aria-disabled="true">5月中旬 販売開始</span>
+        <a href="https://amzn.asia/d/0djdsSeo" target="_blank" rel="noopener" class="btn-line reveal reveal-delay-3">Amazon で購入</a>
+        <p class="product-launch-note reveal reveal-delay-3">公式サイトでの販売は2026年5月中旬より開始予定</p>
       </div>
     </div>
   </section>

@@ -46,7 +46,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html { -webkit-font-smoothing: antialiased; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
       font-weight: 300;
@@ -54,6 +54,8 @@
       background: var(--paper);
       line-height: 1.9;
       letter-spacing: 0.02em;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: auto;
     }
 
     img { display: block; max-width: 100%; height: auto; }
@@ -792,13 +794,13 @@
           linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 45%, var(--sky-3) 100%);
       }
       .hero-headline { top: 60px; left: 20px; }
-      .hero-headline-svg { width: 260px; max-width: 70vw; }
+      .hero-headline-svg { width: 260px; max-width: 70vw; filter: drop-shadow(0 3px 8px rgba(120, 150, 200, 0.32)); }
       .hero-tagline { bottom: 28px; left: 22px; gap: 4px; }
       .hero-tagline-jp { font-size: 11px; letter-spacing: 0.16em; }
       .hero-tagline-en { font-size: 18px; }
       .hero-tagline-status { font-size: 9px; letter-spacing: 0.2em; margin-top: 2px; }
       .hero-tagline-status::before { width: 20px; }
-      .hero-cta { bottom: 26px; right: 22px; padding: 10px 22px; font-size: 11px; }
+      .hero-cta { bottom: 26px; right: 22px; padding: 10px 18px; font-size: 11px; }
       .hero-scroll { display: none; }
 
       .lifestyle { min-height: 0; grid-template-columns: 1fr; }
@@ -863,7 +865,7 @@
       .hero-headline-svg { width: 210px; max-width: 65vw; }
       .hero-tagline { bottom: 18px; left: 16px; }
       .hero-tagline-en { font-size: 15px; }
-      .hero-cta { bottom: 18px; right: 14px; padding: 8px 16px; font-size: 10px; }
+      .hero-cta { bottom: 18px; right: 14px; padding: 8px 14px; font-size: 10px; }
 
       .lifestyle-pane { min-height: 320px; }
       .lifestyle-text-svg { max-width: 86vw; }
@@ -964,11 +966,11 @@
       <span class="hero-tagline-status">好評発売中</span>
     </div>
 
-    <!-- 右下: ショップへCTA -->
-    <!-- 販売開始後はこちらに戻す:
+    <!-- 右下: 購入CTA (Amazonは販売中、公式は5月中旬) -->
+    <!-- 公式販売開始後はこちらに戻す:
     <a href="https://www.minotel.jp/category/all-products" target="_top" class="hero-cta">ショップへ</a>
     -->
-    <span class="hero-cta hero-cta-soon" aria-disabled="true">5月中旬 販売開始</span>
+    <a href="https://amzn.asia/d/0djdsSeo" target="_blank" rel="noopener" class="hero-cta">Amazonで購入</a>
   </section>
 
   <!-- LIFESTYLE: 横並び2画像 + 中央ブラー帯 + 上下雲もくもく -->
@@ -1142,7 +1144,7 @@
         <span class="buy-price-value">¥15,200</span>
         <span class="buy-price-tax">税込</span>
       </div>
-      <div class="buy-shipping-note reveal reveal-delay-2">全国送料無料 ・ ギフトラッピング 5月中旬より対応開始</div>
+      <div class="buy-shipping-note reveal reveal-delay-2">Amazon にて発売中 ／ 公式サイト・ギフトラッピング・Prime対応は 2026年5月中旬より開始</div>
 
       <p class="buy-swipe-hint" aria-hidden="true">← スワイプして比較 →</p>
       <div class="buy-options">
