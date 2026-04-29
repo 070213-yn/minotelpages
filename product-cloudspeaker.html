@@ -677,6 +677,11 @@
       max-width: 900px;
       margin: 0 auto;
     }
+    /* Amazon 単独販売モード: カード1枚を中央に */
+    .buy-options-single {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
     .buy-swipe-hint { display: none; } /* PC は非表示 */
     .buy-card {
       position: relative;
@@ -936,6 +941,20 @@
         scroll-snap-align: start;
         padding: 22px 18px;
       }
+      /* Amazon単独販売モード: モバイルでも横スクロールなし、1枚を中央に */
+      .buy-options-single {
+        display: block;
+        overflow-x: visible;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+      .buy-options-single .buy-card {
+        flex: 1 1 auto;
+        max-width: 100%;
+      }
+      .buy-options-single + .buy-swipe-hint,
+      .buy-options-single ~ .buy-swipe-hint { display: none; }
 
       .buy-card-badge { padding: 5px 10px; font-size: 9px; }
       .buy-card-title { font-size: 14px; margin-top: 18px; margin-bottom: 14px; }
@@ -1144,17 +1163,16 @@
         <span class="buy-price-value">¥15,200</span>
         <span class="buy-price-tax">税込</span>
       </div>
-      <div class="buy-shipping-note reveal reveal-delay-2">Amazon にて発売中 ／ 公式サイト・ギフトラッピング・Prime対応は 2026年5月中旬より開始</div>
+      <div class="buy-shipping-note reveal reveal-delay-2">Amazon にて発売中</div>
 
-      <p class="buy-swipe-hint" aria-hidden="true">← スワイプして比較 →</p>
-      <div class="buy-options">
-        <!-- 公式サイト -->
+      <div class="buy-options buy-options-single">
+        <!-- 公式サイト販売を再開する場合はこのカードを復活させる:
         <div class="buy-card reveal reveal-delay-2">
           <span class="buy-card-badge">Official</span>
           <h3 class="buy-card-title">公式サイトで購入</h3>
           <ul class="buy-perks">
             <li>
-              <span class="perk-highlight">ギフトラッピング（5月中旬より対応開始）</span>
+              <span class="perk-highlight">ギフトラッピング対応</span>
               <small>準備が整い次第ご案内します。</small>
             </li>
             <li>
@@ -1170,31 +1188,33 @@
               <small>ご希望の方に、書き損じに備えて2枚お入れしています。</small>
             </li>
           </ul>
-          <!-- 販売開始後はこちらに戻す:
           <a href="https://www.minotel.jp/category/all-products" target="_top" class="buy-btn">ショップへ →</a>
-          -->
-          <span class="buy-btn buy-btn-soon" aria-disabled="true">5月中旬 販売開始</span>
         </div>
+        -->
 
         <!-- Amazon -->
-        <div class="buy-card reveal reveal-delay-3">
+        <div class="buy-card reveal reveal-delay-2">
           <span class="buy-card-badge">Amazon</span>
           <h3 class="buy-card-title">Amazon で購入</h3>
           <ul class="buy-perks">
             <li>
-              <span class="perk-highlight">Prime対応（5月中旬より対応開始）</span>
-              <small>準備が整い次第ご案内します。</small>
+              <span class="perk-highlight">Amazon アカウント決済</span>
+              <small>いつもの購入フローで手軽に。</small>
             </li>
             <li>
-              Amazon アカウント決済
-              <small>いつもの購入フローで手軽に。</small>
+              迅速な配送
+              <small>Amazon の物流ネットワークでお届けします。</small>
             </li>
             <li>
               Amazon の返品ポリシー
               <small>Amazon のサポートで対応。</small>
             </li>
+            <li>
+              12ヶ月メーカー保証
+              <small>安心のメーカー保証付き。</small>
+            </li>
           </ul>
-          <a href="https://amzn.asia/d/0djdsSeo" class="buy-btn buy-btn-outline" target="_blank" rel="noopener">Amazon で購入 →</a>
+          <a href="https://amzn.asia/d/0djdsSeo" class="buy-btn" target="_blank" rel="noopener">Amazon で購入 →</a>
         </div>
       </div>
 
