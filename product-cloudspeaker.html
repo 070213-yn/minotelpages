@@ -325,6 +325,76 @@
     .reveal-delay-3 { transition-delay: 0.45s; }
 
     /* ============================================
+       重要なお知らせバナー
+       ============================================ */
+    .notice-banner {
+      position: relative;
+      padding: 56px 24px;
+      background: linear-gradient(180deg, #fdf5e6 0%, #fbecd0 100%);
+      border-top: 1px solid rgba(180, 130, 60, 0.18);
+      border-bottom: 1px solid rgba(180, 130, 60, 0.18);
+    }
+    .notice-banner-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .notice-banner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      color: #a06010;
+      margin-bottom: 18px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(180, 130, 60, 0.25);
+      border-radius: 999px;
+    }
+    .notice-banner-label::before {
+      content: '!';
+      display: inline-flex;
+      width: 16px;
+      height: 16px;
+      align-items: center;
+      justify-content: center;
+      background: #c47820;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .notice-banner-title {
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 500;
+      font-size: clamp(17px, 2vw, 22px);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      color: #4a2e08;
+    }
+    .notice-banner-body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13.5px;
+      line-height: 2.0;
+      letter-spacing: 0.02em;
+      color: #5a3a10;
+    }
+    .notice-banner-body strong {
+      font-weight: 500;
+      color: #8a4810;
+      border-bottom: 1px dotted rgba(138, 72, 16, 0.4);
+      padding-bottom: 1px;
+    }
+    @media (max-width: 700px) {
+      .notice-banner { padding: 40px 20px; }
+    }
+
+    /* ============================================
        仕様
        ============================================ */
     .specs-wrap {
@@ -990,6 +1060,19 @@
     <a href="https://www.minotel.jp/category/all-products" target="_top" class="hero-cta">ショップへ</a>
     -->
     <a href="https://amzn.asia/d/0djdsSeo" target="_blank" rel="noopener" class="hero-cta">Amazonで購入</a>
+  </section>
+
+  <!-- 重要なお知らせ: 左右逆製造について -->
+  <section class="notice-banner" aria-label="重要なお知らせ">
+    <div class="notice-banner-inner">
+      <span class="notice-banner-label">重要なお知らせ</span>
+      <h2 class="notice-banner-title">minotel cloud speaker をご購入の皆様へ</h2>
+      <p class="notice-banner-body">
+        生産工場の手違いにより、同封マニュアルの記載とは<strong>左右の位置が逆</strong>で製造されていたことが判明いたしました。<br>
+        <strong>ツマミやボタンのある本体を「L（左）」として設置</strong>していただくと、正しいステレオでお使いいただけます。<br>
+        ご迷惑をおかけし、誠に申し訳ございません。
+      </p>
+    </div>
   </section>
 
   <!-- LIFESTYLE: 横並び2画像 + 中央ブラー帯 + 上下雲もくもく -->
